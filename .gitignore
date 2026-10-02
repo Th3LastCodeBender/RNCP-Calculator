@@ -1,0 +1,28 @@
+# note di lavoro per Claude Code, solo in locale
+CLAUDE.md
+
+# credenziali dell'intra (FT_UID, FT_SECRET, INTRA_COOKIE): mai nel repo
+.env
+.env.*
+
+# dipendenze, si ricreano con npm install
+node_modules/
+
+# PDF di prova esportati dalla pagina
+export/
+
+# subject di 42: non vanno ripubblicati (si scaricano con npm run subjects).
+# Resta solo subjects/index.json, con i link pubblici al CDN di 42.
+subjects/*
+!subjects/index.json
+
+# testo estratto dai subject (npm run subjects:summary)
+data/subjects-summary.json
+
+# dataset di 42calculator: progetto di terzi, licenza non chiara
+data/42calculator/
+
+# sistema ed editor
+.DS_Store
+*.swp
+.vscode/

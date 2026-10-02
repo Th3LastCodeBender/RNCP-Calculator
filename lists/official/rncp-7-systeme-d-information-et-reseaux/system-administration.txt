@@ -1,0 +1,18 @@
+# RNCP 7 · Opzione 1: Network Information Systems Architecture
+# Blocco System administration: minimo 50 000 XP e 3 progetti
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+42cursus-cloud-1                                # cloud-1
+bgp-at-doors-of-autonomous-systems-is-simple    # BADASS
+inception-of-things                             # Inception Of Things
+42cursus-taskmaster                             # taskmaster
+42cursus-ft_ping                                # ft_ping
+42cursus-ft_traceroute                          # ft_traceroute
+42cursus-ft_nmap                                # ft_nmap
+activediscovery                                 # Active Discovery
+automaticdirectory                              # Automatic Directory
+administrativedirectory                         # Administrative Directory
+accessibledirectory                             # Accessible Directory
+inception-of-context                            # Inception of Context
+inception-of-wisdom                             # Inception of Wisdom
+ft_lgtm                                         # ft_lgtm

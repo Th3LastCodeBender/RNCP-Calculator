@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piano RNCP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="top-text">
+      <h1 id="page-title">Piano RNCP</h1>
+    </div>
+    <div class="menu">
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-pop">Esporta</button>
+      <div class="menu-pop" id="menu-pop" hidden>
+        <button type="button" id="export">Salva piano</button>
+        <button type="button" id="import">Carica piano</button>
+        <input type="file" id="import-file" accept=".json,application/json" hidden>
+        <button type="button" id="export-md">Esporta Markdown</button>
+        <button type="button" id="export-pdf">Esporta PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="reqs" aria-label="Requisiti">
+    <div class="reqs-head">
+      <div class="seg" role="group" aria-label="Titolo RNCP">
+        <button type="button" id="title-6" data-title="6">RNCP 6</button>
+        <button type="button" id="title-7" data-title="7">RNCP 7</button>
+      </div>
+      <div class="seg" role="group" aria-label="Opzione del titolo">
+        <button type="button" id="opt-1" data-opt="1">Opzione 1 · Web e mobile</button>
+        <button type="button" id="opt-2" data-opt="2">Opzione 2 · Software applicativo</button>
+      </div>
+    </div>
+    <div class="meters" id="meters"></div>
+  </section>
+
+  <div class="filters">
+    <input type="search" id="q" placeholder="Cerca un progetto" aria-label="Cerca un progetto">
+    <div class="seg" role="group" aria-label="Numero di persone">
+      <button type="button" id="team-all" data-team="all">Tutti</button>
+      <button type="button" id="team-solo" data-team="solo">Da solo</button>
+      <button type="button" id="team-group" data-team="group">In gruppo</button>
+    </div>
+    <label class="day-hours" for="day-hours" title="Quante ore lavori in una giornata: i giorni sono le ore stimate dall'intra divise per questo numero">
+      Ore al giorno <input type="text" inputmode="decimal" id="day-hours" value="8" size="4" aria-describedby="day-hours-help">
+      <span class="day-hours-help" id="day-hours-help">h</span>
+    </label>
+    <div class="tags" id="tags" role="group" aria-label="Categorie"></div>
+    <label class="check" for="only"><input type="checkbox" id="only"> Scelti</label>
+    <label class="check" for="exclusive" id="exclusive-box"><input type="checkbox" id="exclusive" checked> <span id="exclusive-label">Mostra RNCP 7</span></label>
+    <div class="actions">
+      <span class="plan-status" id="plan-status" role="status" hidden></span>
+      <button type="button" class="link" id="reconnect" hidden>Riapri piano</button>
+      <button type="button" class="link" id="reset">Azzera le scelte</button>
+    </div>
+  </div>
+
+  <main id="blocks"></main>
+
+  <footer class="notes">
+    <p><b>XP</b>: valore a voto 100, dall'intra (ottobre 2026, aggiornabile con <code>npm run info</code>). Gli XP reali scalano con il voto finale. Per le piscine il totale vale solo se validi tutti i moduli; per contare come progetto basta l'ultimo.</p>
+    <p><b>Giorni</b>: tempo stimato dall'intra diviso per le tue <b>Ore al giorno</b> (da 1 a 24, default 8), con sabato e domenica liberi: ogni 5 giorni lavorativi si aggiungono 2 giorni di weekend. Le ore esatte compaiono passando sopra il chip. Si aggiornano con <code>npm run hours</code>. <b>Linguaggio</b>: indicativo, "Libero" vuol dire a scelta: fa fede il subject.</p>
+    <p><b>Persone</b>: dimensione del team indicata sull'intra (ottobre 2026, aggiornabile con <code>npm run info</code>). Può cambiare tra campus e versioni del subject. Alcuni progetti RNCP 7 (Active Discovery, tinky-winkey…) hanno la pagina dell'intra riservata: per loro mancano persone e subject, e la descrizione viene dall'API di 42.</p>
+    <p><b>Subject</b>: apre il PDF ufficiale sul CDN di 42, senza login (ottobre 2026; <code>npm run info</code> segnala i link cambiati). <b>Pagina del progetto</b>: apre la pagina sull'intra, dove trovi sempre il PDF più recente (serve il login 42).</p>
+    <p><b>Requisiti comuni</b>, non tracciati qui: <span id="common-rules">livello 17, 10 eventi, 2 esperienze professionali</span>. Un progetto presente in più blocchi è contato in ognuno: conferma sulla pagina RNCP dell'intra.</p>
+  </footer>
+</div>
+
+<!-- riepilogo del piano, riempito da "Esporta PDF" e visibile solo in stampa -->
+<div class="report" id="report"></div>
+
+<script src="hours.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

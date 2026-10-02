@@ -1,0 +1,19 @@
+# rncp-7 · Système d'information et réseaux
+# Blocco Security: minimo 50.000 XP e 3 progetti
+
+ft_malcolm                                      # ft_malcolm · 6000 XP
+42cursus-ft_ssl_md5                             # ft_ssl_md5 · 9450 XP
+42cursus-darkly                                 # darkly · 6300 XP
+42cursus-snow-crash                             # snow-crash · 9450 XP
+42cursus-rainfall                               # rainfall · 25.200 XP
+42cursus-override                               # override · 35.700 XP
+42cursus-boot2root                              # boot2root · 11.500 XP
+42cursus-ft_shield                              # ft_shield · 15.750 XP
+42cursus-woody-woodpacker                       # woody-woodpacker · 9450 XP
+42cursus-famine                                 # famine · 9450 XP
+42cursus-pestilence                             # pestilence · 15.750 XP
+cybersecurity                                   # Cybersecurity
+unleashthebox                                   # UnleashTheBox · 15.750 XP
+activeconnect                                   # ActiveConnect · 15.750 XP
+microforensx                                    # MicroForensX · 9450 XP
+activetechtales                                 # ActiveTechTales · 15.750 XP

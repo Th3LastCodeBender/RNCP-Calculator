@@ -1,0 +1,8 @@
+# Esperienze professionali
+
+internship-i                                    # Internship I · 42.000 XP
+internship-ii                                   # Internship II · 63.000 XP
+42cursus-startup-internship                     # Startup Internship · 42.000 XP
+apprentissage-1-an-apprentissage-1-an-4         # Apprentissage 1 an - 4
+apprentissage-2-ans-1ere-annee-apprentissage-2-ans-1ere-annee-4# Apprentissage 2 ans - 1ère année - 4
+apprentissage-2-ans-2eme-annee-apprentissage-2-ans-2eme-annee-4# Apprentissage 2 ans - 2ème année - 4

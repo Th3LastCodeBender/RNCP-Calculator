@@ -1,0 +1,498 @@
+{
+  "42cursus-42sh": {
+    "file": "42cursus-42sh.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/215874/en.subject.pdf"
+  },
+  "bgp-at-doors-of-autonomous-systems-is-simple": {
+    "file": "bgp-at-doors-of-autonomous-systems-is-simple.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211017/en.subject.pdf"
+  },
+  "42cursus-doom-nukem": {
+    "file": "42cursus-doom-nukem.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210723/en.subject.pdf"
+  },
+  "inception-of-things": {
+    "file": "inception-of-things.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/224141/en.subject.pdf"
+  },
+  "42cursus-humangl": {
+    "file": "42cursus-humangl.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/217474/en.subject.pdf"
+  },
+  "42cursus-kfs-2": {
+    "file": "42cursus-kfs-2.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208608/en.subject.pdf"
+  },
+  "42cursus-override": {
+    "file": "42cursus-override.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221873/en.subject.pdf"
+  },
+  "42cursus-pestilence": {
+    "file": "42cursus-pestilence.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208626/en.subject.pdf"
+  },
+  "42cursus-rt": {
+    "file": "42cursus-rt.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210513/en.subject.pdf"
+  },
+  "42cursus-total-perspective-vortex": {
+    "file": "42cursus-total-perspective-vortex.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209510/en.subject.pdf"
+  },
+  "piscine-symfony": {
+    "file": "piscine-symfony.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209481/en.subject.pdf"
+  },
+  "piscine-django": {
+    "file": "piscine-django.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210657/en.subject.pdf"
+  },
+  "piscine-ror": {
+    "file": "piscine-ror.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210088/en.subject.pdf"
+  },
+  "mobile": {
+    "file": "mobile.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212922/en.subject.pdf"
+  },
+  "piscine-object": {
+    "file": "piscine-object.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210719/en.subject.pdf",
+    "modules": [
+      {
+        "module": "piscine-object-module-00-encapsulation",
+        "file": "piscine-object/piscine-object-module-00-encapsulation.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/225935/en.subject.pdf"
+      },
+      {
+        "module": "piscine-object-module-01-relationship",
+        "file": "piscine-object/piscine-object-module-01-relationship.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/210645/en.subject.pdf"
+      },
+      {
+        "module": "piscine-object-module-02-uml",
+        "file": "piscine-object/piscine-object-module-02-uml.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/210662/en.subject.pdf"
+      },
+      {
+        "module": "piscine-object-module-03-solid",
+        "file": "piscine-object/piscine-object-module-03-solid.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/210674/en.subject.pdf"
+      },
+      {
+        "module": "piscine-object-module-04-design-pattern",
+        "file": "piscine-object/piscine-object-module-04-design-pattern.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/210698/en.subject.pdf"
+      },
+      {
+        "module": "piscine-object-module-05-practical-work",
+        "file": "piscine-object/piscine-object-module-05-practical-work.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/210704/en.subject.pdf"
+      }
+    ]
+  },
+  "42cursus-piscine-ocaml": {
+    "file": "42cursus-piscine-ocaml.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208548/en.subject.pdf"
+  },
+  "42cursus-camagru": {
+    "file": "42cursus-camagru.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/203658/en.subject.pdf"
+  },
+  "42cursus-matcha": {
+    "file": "42cursus-matcha.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/227569/en.subject.pdf"
+  },
+  "42cursus-hypertube": {
+    "file": "42cursus-hypertube.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209673/en.subject.pdf"
+  },
+  "42cursus-red-tetris": {
+    "file": "42cursus-red-tetris.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211093/en.subject.pdf"
+  },
+  "42cursus-darkly": {
+    "file": "42cursus-darkly.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221875/en.subject.pdf"
+  },
+  "42cursus-h42n42": {
+    "file": "42cursus-h42n42.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209576/en.subject.pdf"
+  },
+  "tokenizer": {
+    "file": "tokenizer.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211049/en.subject.pdf"
+  },
+  "tokenizeart": {
+    "file": "tokenizeart.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/214858/en.subject.pdf"
+  },
+  "42cursus-music-room": {
+    "file": "42cursus-music-room.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209570/en.subject.pdf"
+  },
+  "42cursus-ft_hangouts": {
+    "file": "42cursus-ft_hangouts.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208715/en.subject.pdf"
+  },
+  "42cursus-swifty-companion": {
+    "file": "42cursus-swifty-companion.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211725/en.subject.pdf"
+  },
+  "42cursus-swifty-proteins": {
+    "file": "42cursus-swifty-proteins.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/216248/en.subject.pdf"
+  },
+  "42cursus-bomberman": {
+    "file": "42cursus-bomberman.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209477/en.subject.pdf"
+  },
+  "42cursus-nibbler": {
+    "file": "42cursus-nibbler.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209541/en.subject.pdf"
+  },
+  "42cursus-avaj-launcher": {
+    "file": "42cursus-avaj-launcher.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/217430/en.subject.pdf"
+  },
+  "42cursus-swingy": {
+    "file": "42cursus-swingy.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208601/en.subject.pdf"
+  },
+  "42cursus-fix-me": {
+    "file": "42cursus-fix-me.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208928/en.subject.pdf"
+  },
+  "libftpp": {
+    "file": "libftpp.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225598/en.subject.pdf"
+  },
+  "abstract_data": {
+    "file": "abstract_data.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225597/en.subject.pdf"
+  },
+  "retroemu": {
+    "file": "retroemu.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/228207/en.subject.pdf"
+  },
+  "42cursus-ft_turing": {
+    "file": "42cursus-ft_turing.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209599/en.subject.pdf"
+  },
+  "42cursus-ft_ality": {
+    "file": "42cursus-ft_ality.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210927/en.subject.pdf"
+  },
+  "libasm": {
+    "file": "libasm.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/216943/en.subject.pdf"
+  },
+  "42cursus-zappy": {
+    "file": "42cursus-zappy.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209870/en.subject.pdf"
+  },
+  "42cursus-ft_linux": {
+    "file": "42cursus-ft_linux.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212191/en.subject.pdf"
+  },
+  "42cursus-little-penguin-1": {
+    "file": "42cursus-little-penguin-1.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/217550/en.subject.pdf"
+  },
+  "42cursus-taskmaster": {
+    "file": "42cursus-taskmaster.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210912/en.subject.pdf"
+  },
+  "42cursus-strace": {
+    "file": "42cursus-strace.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209528/en.subject.pdf"
+  },
+  "42cursus-malloc": {
+    "file": "42cursus-malloc.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/214587/en.subject.pdf"
+  },
+  "42cursus-matt-daemon": {
+    "file": "42cursus-matt-daemon.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212499/en.subject.pdf"
+  },
+  "nm": {
+    "file": "nm.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221637/en.subject.pdf"
+  },
+  "42cursus-lem-ipc": {
+    "file": "42cursus-lem-ipc.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210295/en.subject.pdf"
+  },
+  "42cursus-kfs-1": {
+    "file": "42cursus-kfs-1.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209026/en.subject.pdf"
+  },
+  "ft_malcolm": {
+    "file": "ft_malcolm.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/228824/en.subject.pdf"
+  },
+  "42cursus-ft_ssl_md5": {
+    "file": "42cursus-ft_ssl_md5.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/205815/en.subject.pdf"
+  },
+  "42cursus-snow-crash": {
+    "file": "42cursus-snow-crash.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221871/en.subject.pdf"
+  },
+  "42cursus-rainfall": {
+    "file": "42cursus-rainfall.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221872/en.subject.pdf"
+  },
+  "42cursus-boot2root": {
+    "file": "42cursus-boot2root.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221874/en.subject.pdf"
+  },
+  "42cursus-ft_shield": {
+    "file": "42cursus-ft_shield.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209357/en.subject.pdf"
+  },
+  "42cursus-woody-woodpacker": {
+    "file": "42cursus-woody-woodpacker.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/206044/en.subject.pdf"
+  },
+  "42cursus-famine": {
+    "file": "42cursus-famine.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212052/en.subject.pdf"
+  },
+  "42cursus-ft_select": {
+    "file": "42cursus-ft_select.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208555/en.subject.pdf"
+  },
+  "42cursus-ft_script": {
+    "file": "42cursus-ft_script.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/215689/en.subject.pdf"
+  },
+  "42cursus-cloud-1": {
+    "file": "42cursus-cloud-1.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208938/en.subject.pdf"
+  },
+  "42cursus-drivers-and-interrupts": {
+    "file": "42cursus-drivers-and-interrupts.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208587/en.subject.pdf"
+  },
+  "42cursus-dslr": {
+    "file": "42cursus-dslr.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211419/en.subject.pdf"
+  },
+  "42cursus-expert-system": {
+    "file": "42cursus-expert-system.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210325/en.subject.pdf"
+  },
+  "42cursus-filesystem": {
+    "file": "42cursus-filesystem.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208599/en.subject.pdf"
+  },
+  "42cursus-ft_linear_regression": {
+    "file": "42cursus-ft_linear_regression.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212344/en.subject.pdf"
+  },
+  "42cursus-ft_nmap": {
+    "file": "42cursus-ft_nmap.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/215019/en.subject.pdf"
+  },
+  "42cursus-ft_ping": {
+    "file": "42cursus-ft_ping.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208554/en.subject.pdf"
+  },
+  "42cursus-ft_traceroute": {
+    "file": "42cursus-ft_traceroute.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221754/en.subject.pdf"
+  },
+  "42cursus-gomoku": {
+    "file": "42cursus-gomoku.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208550/en.subject.pdf"
+  },
+  "42cursus-kfs-3": {
+    "file": "42cursus-kfs-3.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208611/en.subject.pdf"
+  },
+  "42cursus-kfs-4": {
+    "file": "42cursus-kfs-4.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210779/en.subject.pdf"
+  },
+  "42cursus-kfs-5": {
+    "file": "42cursus-kfs-5.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210529/en.subject.pdf"
+  },
+  "42cursus-kfs-6": {
+    "file": "42cursus-kfs-6.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210527/en.subject.pdf"
+  },
+  "42cursus-kfs-7": {
+    "file": "42cursus-kfs-7.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/217425/en.subject.pdf"
+  },
+  "42cursus-kfs-8": {
+    "file": "42cursus-kfs-8.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208606/en.subject.pdf"
+  },
+  "42cursus-kfs-9": {
+    "file": "42cursus-kfs-9.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208596/en.subject.pdf"
+  },
+  "42cursus-kfs-x": {
+    "file": "42cursus-kfs-x.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208912/en.subject.pdf"
+  },
+  "42cursus-krpsim": {
+    "file": "42cursus-krpsim.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211241/en.subject.pdf"
+  },
+  "42cursus-multilayer-perceptron": {
+    "file": "42cursus-multilayer-perceptron.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209575/en.subject.pdf"
+  },
+  "42cursus-process-and-memory": {
+    "file": "42cursus-process-and-memory.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209676/en.subject.pdf"
+  },
+  "42cursus-userspace_digressions": {
+    "file": "42cursus-userspace_digressions.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209487/en.subject.pdf"
+  },
+  "cybersecurity": {
+    "file": "cybersecurity.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/213170/en.subject.pdf",
+    "modules": [
+      {
+        "module": "cybersecurity-arachnida-web",
+        "file": "cybersecurity/cybersecurity-arachnida-web.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/212035/en.subject.pdf"
+      },
+      {
+        "module": "cybersecurity-ft_otp-otp",
+        "file": "cybersecurity/cybersecurity-ft_otp-otp.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/212037/en.subject.pdf"
+      },
+      {
+        "module": "cybersecurity-ft_onion-web",
+        "file": "cybersecurity/cybersecurity-ft_onion-web.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/213295/en.subject.pdf"
+      },
+      {
+        "module": "cybersecurity-reverse-me-rev",
+        "file": "cybersecurity/cybersecurity-reverse-me-rev.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/211946/en.subject.pdf"
+      },
+      {
+        "module": "cybersecurity-stockholm-malware",
+        "file": "cybersecurity/cybersecurity-stockholm-malware.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/211697/en.subject.pdf"
+      },
+      {
+        "module": "cybersecurity-inquisitor-network",
+        "file": "cybersecurity/cybersecurity-inquisitor-network.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/213304/en.subject.pdf"
+      },
+      {
+        "module": "optional-cybersecurity-iron-dome-malware",
+        "file": "cybersecurity/optional-cybersecurity-iron-dome-malware.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/213171/en.subject.pdf"
+      },
+      {
+        "module": "cybersecurity-vaccine-web",
+        "file": "cybersecurity/cybersecurity-vaccine-web.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/213305/en.subject.pdf"
+      }
+    ]
+  },
+  "ft_lgtm": {
+    "file": "ft_lgtm.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/228204/en.subject.pdf"
+  },
+  "inception-of-context": {
+    "file": "inception-of-context.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/228205/en.subject.pdf"
+  },
+  "inception-of-wisdom": {
+    "file": "inception-of-wisdom.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/228206/en.subject.pdf"
+  },
+  "leaffliction": {
+    "file": "leaffliction.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212502/en.subject.pdf"
+  },
+  "learn2slither": {
+    "file": "learn2slither.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225974/en.subject.pdf"
+  },
+  "matrix": {
+    "file": "matrix.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210505/en.subject.pdf"
+  },
+  "piscine-data-science": {
+    "file": "piscine-data-science.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/220007/en.subject.pdf",
+    "modules": [
+      {
+        "module": "data-science-0",
+        "file": "piscine-data-science/data-science-0.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/211829/en.subject.pdf"
+      },
+      {
+        "module": "data-science-1",
+        "file": "piscine-data-science/data-science-1.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/223000/en.subject.pdf"
+      },
+      {
+        "module": "data-science-2",
+        "file": "piscine-data-science/data-science-2.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/223001/en.subject.pdf"
+      },
+      {
+        "module": "data-science-3",
+        "file": "piscine-data-science/data-science-3.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/211642/en.subject.pdf"
+      },
+      {
+        "module": "data-science-4",
+        "file": "piscine-data-science/data-science-4.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/211638/en.subject.pdf"
+      }
+    ]
+  },
+  "python-for-data-science": {
+    "file": "python-for-data-science.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211905/en.subject.pdf",
+    "modules": [
+      {
+        "module": "python-0-starting",
+        "file": "python-for-data-science/python-0-starting.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/203089/en.subject.pdf"
+      },
+      {
+        "module": "python-1-array",
+        "file": "python-for-data-science/python-1-array.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/209593/en.subject.pdf"
+      },
+      {
+        "module": "python-2-datatable",
+        "file": "python-for-data-science/python-2-datatable.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/209603/en.subject.pdf"
+      },
+      {
+        "module": "python-3-oop",
+        "file": "python-for-data-science/python-3-oop.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/209606/en.subject.pdf"
+      },
+      {
+        "module": "python-4-dod",
+        "file": "python-for-data-science/python-4-dod.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/209620/en.subject.pdf"
+      }
+    ]
+  },
+  "ready-set-boole": {
+    "file": "ready-set-boole.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212628/en.subject.pdf"
+  },
+  "unleashthebox": {
+    "file": "unleashthebox.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212058/en.subject.pdf"
+  }
+}

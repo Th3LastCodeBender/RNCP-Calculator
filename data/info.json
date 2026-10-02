@@ -1,0 +1,2026 @@
+{
+  "42cursus-42sh": {
+    "name": "42sh",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      4,
+      5
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "System"
+    ],
+    "description": "This project consists of creating a complete shell. A minimum set of functionalities is asked, from which you will build your own finalized shell, potentially going as far as job control and shell scripting. This project will involve a large variety of standard UNIX (and POSIX) functionalities.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/215874/en.subject.pdf",
+    "session": 5062,
+    "updated": "2026-10-02"
+  },
+  "bgp-at-doors-of-autonomous-systems-is-simple": {
+    "name": " Bgp At Doors of Autonomous Systems is Simple",
+    "xp": 22450,
+    "xpFromModules": false,
+    "hours": 200,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "Network administration",
+      "GNS3",
+      "BGP"
+    ],
+    "description": "The purpose of this project is to deepen your knowledge of NetPractice.\n You will have to simulate several networks (VXLAN+BGP-EVPN) in GNS3. ",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211017/en.subject.pdf",
+    "session": 6570,
+    "updated": "2026-10-02"
+  },
+  "42cursus-doom-nukem": {
+    "name": "doom-nukem",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      3,
+      4
+    ],
+    "objectives": [
+      "Gaming",
+      "MlX"
+    ],
+    "description": "Doom Nukem pushes the possibilities of Raycasting much further while bringing a dimension of Game design, so you are going to have to make a mix of Doom and Duke Nukem 3D.  It's up to you to find the one that suits you and that will allow you to add the requested features as well as those you want to see there.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210723/en.subject.pdf",
+    "session": 3500,
+    "updated": "2026-10-02"
+  },
+  "inception-of-things": {
+    "name": "Inception-of-Things",
+    "xp": 25450,
+    "xpFromModules": false,
+    "hours": 200,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "System administration",
+      "docker-kuber",
+      "CD"
+    ],
+    "description": " This project aims to introduce you to Kubernetes from a developer's perspective.\n You will have to set up small clusters and discover the mechanics of continuous integration.\n At the end of this project, you will be able to set up a working cluster in Docker and have a usable continuous integration pipeline for your applications.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/224141/en.subject.pdf",
+    "session": 6512,
+    "updated": "2026-10-02"
+  },
+  "42cursus-humangl": {
+    "name": "humangl",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "OpenGL",
+      "Modeling"
+    ],
+    "description": "This intermediate OpenGL project is an introduction to hierarchical modeling. You will learn to use matrices in order to link various parts of a humanoid model, and animate them.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/217474/en.subject.pdf",
+    "session": 3436,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-2": {
+    "name": "kfs-2",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Discover the world of Kernel Programming and learn how to create your very own Kernel from scratch.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208608/en.subject.pdf",
+    "session": 3466,
+    "updated": "2026-10-02"
+  },
+  "42cursus-override": {
+    "name": "override",
+    "xp": 35700,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Binary Exploitation"
+    ],
+    "description": "Override is the direct sequel to Rainfall, and it is another level entirely. Rainfall taught you the stack; Override drops you into modern, fully mitigated 64-bit binaries on glibc 2.39, all protections on by default. Stripped binaries, no shortcuts, the heap and the network in play. This is serious binary exploitation. Come prepared.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221873/en.subject.pdf",
+    "session": 3490,
+    "updated": "2026-10-02"
+  },
+  "42cursus-pestilence": {
+    "name": "pestilence",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Low-level",
+      "Malware"
+    ],
+    "description": "Second virus project. Reuse the Famine base to add a hiding method of your code.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208626/en.subject.pdf",
+    "session": 3485,
+    "updated": "2026-10-02"
+  },
+  "42cursus-rt": {
+    "name": "rt",
+    "xp": 20750,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      3,
+      4
+    ],
+    "objectives": [
+      "General",
+      "Raytracing "
+    ],
+    "description": "RT pushes the limits of what Ray Tracing can do: mirror effect, transparency, object cutting, texture application... . Use the preceding project to create an infrastructure capable of supporting all these ramifications and obtain sublime computer-generated images.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210513/en.subject.pdf",
+    "session": 5078,
+    "updated": "2026-10-02"
+  },
+  "42cursus-total-perspective-vortex": {
+    "name": "total-perspective-vortex",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "DataScience",
+      "EEG",
+      "Classification"
+    ],
+    "description": "Learn to use python tools to process large dimension data, and create a man-machine interface thanks to brainwaves.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209510/en.subject.pdf",
+    "session": 3502,
+    "updated": "2026-10-02"
+  },
+  "piscine-symfony": {
+    "name": "Piscine Symfony",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 63,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Web",
+      "Framework php"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209481/en.subject.pdf",
+    "session": 7935,
+    "updated": "2026-10-02"
+  },
+  "piscine-django": {
+    "name": "Piscine Django",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 63,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Web",
+      "Framework python"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210657/en.subject.pdf",
+    "session": 7925,
+    "updated": "2026-10-02"
+  },
+  "piscine-ror": {
+    "name": "Piscine RoR",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 63,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Web",
+      "Framework ruby"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210088/en.subject.pdf",
+    "session": 7915,
+    "updated": "2026-10-02"
+  },
+  "mobile": {
+    "name": "Mobile",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 63,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Mobile",
+      "General"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212922/en.subject.pdf",
+    "session": 9644,
+    "updated": "2026-10-02"
+  },
+  "piscine-object": {
+    "name": "Piscine Object",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 64,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Object-oriented programming"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210719/en.subject.pdf",
+    "session": 9672,
+    "updated": "2026-10-02"
+  },
+  "42cursus-piscine-ocaml": {
+    "name": "Piscine ocaml",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 63,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Functionnal",
+      "OCAML"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208548/en.subject.pdf",
+    "session": 8380,
+    "updated": "2026-10-02"
+  },
+  "42cursus-camagru": {
+    "name": "camagru",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Web",
+      "MVC"
+    ],
+    "description": "This project is a warm-up for web development. You will need to create a small, Instagram-like website that allows users to create and share photomontages. From scratch, you will implement the basic functionalities commonly used by any website with a user base.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/203658/en.subject.pdf",
+    "session": 3438,
+    "updated": "2026-10-02"
+  },
+  "42cursus-matcha": {
+    "name": "matcha",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Web",
+      "Micro-framework"
+    ],
+    "description": "This second project introduces a more advanced tool for building web applications: the micro-framework. You are invited to create a dating site in the programming language of your choice. User interaction is at the heart of this project!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/227569/en.subject.pdf",
+    "session": 3443,
+    "updated": "2026-10-02"
+  },
+  "42cursus-hypertube": {
+    "name": "hypertube",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Web",
+      "Peertube'like"
+    ],
+    "description": "Hypertube introduces you to a powerful category of tools: MVC frameworks. You will learn how to work with an MVC framework—using the programming language of your choice—to build a video streaming website with content downloaded via the BitTorrent protocol.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209673/en.subject.pdf",
+    "session": 3444,
+    "updated": "2026-10-02"
+  },
+  "42cursus-red-tetris": {
+    "name": "red-tetris",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Web",
+      "Javascript"
+    ],
+    "description": "The objective of this project is to develop a networked multiplayer Tetris game using a software stack that is exclusively Full Stack JavaScript.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211093/en.subject.pdf",
+    "session": 3470,
+    "updated": "2026-10-02"
+  },
+  "42cursus-darkly": {
+    "name": "darkly",
+    "xp": 6300,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Web"
+    ],
+    "description": "Introductory project to computer security in the specific field of the web, this project has you audit a deliberately vulnerable web platform. You will exploit real-world vulnerabilities to escalate your access from an anonymous visitor all the way up to administrator, capture the flags hidden along the way, and understand how each breach could have been prevented, both from a programming and a design perspective.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221875/en.subject.pdf",
+    "session": 3447,
+    "updated": "2026-10-02"
+  },
+  "42cursus-h42n42": {
+    "name": "h42n42",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Web",
+      "Ocsigen"
+    ],
+    "description": "An introductory project to the OCSIGEN framework for creating rich web applications in OCaml. The goal is to design a simulator where creatures try to escape a dangerous virus.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209576/en.subject.pdf",
+    "session": 3471,
+    "updated": "2026-10-02"
+  },
+  "tokenizer": {
+    "name": "Tokenizer",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Web3"
+    ],
+    "description": "This project allows you to learn the basics in web3. You will have to create your personal token!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211049/en.subject.pdf",
+    "session": 10512,
+    "updated": "2026-10-02"
+  },
+  "tokenizeart": {
+    "name": "TokenizeArt",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Web3"
+    ],
+    "description": "This project allows you to learn the basics in web3. You will have to create your non-fungible token!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/214858/en.subject.pdf",
+    "session": 12189,
+    "updated": "2026-10-02"
+  },
+  "42cursus-music-room": {
+    "name": "music-room",
+    "xp": 25200,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Mobile",
+      "API"
+    ],
+    "description": "In a group, create a complete mobile app for collaborative playlists using a relevant SDK and API. The tasks include mobile development, back-end development, and the creation of a REST API.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209570/en.subject.pdf",
+    "session": 3469,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_hangouts": {
+    "name": "ft_hangouts",
+    "xp": 4200,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Mobile",
+      "SDK"
+    ],
+    "description": "The goal of this project is to introduce you to mobile application development. You will build a contact management app for Android, allowing users to create, manage, and interact with their contacts. Throughout the project, you will learn how a mobile app works, how the Android system manages application lifecycles, and how to use the Android SDK effectively.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208715/en.subject.pdf",
+    "session": 3421,
+    "updated": "2026-10-02"
+  },
+  "42cursus-swifty-companion": {
+    "name": "swifty-companion",
+    "xp": 4200,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Mobile",
+      "API-42"
+    ],
+    "description": "This project is an introduction to mobile programming. The goal is to create, an application which will allow you to get infos about 42students, using the API.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211725/en.subject.pdf",
+    "session": 3437,
+    "updated": "2026-10-02"
+  },
+  "42cursus-swifty-proteins": {
+    "name": "swifty-proteins",
+    "xp": 15750,
+    "hours": 147,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Mobile",
+      "Biometric Authentication",
+      "3D Rendering",
+      "Data Parsing"
+    ],
+    "description": "Build a professional mobile application for visualizing protein ligands in 3D. \nYou'll fetch molecular data from the RCSB Protein Data Bank, parse Chemical Information \nFiles (.cif format), and render complex molecular structures using native 3D frameworks \n(SceneKit on iOS or equivalent on Android). The app features secure biometric authentication, \ninteractive 3D models with CPK coloring and ball-and-stick representation, gesture-based \ncontrols for rotation and zoom, and social sharing capabilities. This project combines \nbioinformatics, mobile security, network programming, and advanced 3D graphics rendering.\n",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/216248/en.subject.pdf",
+    "session": 3448,
+    "updated": "2026-10-02"
+  },
+  "42cursus-bomberman": {
+    "name": "bomberman",
+    "xp": 25200,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      4,
+      5
+    ],
+    "objectives": [
+      "Gaming",
+      "Multiplayer"
+    ],
+    "description": "Bomberman is a classic video game: as simple in its gameplay as it is fun to play! You will leverage its simplicity here to undertake your first major professional-grade C++ project. Your goal is to recode a version of Bomberman in C++ and OpenGL, with the aim of creating the most polished game possible.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209477/en.subject.pdf",
+    "session": 3431,
+    "updated": "2026-10-02"
+  },
+  "42cursus-nibbler": {
+    "name": "nibbler",
+    "xp": 9450,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Gaming",
+      "Dynamic libraby"
+    ],
+    "description": "This project in C++ will make you recode a Snake where you can switch the interface at run time",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209541/en.subject.pdf",
+    "session": 3428,
+    "updated": "2026-10-02"
+  },
+  "42cursus-avaj-launcher": {
+    "name": "avaj-launcher",
+    "xp": 4200,
+    "hours": 50,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Java",
+      "UML"
+    ],
+    "description": "First project of the Java projects arc. Implementation of a simple Java program according to a given class diagram written in UML.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/217430/en.subject.pdf",
+    "session": 3477,
+    "updated": "2026-10-02"
+  },
+  "42cursus-swingy": {
+    "name": "swingy",
+    "xp": 9450,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Java",
+      "Swing"
+    ],
+    "description": "This is the second project from the Java world at 42. You will learn to develop GUI applications with the SWING framework, in order to create an RPG game.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208601/en.subject.pdf",
+    "session": 3478,
+    "updated": "2026-10-02"
+  },
+  "42cursus-fix-me": {
+    "name": "fix-me",
+    "xp": 15750,
+    "hours": 196,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Java",
+      "Network"
+    ],
+    "description": "Final project of the Java Programming arc. You will write a program that simulates stock exchanges and handles trading algorithms, including networking and socket implementations.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208928/en.subject.pdf",
+    "session": 3479,
+    "updated": "2026-10-02"
+  },
+  "libftpp": {
+    "name": "libftpp",
+    "xp": 5880,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Library",
+      "OOP"
+    ],
+    "description": "This subject aims to introduce you to advanced C++ concepts through the development of complex tools and systems.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225598/en.subject.pdf",
+    "session": 11315,
+    "updated": "2026-10-02"
+  },
+  "abstract_data": {
+    "name": "Abstract_data",
+    "xp": 20084,
+    "hours": 290,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "data structures",
+      "OOP",
+      "C++"
+    ],
+    "description": "The multiple available containers in C++ all have a very different usage. To make sure you understand them all, let's re-implement them!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225597/en.subject.pdf",
+    "session": 9795,
+    "updated": "2026-10-02"
+  },
+  "retroemu": {
+    "name": "RetroEmu",
+    "xp": 37800,
+    "xpFromModules": false,
+    "hours": 420,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Low-level",
+      "Emulation"
+    ],
+    "description": "This project involves coding an emulator for an 8-bit handheld console (DMG model) and its color variant (CGB model). You will become familiar with technical documentation, better apprehend hardware emulation and understand the inner workings of a real piece of hardware as well as ROM cartridges.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/228207/en.subject.pdf",
+    "session": 16290,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_turing": {
+    "name": "ft_turing",
+    "xp": 9450,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Math",
+      "Functionnal"
+    ],
+    "description": "ft_turing will help you discover the turing model using imperative programming through an implementation of this model with OCaml",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209599/en.subject.pdf",
+    "session": 3445,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_ality": {
+    "name": "ft_ality",
+    "xp": 4200,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Math",
+      "Parsing"
+    ],
+    "description": "This project will get you acquainted with problems linked to automatic syntax analysis (“parsin”) by studying finite automation in a combat game.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210927/en.subject.pdf",
+    "session": 3449,
+    "updated": "2026-10-02"
+  },
+  "libasm": {
+    "name": "libasm",
+    "xp": 966,
+    "xpFromModules": false,
+    "hours": 20,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Low-Level",
+      "Library",
+      "Optimisation"
+    ],
+    "description": "The aim of this project is to become familiar with assembly language.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/216943/en.subject.pdf",
+    "session": 3316,
+    "updated": "2026-10-02"
+  },
+  "42cursus-zappy": {
+    "name": "zappy",
+    "xp": 25200,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Gaming",
+      "Multiplayer"
+    ],
+    "description": "You will now create a multi-player game in a TCP/IP network. The game will consist of a server managing the game field, a graphic client which displays the state of the board, and IA clients that connect to the server to pilot a player on the filed. This is a real complete project that will let you express your creativity on top of your technical knowledge.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209870/en.subject.pdf",
+    "session": 3505,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_linux": {
+    "name": "ft_linux",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "System administration"
+    ],
+    "description": "The first project of the Kernel branch! This is a simple LFS so that you can build your own distribution which will be used in the next projects",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212191/en.subject.pdf",
+    "session": 3457,
+    "updated": "2026-10-02"
+  },
+  "42cursus-little-penguin-1": {
+    "name": "little-penguin-1",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 100,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "The start of a series of challenges inspired by Eudyptula. You will get acquainted with many points of Kernel development.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/217550/en.subject.pdf",
+    "session": 3458,
+    "updated": "2026-10-02"
+  },
+  "42cursus-taskmaster": {
+    "name": "taskmaster",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "System"
+    ],
+    "description": "This program is a job control task, in any language. The project is very close to the supervisor program on your computer",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210912/en.subject.pdf",
+    "session": 3423,
+    "updated": "2026-10-02"
+  },
+  "42cursus-strace": {
+    "name": "strace",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "System"
+    ],
+    "description": "First step in a serie of projects in C language leading to creation of a mini-GDB, this project will ask you to recode strace, a tool allowing you to list syscalls done by a running program",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209528/en.subject.pdf",
+    "session": 3430,
+    "updated": "2026-10-02"
+  },
+  "42cursus-malloc": {
+    "name": "malloc",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "System"
+    ],
+    "description": "What’s the deal with malloc? You’ve been using it since the piscine C but it’s not a system call. Find out the workings behind optimum memory management and recode it, as well as free and realloc.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/214587/en.subject.pdf",
+    "session": 3510,
+    "updated": "2026-10-02"
+  },
+  "42cursus-matt-daemon": {
+    "name": "matt-daemon",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "System"
+    ],
+    "description": "A Unix project to create a server-type daemon. This server will listen on a given port and interpret a list of commands.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212499/en.subject.pdf",
+    "session": 3462,
+    "updated": "2026-10-02"
+  },
+  "nm": {
+    "name": "nm",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 336,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Sections",
+      "Dynamic libraries",
+      "Table of symbols",
+      "Unix logic"
+    ],
+    "description": "This project will educate you on a deeper comprehension of how linux handle executables, by re-creating the command nm",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221637/en.subject.pdf",
+    "session": 3509,
+    "updated": "2026-10-02"
+  },
+  "42cursus-lem-ipc": {
+    "name": "lem-ipc",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "System"
+    ],
+    "description": "You have already learned how processes can communicate over a network using TCP/IP. Next, you will explore Unix tools that enable processes to communicate locally. You will practice these concepts by building a client for a classic board game.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210295/en.subject.pdf",
+    "session": 3506,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-1": {
+    "name": "kfs-1",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Discover the world of \"Kernel Programming\" and learn how to create your very own Kernel from scratch.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209026/en.subject.pdf",
+    "session": 3467,
+    "updated": "2026-10-02"
+  },
+  "ft_malcolm": {
+    "name": "ft_malcolm",
+    "xp": 6000,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Network"
+    ],
+    "description": "An introduction to network security with Man In The Middle attack",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/228824/en.subject.pdf",
+    "session": 5009,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_ssl_md5": {
+    "name": "ft_ssl_md5",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Math"
+    ],
+    "description": "You will recode part of the OpenSSL program, specifically the MD5 Hashing Algorithm.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/205815/en.subject.pdf",
+    "session": 3493,
+    "updated": "2026-10-02"
+  },
+  "42cursus-snow-crash": {
+    "name": "snow-crash",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Security",
+      "Unix"
+    ],
+    "description": "Eleven independent security challenges on a deliberately vulnerable Linux VM. Each level requires a distinct technique: binary analysis, process and filesystem inspection, code injection through configuration files and templates, protocol reverse engineering, jail escapes, and side-channel attacks. You will learn to read and exploit systems you did not write, using the tools and mindset of a security researcher.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221871/en.subject.pdf",
+    "session": 3446,
+    "updated": "2026-10-02"
+  },
+  "42cursus-rainfall": {
+    "name": "rainfall",
+    "xp": 25200,
+    "xpFromModules": false,
+    "hours": 672,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Binary Exploitation"
+    ],
+    "description": "Rainfall picks up where Snow Crash left off and goes deeper. On a deliberately vulnerable VM, you climb from one account to the next by exploiting a series of SUID ELF binaries: reading their code, mapping how they lay out memory, and turning their flaws into control of execution. Each level tightens the protections (NX, stack canaries and ASLR), so your techniques must grow with them. Full RELRO and PIE await in the bonus part. Will you reach the last level?",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221872/en.subject.pdf",
+    "session": 3459,
+    "updated": "2026-10-02"
+  },
+  "42cursus-boot2root": {
+    "name": "boot2root",
+    "xp": 11500,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Security",
+      "Unix"
+    ],
+    "description": "This project introduces computer security through a hands-on challenge: you are given access to a deliberately vulnerable Linux server and must become root by at least two distinct methods. Each path requires reconnaissance, web exploitation, and a chain of privilege escalations across multiple user accounts. You will document every step in a writeup, explain the vulnerability behind each breach, and understand how it could have been prevented.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221874/en.subject.pdf",
+    "session": 3488,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_shield": {
+    "name": "ft_shield",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Low-level",
+      "Malware"
+    ],
+    "description": "Use your skills to create a daemon to create your first basic trojan.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209357/en.subject.pdf",
+    "session": 3489,
+    "updated": "2026-10-02"
+  },
+  "42cursus-woody-woodpacker": {
+    "name": "woody-woodpacker",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Low-level",
+      "Malware"
+    ],
+    "description": "A logical follow-up project on nm/otools that is designed to modify the headers of a ELF64 file. The goal here is to add a chunk of code and hide a non-stripped part of a file.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/206044/en.subject.pdf",
+    "session": 3461,
+    "updated": "2026-10-02"
+  },
+  "42cursus-famine": {
+    "name": "famine",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Low-level",
+      "Malware"
+    ],
+    "description": "Welcome to the wonderful world of viruses, trojans and other <Insert random antiVirus software>… Your goal here is to put your skills on handling binary files and make your first virus. WARNING: this project is solely for educational purposes!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212052/en.subject.pdf",
+    "session": 3472,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_select": {
+    "name": "ft_select",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 168,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "User interface via the terminal",
+      "Termcaps Library",
+      "Unix logic"
+    ],
+    "description": "The goal of this project is to get you started on terminal manipulation with termcaps. Here you will learn how to create a user interface for a program launched on the terminal.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208555/en.subject.pdf",
+    "session": 3511,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_script": {
+    "name": "ft_script",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 168,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Pseudo terminals",
+      "Line discipline"
+    ],
+    "description": "By re-coding the script command you will have the opportunity to understand interactions between user input and tty, notably line discipline as well as pseudo-terminals. Once the project finished, you will know why a Ctrl-C in your shell interrupts the ongoing program!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/215689/en.subject.pdf",
+    "session": 3508,
+    "updated": "2026-10-02"
+  },
+  "42cursus-cloud-1": {
+    "name": "cloud-1",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 100,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "System administration",
+      "Cloud"
+    ],
+    "description": "This project is an introduction to cloud servers.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208938/en.subject.pdf",
+    "session": 3456,
+    "updated": "2026-10-02"
+  },
+  "42cursus-drivers-and-interrupts": {
+    "name": "drivers-and-interrupts",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Learn how to connect a driver to your kernel. We will use a keyboard driver for this project.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208587/en.subject.pdf",
+    "session": 3464,
+    "updated": "2026-10-02"
+  },
+  "42cursus-dslr": {
+    "name": "dslr",
+    "xp": 6000,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "DataScience",
+      "Logistic Regression"
+    ],
+    "description": "Discover Data Science through this project by recreating the Hogwarts Sorting Hat using logistic regression!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211419/en.subject.pdf",
+    "session": 3495,
+    "updated": "2026-10-02"
+  },
+  "42cursus-expert-system": {
+    "name": "expert-system",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Optimisation",
+      "Algorithm"
+    ],
+    "description": "This project involves creating, in the language of your choice, an expert system in proposal calculation. In other words, a program that can reason on a set of rules and initial facts to deduce other facts.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210325/en.subject.pdf",
+    "session": 3426,
+    "updated": "2026-10-02"
+  },
+  "42cursus-filesystem": {
+    "name": "filesystem",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Create your own filesystem, for your linux kernel.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208599/en.subject.pdf",
+    "session": 3465,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_linear_regression": {
+    "name": "ft_linear_regression",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 70,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "DataScience",
+      "Math"
+    ],
+    "description": "This project will be your first steps into AI and Machine Learning. You're going to start with a simple, basic machine learning algorithm. You will have to create a program that predicts the price of a car by using a linear function train with a gradient descent algorithm.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212344/en.subject.pdf",
+    "session": 3433,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_nmap": {
+    "name": "ft_nmap",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Network",
+      "Low level"
+    ],
+    "description": "Re-coding the nmap command will be the opportunity to deepen your knowledge of TCP/IP networks and thus understand advanced use of threads in real life.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/215019/en.subject.pdf",
+    "session": 3442,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_ping": {
+    "name": "ft_ping",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Network",
+      "Low level"
+    ],
+    "description": "Re-coding the ping command will allow you to become acquainted with raw IP communication between two machines on a network.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208554/en.subject.pdf",
+    "session": 3439,
+    "updated": "2026-10-02"
+  },
+  "42cursus-ft_traceroute": {
+    "name": "ft_traceroute",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Network",
+      "Low level"
+    ],
+    "description": "Re-coding the traceroute command will be the opportunity to deepen your knowledge of TCP/IP networks by following the paths of an IP packet from one machine to another.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221754/en.subject.pdf",
+    "session": 3441,
+    "updated": "2026-10-02"
+  },
+  "42cursus-gomoku": {
+    "name": "gomoku",
+    "xp": 25200,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Gaming",
+      "Min-Max"
+    ],
+    "description": "This project involves creating, in the language of your choice, a Gomoku game integrating an AI player capable of beating a human player the fastest way possible. To do this, you will implement a min-max algorithm but also do research, trial and error to find the most adapted heuristics. This will not be as easy as checkers.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208550/en.subject.pdf",
+    "session": 3425,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-3": {
+    "name": "kfs-3",
+    "xp": 35700,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Third Kernel from Scratch project. Learn how to manage the memory in you kernel.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208611/en.subject.pdf",
+    "session": 3468,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-4": {
+    "name": "kfs-4",
+    "xp": 25200,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Project aimed at creating an Interrupt Description Table and handle interrupts within your Kernel",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210779/en.subject.pdf",
+    "session": 3473,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-5": {
+    "name": "kfs-5",
+    "xp": 35700,
+    "xpFromModules": false,
+    "hours": 392,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "You must now develop process managing in your Kernel, by implementing how to interpret the command :(){ :|:& }",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210529/en.subject.pdf",
+    "session": 3474,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-6": {
+    "name": "kfs-6",
+    "xp": 25200,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Keep on developping your own kernel. This project will help you set up your own filesystem.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210527/en.subject.pdf",
+    "session": 3480,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-7": {
+    "name": "kfs-7",
+    "xp": 35700,
+    "xpFromModules": false,
+    "hours": 630,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "This project will teach you how to build your own syscalls for your kernel, as well as user accounts, sockets, and a Unix-like hierarchy. Almost a full kernel here!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/217425/en.subject.pdf",
+    "session": 3481,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-8": {
+    "name": "kfs-8",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Build a module interface for your kernel.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208606/en.subject.pdf",
+    "session": 3482,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-9": {
+    "name": "kfs-9",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 245,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Create an ELF parser and loader for your kernel.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208596/en.subject.pdf",
+    "session": 3483,
+    "updated": "2026-10-02"
+  },
+  "42cursus-kfs-x": {
+    "name": "kfs-x",
+    "xp": 35700,
+    "xpFromModules": false,
+    "hours": 56,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "This is the final kernel project. It just requires you to create a complete linux environment. Maybe name your kernel aswell?",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208912/en.subject.pdf",
+    "session": 3484,
+    "updated": "2026-10-02"
+  },
+  "42cursus-krpsim": {
+    "name": "krpsim",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "General",
+      "Optimisation",
+      "Algorithm"
+    ],
+    "description": "This algorithm project consists of creating a program that will optimize rendering of a process graph, with some resource constraints. It’s up to you to explore the existing algorithms and choose, possibly create, what you seem most fit. For this project, you can choose the language you want",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211241/en.subject.pdf",
+    "session": 3434,
+    "updated": "2026-10-02"
+  },
+  "42cursus-multilayer-perceptron": {
+    "name": "multilayer-perceptron",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "DataScience",
+      "Math",
+      "Neural Network"
+    ],
+    "description": "This project is an introduction to artificial neural networks through the implementation of a multilayer perceptron.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209575/en.subject.pdf",
+    "session": 3499,
+    "updated": "2026-10-02"
+  },
+  "42cursus-process-and-memory": {
+    "name": "process-and-memory",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "An introduction to syscalls and memory management within linux kernel",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209676/en.subject.pdf",
+    "session": 3463,
+    "updated": "2026-10-02"
+  },
+  "42cursus-userspace_digressions": {
+    "name": "userspace_digressions",
+    "xp": 16800,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Low-level",
+      "Kernel"
+    ],
+    "description": "Make your own userspace init binary.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209487/en.subject.pdf",
+    "session": 3498,
+    "updated": "2026-10-02"
+  },
+  "accessibledirectory": {
+    "name": "AccessibleDirectory",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 70,
+    "solo": false,
+    "team": null,
+    "objectives": [
+      "System Administration",
+      "Network",
+      "C#",
+      ".NET"
+    ],
+    "description": "In this subject, you learn how to use AD via internet interaction, configure OpenSSH on Windows, and host a web server on Microsoft.",
+    "children": [],
+    "subject": null,
+    "session": 10976,
+    "updated": "2026-10-02"
+  },
+  "activeconnect": {
+    "name": "ActiveConnect",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 140,
+    "solo": false,
+    "team": null,
+    "objectives": [
+      "Microsoft",
+      "OpenID"
+    ],
+    "description": "In this project, you will create a web application that utilizes OpenID for user authentication and authorization",
+    "children": [],
+    "subject": null,
+    "session": 10236,
+    "updated": "2026-10-02"
+  },
+  "activediscovery": {
+    "name": "ActiveDiscovery",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 140,
+    "solo": false,
+    "team": null,
+    "objectives": [
+      "System Administration",
+      "Microsoft"
+    ],
+    "description": "This project introduces you to the basics of system administration under the Microsoft Server operating system.",
+    "children": [],
+    "subject": null,
+    "session": 10973,
+    "updated": "2026-10-02"
+  },
+  "activetechtales": {
+    "name": "ActiveTechTales",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 140,
+    "solo": false,
+    "team": null,
+    "objectives": [],
+    "description": "Discover the world of binary exploitation on Windows.",
+    "children": [],
+    "subject": null,
+    "session": 11021,
+    "updated": "2026-10-02"
+  },
+  "administrativedirectory": {
+    "name": "AdministrativeDirectory",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 63,
+    "solo": false,
+    "team": null,
+    "objectives": [
+      "System Administration",
+      "Microsoft"
+    ],
+    "description": "This subject introduces you to Active Directory's GPO and SIEM for analyzing your event log.",
+    "children": [],
+    "subject": null,
+    "session": 10975,
+    "updated": "2026-10-02"
+  },
+  "automaticdirectory": {
+    "name": "AutomaticDirectory",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": null,
+    "objectives": [
+      "System Administration",
+      "Microsoft"
+    ],
+    "description": "This project introduces you to PowerShell and ActiveDirectory scripting commands.",
+    "children": [],
+    "subject": null,
+    "session": 10974,
+    "updated": "2026-10-02"
+  },
+  "cybersecurity": {
+    "name": "Cybersecurity",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 63,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Cybersecurity"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/213170/en.subject.pdf",
+    "session": 9582,
+    "updated": "2026-10-02"
+  },
+  "ft_lgtm": {
+    "name": "ft_lgtm",
+    "xp": 16200,
+    "xpFromModules": false,
+    "hours": 180,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Observability and monitoring",
+      "Kubernetes deployment",
+      "WASM/WASI sandboxing",
+      "IPFS integration",
+      "OpenTelemetry instrumentation",
+      "Distributed tracing",
+      "Metrics and logging"
+    ],
+    "description": "Build a web application that runs untrusted code securely with WASM/WASI, uploads it to IPFS, and monitors everything with a complete LGTM observability stack on Kubernetes.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/228204/en.subject.pdf",
+    "session": 16288,
+    "updated": "2026-10-02"
+  },
+  "inception-of-context": {
+    "name": "Inception of context",
+    "xp": 19800,
+    "xpFromModules": false,
+    "hours": 220,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "System administration",
+      "Artificial intelligence"
+    ],
+    "description": "Every senior team now ships with an AI coding assistant. Most engineers use one; almost nobody has built one. In this project you build your own, end to end on your laptop: a local model, a vector index over your code, a retriever that answers grounded questions, and a patch loop that applies, validates, and rolls back when things break. No cloud, no API key, no token bill. By the end, you will know how Copilot and Cursor actually work, because you will have built one.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/228205/en.subject.pdf",
+    "session": 16287,
+    "updated": "2026-10-02"
+  },
+  "inception-of-wisdom": {
+    "name": "Inception of wisdom",
+    "xp": 21600,
+    "xpFromModules": false,
+    "hours": 240,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "System administration",
+      "Artificial intelligence"
+    ],
+    "description": "Autonomous self-healing on your laptop. The agent watches a real service, notices when it crashes, retrieves the relevant code and config from its own index, asks a local language model what to change, applies the patch, commits it, restarts the service, and rolls everything back when the fix does not take.\n This project ties together what Inception-of-Things taught about GitOps-driven deployment and what Inception-of-Context taught about retrieval-augmented patching, into a closed observe / think / act / verify loop that never leaves the project broken.\n By the end, you will have an agent that catches a bug you planted, finds it without your help, fixes it, and proves it stayed fixed.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/228206/en.subject.pdf",
+    "session": 16291,
+    "updated": "2026-10-02"
+  },
+  "leaffliction": {
+    "name": "Leaffliction",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 294,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "DataScience",
+      "Computer vision"
+    ],
+    "description": "An innovative computer vision project utilizing leaf image analysis for disease recognition.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212502/en.subject.pdf",
+    "session": 9796,
+    "updated": "2026-10-02"
+  },
+  "learn2slither": {
+    "name": "Learn2Slither",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Data Science",
+      "Computer Science"
+    ],
+    "description": "A cutting-edge Q-learning project focused on autonomous decision-making in a dynamic environment.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225974/en.subject.pdf",
+    "session": 11317,
+    "updated": "2026-10-02"
+  },
+  "machine-learning": {
+    "name": "Machine Learning",
+    "xp": 550,
+    "xpFromModules": true,
+    "hours": null,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Familiarity with machine learning essentials"
+    ],
+    "description": "An introduction course on Machine Learning using Python",
+    "children": [
+      "machine-learning-using-python-ml_01",
+      "machine-learning-using-python-ml_02",
+      "machine-learning-using-python-ml_03",
+      "machine-learning-using-python-ml_04",
+      "machine-learning-ibm-machine-learning-00",
+      "machine-learning-ibm-machine-learning-01"
+    ],
+    "subject": null,
+    "session": 3089,
+    "updated": "2026-10-02"
+  },
+  "matrix": {
+    "name": "matrix",
+    "xp": 7000,
+    "xpFromModules": false,
+    "hours": 110,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Math"
+    ],
+    "description": "You've probably encountered vectors and vector spaces before. Now it's time to formalize them through Linear Algebra and to learn how matrices and linear transformations work.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210505/en.subject.pdf",
+    "session": 6803,
+    "updated": "2026-10-02"
+  },
+  "microforensx": {
+    "name": "MicroForensX",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": false,
+    "team": null,
+    "objectives": [],
+    "description": "Analyze recent file activity with a user-friendly desktop app.",
+    "children": [],
+    "subject": null,
+    "session": 11019,
+    "updated": "2026-10-02"
+  },
+  "piscine-data-science": {
+    "name": "Piscine Data Science",
+    "xp": 4725,
+    "xpFromModules": true,
+    "hours": 35,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "DataScience",
+      "DB"
+    ],
+    "description": "Introduction to data science via the different professions",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/220007/en.subject.pdf",
+    "session": 9219,
+    "updated": "2026-10-02"
+  },
+  "python-for-data-science": {
+    "name": "Python for Data Science",
+    "xp": 4725,
+    "xpFromModules": true,
+    "hours": 35,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Data & AI",
+      "Python"
+    ],
+    "description": "Piscines are an important time in your cursus, during which you will have the occasion to learn a new language, or even a new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211905/en.subject.pdf",
+    "session": 9124,
+    "updated": "2026-10-02"
+  },
+  "ready-set-boole": {
+    "name": "ready set boole",
+    "xp": 7000,
+    "xpFromModules": false,
+    "hours": 110,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Boolean algebra",
+      "Sets theory",
+      "Space filling curves"
+    ],
+    "description": "Discover the basics of computer-related mathematics with Boolean Algebra and Sets Theory!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212628/en.subject.pdf",
+    "session": 6802,
+    "updated": "2026-10-02"
+  },
+  "tinky-winkey": {
+    "name": "tinky-winkey",
+    "xp": 16800,
+    "xpFromModules": false,
+    "hours": 210,
+    "solo": false,
+    "team": null,
+    "objectives": [
+      "Cybersecurity",
+      "Windows",
+      "Malware"
+    ],
+    "description": "Introduction to windows operating system by creating a service that run a keylogger.",
+    "children": [],
+    "subject": null,
+    "session": 7004,
+    "updated": "2026-10-02"
+  },
+  "unleashthebox": {
+    "name": "UnleashTheBox",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Cybersecurity"
+    ],
+    "description": "An immersive cybersecurity project where participants learn to exploit systems and acquire essential skills to navigate the dynamic world of information security.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212058/en.subject.pdf",
+    "session": 10209,
+    "updated": "2026-10-02"
+  }
+}

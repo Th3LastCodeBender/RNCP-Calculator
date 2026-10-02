@@ -1,0 +1,27 @@
+# rncp-6 · Développement applicatif
+# Blocco Imperative programming: minimo 10.000 XP e 2 progetti
+
+libasm                                          # libasm · 966 XP
+42cursus-zappy                                  # zappy · 25.200 XP
+42cursus-gbmu                                   # gbmu · 31.500 XP
+42cursus-ft_linux                               # ft_linux · 4200 XP
+42cursus-little-penguin-1                       # little-penguin-1 · 9450 XP
+42cursus-taskmaster                             # taskmaster · 9450 XP
+42cursus-strace                                 # strace · 9450 XP
+42cursus-malloc                                 # malloc · 9450 XP
+42cursus-matt-daemon                            # matt-daemon · 9450 XP
+nm                                              # nm · 9450 XP
+42cursus-lem-ipc                                # lem-ipc · 9450 XP
+42cursus-kfs-1                                  # kfs-1 · 15.750 XP
+42cursus-kfs-2                                  # kfs-2 · 15.750 XP
+ft_malcolm                                      # ft_malcolm · 6000 XP
+42cursus-ft_ssl_md5                             # ft_ssl_md5 · 9450 XP
+42cursus-darkly                                 # darkly · 6300 XP
+42cursus-snow-crash                             # snow-crash · 9450 XP
+42cursus-rainfall                               # rainfall · 25.200 XP
+42cursus-override                               # override · 35.700 XP
+42cursus-boot2root                              # boot2root · 11.500 XP
+42cursus-ft_shield                              # ft_shield · 15.750 XP
+42cursus-woody-woodpacker                       # woody-woodpacker · 9450 XP
+42cursus-famine                                 # famine · 9450 XP
+42cursus-pestilence                             # pestilence · 15.750 XP

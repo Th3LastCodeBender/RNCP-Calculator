@@ -1,0 +1,16 @@
+# RNCP 7 · Opzione 2: Database architecture and data
+# Blocco Web - Database: minimo 50 000 XP e 2 progetti
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+piscine-symfony                                 # Piscine PHP Symfony · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+piscine-django                                  # Piscine python Django · piscine, come sopra
+piscine-ror                                     # Piscine Ruby on Rails · piscine, come sopra
+42cursus-camagru                                # Camagru
+42cursus-matcha                                 # Matcha
+42cursus-hypertube                              # Hypertube
+42cursus-red-tetris                             # Red Tetris
+42cursus-darkly                                 # Darkly
+42cursus-h42n42                                 # h42n42
+tokenizer                                       # Tokenizer
+tokenizeart                                     # TokenizeArt
+42cursus-music-room                             # Music-room

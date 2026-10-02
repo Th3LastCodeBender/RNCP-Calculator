@@ -1,0 +1,16 @@
+# RNCP 6 · Opzione 1: Web and mobile application development
+# RNCP 6 · Blocco Web: minimo 15 000 XP e 2 progetti
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+piscine-symfony                                 # Piscine Php Symfony · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+piscine-django                                  # Piscine Python Django · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+piscine-ror                                     # Piscine Ruby On Rails · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+42cursus-camagru                                # Camagru
+42cursus-matcha                                 # Matcha
+42cursus-hypertube                              # Hypertube
+42cursus-red-tetris                             # Red Tetris
+42cursus-darkly                                 # Darkly
+42cursus-h42n42                                 # h42n42
+tokenizer                                       # Tokenizer
+tokenizeart                                     # TokenizeArt
+42cursus-music-room                             # Music-room

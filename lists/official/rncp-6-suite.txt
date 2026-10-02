@@ -1,0 +1,13 @@
+# RNCP 6 · Suite: validare almeno un progetto (tra parentesi il predecessore)
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+42cursus-42sh                                   # 42sh (minishell)
+bgp-at-doors-of-autonomous-systems-is-simple    # BADASS (NetPractice)
+42cursus-doom-nukem                             # DoomNukem (cub3d)
+inception-of-things                             # Inception Of Things (inception)
+42cursus-humangl                                # HumanGL (scop)
+42cursus-kfs-2                                  # kfs-2 (kfs-1)
+42cursus-override                               # Override (rainfall)
+42cursus-pestilence                             # Pestilence (famine)
+42cursus-rt                                     # RT (miniRT)
+42cursus-total-perspective-vortex               # Total perspective vortex (dslr)

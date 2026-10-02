@@ -1,0 +1,31 @@
+# RNCP 7 · Opzione 1: Network Information Systems Architecture
+# Blocco Unix/Kernel: minimo 30 000 XP e 2 progetti
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+libasm                                          # libasm
+42cursus-zappy                                  # zappy
+42cursus-ft_linux                               # ft_linux
+42cursus-little-penguin-1                       # little penguin
+42cursus-taskmaster                             # taskmaster
+42cursus-strace                                 # strace
+42cursus-malloc                                 # malloc
+42cursus-matt-daemon                            # Matt Daemon
+nm                                              # nm
+42cursus-lem-ipc                                # lem_ipc
+42cursus-kfs-1                                  # kfs-1 · KFS 1-10: non serve farli tutti
+42cursus-kfs-2                                  # kfs-2
+42cursus-kfs-3                                  # kfs-3
+42cursus-kfs-4                                  # kfs-4
+42cursus-kfs-5                                  # kfs-5
+42cursus-kfs-6                                  # kfs-6
+42cursus-kfs-7                                  # kfs-7
+42cursus-kfs-8                                  # kfs-8
+42cursus-kfs-9                                  # kfs-9
+42cursus-kfs-x                                  # kfs-10
+42cursus-ft_script                              # ft_script
+42cursus-ft_select                              # ft_select
+42cursus-filesystem                             # filesystem
+42cursus-userspace_digressions                  # userspace_digressions
+42cursus-drivers-and-interrupts                 # drivers-and-interrupts
+42cursus-process-and-memory                     # process-and-memory
+retroemu                                        # RetroEmu

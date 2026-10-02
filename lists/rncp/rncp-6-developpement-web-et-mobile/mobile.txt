@@ -1,0 +1,7 @@
+# rncp-6 · Développement web et mobile
+# Blocco Mobile: minimo 10.000 XP e 2 progetti
+
+42cursus-ft_hangouts                            # ft_hangouts · 4200 XP
+42cursus-swifty-companion                       # swifty-companion · 4200 XP
+42cursus-swifty-proteins                        # swifty-proteins · 15.750 XP
+mobile                                          # Mobile

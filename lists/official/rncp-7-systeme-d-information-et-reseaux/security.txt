@@ -1,0 +1,21 @@
+# RNCP 7 · Opzione 1: Network Information Systems Architecture
+# Blocco Security: minimo 50 000 XP e 3 progetti
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+ft_malcolm                                      # ft_malcolm
+42cursus-ft_ssl_md5                             # ft_ssl_md5
+42cursus-darkly                                 # Darkly
+42cursus-snow-crash                             # Snowcrash
+42cursus-rainfall                               # Rainfall
+42cursus-override                               # Override
+42cursus-boot2root                              # boot2root
+42cursus-ft_shield                              # ft_shield
+42cursus-woody-woodpacker                       # Woody Woodpacker
+42cursus-famine                                 # Famine
+42cursus-pestilence                             # Pestilence
+cybersecurity                                   # Piscine Cybersecurity · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+unleashthebox                                   # UnleashTheBox
+activeconnect                                   # Active Connect
+microforensx                                    # MicroForensX
+activetechtales                                 # ActiveTechTales
+tinky-winkey                                    # tinky-winkey

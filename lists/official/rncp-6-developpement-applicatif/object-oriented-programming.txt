@@ -1,0 +1,26 @@
+# RNCP 6 · Opzione 2: Applicative software development
+# RNCP 6 · Blocco Object Oriented Programming: minimo 10 000 XP e 2 progetti
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+42cursus-bomberman                              # Bomberman
+42cursus-nibbler                                # Nibbler
+piscine-symfony                                 # Piscine Php Symfony · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+piscine-django                                  # Piscine Python Django · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+piscine-ror                                     # Piscine Ruby On Rails · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+mobile                                          # Piscine Mobile · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+piscine-object                                  # Piscine Object · piscine: conta come 1 progetto validando l'ultimo modulo, tutti gli XP validandoli tutti
+42cursus-camagru                                # Camagru
+42cursus-matcha                                 # Matcha
+42cursus-hypertube                              # Hypertube
+42cursus-red-tetris                             # Red Tetris
+42cursus-darkly                                 # Darkly
+42cursus-h42n42                                 # H42n42
+42cursus-ft_hangouts                            # ft_hangouts
+42cursus-swifty-companion                       # Swifty_companion
+42cursus-swifty-proteins                        # Swifty_proteins
+42cursus-avaj-launcher                          # Avaj launcher
+42cursus-swingy                                 # Swingy
+42cursus-fix-me                                 # fix-me
+libftpp                                         # libftpp
+abstract_data                                   # abstract_data
+retroemu                                        # RetroEmu

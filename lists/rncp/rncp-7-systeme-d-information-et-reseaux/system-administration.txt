@@ -1,0 +1,14 @@
+# rncp-7 · Système d'information et réseaux
+# Blocco System administration: minimo 50.000 XP e 3 progetti
+
+42cursus-cloud-1                                # cloud-1 · 9450 XP
+inception-of-things                             # Inception-of-Things · 25.450 XP
+42cursus-taskmaster                             # taskmaster · 9450 XP
+42cursus-ft_ping                                # ft_ping · 4200 XP
+42cursus-ft_traceroute                          # ft_traceroute · 4200 XP
+42cursus-ft_nmap                                # ft_nmap · 15.750 XP
+activediscovery                                 # ActiveDiscovery · 15.750 XP
+automaticdirectory                              # AutomaticDirectory · 9450 XP
+administrativedirectory                         # AdministrativeDirectory · 9450 XP
+accessibledirectory                             # AccessibleDirectory · 9450 XP
+bgp-at-doors-of-autonomous-systems-is-simple    #  Bgp At Doors of Autonomous Systems is Simple · 22.450 XP

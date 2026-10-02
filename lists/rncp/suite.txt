@@ -1,0 +1,12 @@
+# Progetti Suite (ne serve almeno uno per ogni titolo)
+
+42cursus-42sh                                   # 42sh · 15.750 XP
+42cursus-doom-nukem                             # doom-nukem · 15.750 XP
+inception-of-things                             # Inception-of-Things · 25.450 XP
+42cursus-humangl                                # humangl · 4200 XP
+42cursus-kfs-2                                  # kfs-2 · 15.750 XP
+42cursus-override                               # override · 35.700 XP
+42cursus-pestilence                             # pestilence · 15.750 XP
+42cursus-rt                                     # rt · 20.750 XP
+42cursus-total-perspective-vortex               # total-perspective-vortex · 9450 XP
+bgp-at-doors-of-autonomous-systems-is-simple    #  Bgp At Doors of Autonomous Systems is Simple · 22.450 XP

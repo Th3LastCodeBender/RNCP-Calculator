@@ -1,0 +1,6 @@
+# rncp-6 · Développement applicatif
+# Blocco Functional programming: minimo 10.000 XP e 2 progetti
+
+42cursus-ft_turing                              # ft_turing · 9450 XP
+42cursus-ft_ality                               # ft_ality · 4200 XP
+42cursus-h42n42                                 # h42n42 · 9450 XP

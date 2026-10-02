@@ -1,0 +1,24 @@
+# rncp-7 · Système d'information et réseaux
+# Blocco Unix/Kernel: minimo 30.000 XP e 2 progetti
+
+libasm                                          # libasm · 966 XP
+42cursus-zappy                                  # zappy · 25.200 XP
+42cursus-gbmu                                   # gbmu · 31.500 XP
+42cursus-ft_linux                               # ft_linux · 4200 XP
+42cursus-little-penguin-1                       # little-penguin-1 · 9450 XP
+42cursus-taskmaster                             # taskmaster · 9450 XP
+42cursus-strace                                 # strace · 9450 XP
+42cursus-malloc                                 # malloc · 9450 XP
+42cursus-matt-daemon                            # matt-daemon · 9450 XP
+nm                                              # nm · 9450 XP
+42cursus-lem-ipc                                # lem-ipc · 9450 XP
+42cursus-kfs-1                                  # kfs-1 · 15.750 XP
+42cursus-kfs-2                                  # kfs-2 · 15.750 XP
+42cursus-kfs-3                                  # kfs-3 · 35.700 XP
+42cursus-kfs-4                                  # kfs-4 · 25.200 XP
+42cursus-kfs-5                                  # kfs-5 · 35.700 XP
+42cursus-kfs-6                                  # kfs-6 · 25.200 XP
+42cursus-kfs-7                                  # kfs-7 · 35.700 XP
+42cursus-kfs-8                                  # kfs-8 · 15.750 XP
+42cursus-kfs-9                                  # kfs-9 · 15.750 XP
+42cursus-kfs-x                                  # kfs-x · 35.700 XP

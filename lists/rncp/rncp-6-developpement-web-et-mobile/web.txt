@@ -1,0 +1,15 @@
+# rncp-6 · Développement web et mobile
+# Blocco Web: minimo 15.000 XP e 2 progetti
+
+42cursus-piscine-php-symfony                    # Piscine PHP Symfony · 9450 XP
+piscine-django                                  # Piscine Django
+42cursus-piscine-ruby-on-rails                  # Piscine Ruby on Rails · 9450 XP
+42cursus-camagru                                # camagru · 4200 XP
+42cursus-matcha                                 # matcha · 9450 XP
+42cursus-hypertube                              # hypertube · 15.750 XP
+42cursus-red-tetris                             # red-tetris · 15.750 XP
+42cursus-darkly                                 # darkly · 6300 XP
+42cursus-h42n42                                 # h42n42 · 9450 XP
+tokenizer                                       # Tokenizer · 9450 XP
+tokenizeart                                     # TokenizeArt · 9450 XP
+42cursus-music-room                             # music-room · 25.200 XP

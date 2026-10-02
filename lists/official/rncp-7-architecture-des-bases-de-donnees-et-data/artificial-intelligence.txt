@@ -1,0 +1,18 @@
+# RNCP 7 · Opzione 2: Database architecture and data
+# Blocco Artificial Intelligence: minimo 70 000 XP e 3 progetti
+# Fonte: pagina RNCP dell'intra (ottobre 2026)
+
+machine-learning                                # Piscine Machine Learning · [DEPRECATED] piscine, come sopra
+python-for-data-science                         # Piscine Python for Data Science · piscine, come sopra
+piscine-data-science                            # Piscine Data Science · piscine, come sopra
+42cursus-ft_linear_regression                   # Linear regression
+42cursus-dslr                                   # DSLR
+42cursus-multilayer-perceptron                  # Multi layer perceptron
+42cursus-gomoku                                 # Gomoku
+42cursus-total-perspective-vortex               # Total perspective vortex
+42cursus-expert-system                          # Expert system
+42cursus-krpsim                                 # Krpsim
+matrix                                          # Matrix
+ready-set-boole                                 # Ready set boole
+leaffliction                                    # Leaffliction
+learn2slither                                   # Learn2Slither

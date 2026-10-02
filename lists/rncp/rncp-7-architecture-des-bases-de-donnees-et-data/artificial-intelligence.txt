@@ -1,0 +1,16 @@
+# rncp-7 · Architecture des bases de données et data
+# Blocco Artificial Intelligence: minimo 70.000 XP e 3 progetti
+
+42cursus-ft_linear_regression                   # ft_linear_regression · 4200 XP
+42cursus-dslr                                   # dslr · 6000 XP
+42cursus-multilayer-perceptron                  # multilayer-perceptron · 9450 XP
+42cursus-gomoku                                 # gomoku · 25.200 XP
+42cursus-total-perspective-vortex               # total-perspective-vortex · 9450 XP
+42cursus-expert-system                          # expert-system · 9450 XP
+42cursus-krpsim                                 # krpsim · 9450 XP
+matrix                                          # matrix · 7000 XP
+ready-set-boole                                 # ready set boole · 7000 XP
+leaffliction                                    # Leaffliction · 15.750 XP
+piscine-data-science                            # Piscine Data Science
+python-for-data-science                         # Python for Data Science
+learn2slither                                   # Learn2Slither · 9450 XP

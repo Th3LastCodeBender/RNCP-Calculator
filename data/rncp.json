@@ -1,0 +1,887 @@
+{
+  "titles": [
+    {
+      "type": "rncp-6",
+      "title": "Développement web et mobile",
+      "dir": "rncp-6-developpement-web-et-mobile",
+      "level": 17,
+      "events": 10,
+      "experiences": 2,
+      "suite": 1,
+      "blocks": [
+        {
+          "name": "Web",
+          "minXp": 15000,
+          "minN": 2,
+          "file": "lists/rncp/rncp-6-developpement-web-et-mobile/web.txt",
+          "projects": [
+            {
+              "slug": "42cursus-piscine-php-symfony",
+              "name": "Piscine PHP Symfony",
+              "xp": 9450
+            },
+            {
+              "slug": "piscine-django",
+              "name": "Piscine Django",
+              "xp": 0
+            },
+            {
+              "slug": "42cursus-piscine-ruby-on-rails",
+              "name": "Piscine Ruby on Rails",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-camagru",
+              "name": "camagru",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-matcha",
+              "name": "matcha",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-hypertube",
+              "name": "hypertube",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-red-tetris",
+              "name": "red-tetris",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-darkly",
+              "name": "darkly",
+              "xp": 6300
+            },
+            {
+              "slug": "42cursus-h42n42",
+              "name": "h42n42",
+              "xp": 9450
+            },
+            {
+              "slug": "tokenizer",
+              "name": "Tokenizer",
+              "xp": 9450
+            },
+            {
+              "slug": "tokenizeart",
+              "name": "TokenizeArt",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-music-room",
+              "name": "music-room",
+              "xp": 25200
+            }
+          ]
+        },
+        {
+          "name": "Mobile",
+          "minXp": 10000,
+          "minN": 2,
+          "file": "lists/rncp/rncp-6-developpement-web-et-mobile/mobile.txt",
+          "projects": [
+            {
+              "slug": "42cursus-ft_hangouts",
+              "name": "ft_hangouts",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-swifty-companion",
+              "name": "swifty-companion",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-swifty-proteins",
+              "name": "swifty-proteins",
+              "xp": 15750
+            },
+            {
+              "slug": "mobile",
+              "name": "Mobile",
+              "xp": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "rncp-6",
+      "title": "Développement applicatif",
+      "dir": "rncp-6-developpement-applicatif",
+      "level": 17,
+      "events": 10,
+      "experiences": 2,
+      "suite": 1,
+      "blocks": [
+        {
+          "name": "Object Oriented Programming",
+          "minXp": 10000,
+          "minN": 2,
+          "file": "lists/rncp/rncp-6-developpement-applicatif/object-oriented-programming.txt",
+          "projects": [
+            {
+              "slug": "42cursus-bomberman",
+              "name": "bomberman",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-nibbler",
+              "name": "nibbler",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-piscine-php-symfony",
+              "name": "Piscine PHP Symfony",
+              "xp": 9450
+            },
+            {
+              "slug": "piscine-django",
+              "name": "Piscine Django",
+              "xp": 0
+            },
+            {
+              "slug": "42cursus-piscine-ruby-on-rails",
+              "name": "Piscine Ruby on Rails",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-camagru",
+              "name": "camagru",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-matcha",
+              "name": "matcha",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-hypertube",
+              "name": "hypertube",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-red-tetris",
+              "name": "red-tetris",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-darkly",
+              "name": "darkly",
+              "xp": 6300
+            },
+            {
+              "slug": "42cursus-h42n42",
+              "name": "h42n42",
+              "xp": 9450
+            },
+            {
+              "slug": "mobile",
+              "name": "Mobile",
+              "xp": 0
+            },
+            {
+              "slug": "42cursus-ft_hangouts",
+              "name": "ft_hangouts",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-swifty-companion",
+              "name": "swifty-companion",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-swifty-proteins",
+              "name": "swifty-proteins",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-avaj-launcher",
+              "name": "avaj-launcher",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-swingy",
+              "name": "swingy",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-fix-me",
+              "name": "fix-me",
+              "xp": 15750
+            },
+            {
+              "slug": "piscine-object",
+              "name": "Piscine Object",
+              "xp": 0
+            }
+          ]
+        },
+        {
+          "name": "Functional programming",
+          "minXp": 10000,
+          "minN": 2,
+          "file": "lists/rncp/rncp-6-developpement-applicatif/functional-programming.txt",
+          "projects": [
+            {
+              "slug": "42cursus-ft_turing",
+              "name": "ft_turing",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-ft_ality",
+              "name": "ft_ality",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-h42n42",
+              "name": "h42n42",
+              "xp": 9450
+            }
+          ]
+        },
+        {
+          "name": "Imperative programming",
+          "minXp": 10000,
+          "minN": 2,
+          "file": "lists/rncp/rncp-6-developpement-applicatif/imperative-programming.txt",
+          "projects": [
+            {
+              "slug": "libasm",
+              "name": "libasm",
+              "xp": 966
+            },
+            {
+              "slug": "42cursus-zappy",
+              "name": "zappy",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-gbmu",
+              "name": "gbmu",
+              "xp": 31500
+            },
+            {
+              "slug": "42cursus-ft_linux",
+              "name": "ft_linux",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-little-penguin-1",
+              "name": "little-penguin-1",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-taskmaster",
+              "name": "taskmaster",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-strace",
+              "name": "strace",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-malloc",
+              "name": "malloc",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-matt-daemon",
+              "name": "matt-daemon",
+              "xp": 9450
+            },
+            {
+              "slug": "nm",
+              "name": "nm",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-lem-ipc",
+              "name": "lem-ipc",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-kfs-1",
+              "name": "kfs-1",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-kfs-2",
+              "name": "kfs-2",
+              "xp": 15750
+            },
+            {
+              "slug": "ft_malcolm",
+              "name": "ft_malcolm",
+              "xp": 6000
+            },
+            {
+              "slug": "42cursus-ft_ssl_md5",
+              "name": "ft_ssl_md5",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-darkly",
+              "name": "darkly",
+              "xp": 6300
+            },
+            {
+              "slug": "42cursus-snow-crash",
+              "name": "snow-crash",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-rainfall",
+              "name": "rainfall",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-override",
+              "name": "override",
+              "xp": 35700
+            },
+            {
+              "slug": "42cursus-boot2root",
+              "name": "boot2root",
+              "xp": 11500
+            },
+            {
+              "slug": "42cursus-ft_shield",
+              "name": "ft_shield",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-woody-woodpacker",
+              "name": "woody-woodpacker",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-famine",
+              "name": "famine",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-pestilence",
+              "name": "pestilence",
+              "xp": 15750
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "rncp-7",
+      "title": "Système d'information et réseaux",
+      "dir": "rncp-7-systeme-d-information-et-reseaux",
+      "level": 21,
+      "events": 15,
+      "experiences": 2,
+      "suite": 1,
+      "blocks": [
+        {
+          "name": "Unix/Kernel",
+          "minXp": 30000,
+          "minN": 2,
+          "file": "lists/rncp/rncp-7-systeme-d-information-et-reseaux/unix-kernel.txt",
+          "projects": [
+            {
+              "slug": "libasm",
+              "name": "libasm",
+              "xp": 966
+            },
+            {
+              "slug": "42cursus-zappy",
+              "name": "zappy",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-gbmu",
+              "name": "gbmu",
+              "xp": 31500
+            },
+            {
+              "slug": "42cursus-ft_linux",
+              "name": "ft_linux",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-little-penguin-1",
+              "name": "little-penguin-1",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-taskmaster",
+              "name": "taskmaster",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-strace",
+              "name": "strace",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-malloc",
+              "name": "malloc",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-matt-daemon",
+              "name": "matt-daemon",
+              "xp": 9450
+            },
+            {
+              "slug": "nm",
+              "name": "nm",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-lem-ipc",
+              "name": "lem-ipc",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-kfs-1",
+              "name": "kfs-1",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-kfs-2",
+              "name": "kfs-2",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-kfs-3",
+              "name": "kfs-3",
+              "xp": 35700
+            },
+            {
+              "slug": "42cursus-kfs-4",
+              "name": "kfs-4",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-kfs-5",
+              "name": "kfs-5",
+              "xp": 35700
+            },
+            {
+              "slug": "42cursus-kfs-6",
+              "name": "kfs-6",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-kfs-7",
+              "name": "kfs-7",
+              "xp": 35700
+            },
+            {
+              "slug": "42cursus-kfs-8",
+              "name": "kfs-8",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-kfs-9",
+              "name": "kfs-9",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-kfs-x",
+              "name": "kfs-x",
+              "xp": 35700
+            }
+          ]
+        },
+        {
+          "name": "System administration",
+          "minXp": 50000,
+          "minN": 3,
+          "file": "lists/rncp/rncp-7-systeme-d-information-et-reseaux/system-administration.txt",
+          "projects": [
+            {
+              "slug": "42cursus-cloud-1",
+              "name": "cloud-1",
+              "xp": 9450
+            },
+            {
+              "slug": "inception-of-things",
+              "name": "Inception-of-Things",
+              "xp": 25450
+            },
+            {
+              "slug": "42cursus-taskmaster",
+              "name": "taskmaster",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-ft_ping",
+              "name": "ft_ping",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-ft_traceroute",
+              "name": "ft_traceroute",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-ft_nmap",
+              "name": "ft_nmap",
+              "xp": 15750
+            },
+            {
+              "slug": "activediscovery",
+              "name": "ActiveDiscovery",
+              "xp": 15750
+            },
+            {
+              "slug": "automaticdirectory",
+              "name": "AutomaticDirectory",
+              "xp": 9450
+            },
+            {
+              "slug": "administrativedirectory",
+              "name": "AdministrativeDirectory",
+              "xp": 9450
+            },
+            {
+              "slug": "accessibledirectory",
+              "name": "AccessibleDirectory",
+              "xp": 9450
+            },
+            {
+              "slug": "bgp-at-doors-of-autonomous-systems-is-simple",
+              "name": " Bgp At Doors of Autonomous Systems is Simple",
+              "xp": 22450
+            }
+          ]
+        },
+        {
+          "name": "Security",
+          "minXp": 50000,
+          "minN": 3,
+          "file": "lists/rncp/rncp-7-systeme-d-information-et-reseaux/security.txt",
+          "projects": [
+            {
+              "slug": "ft_malcolm",
+              "name": "ft_malcolm",
+              "xp": 6000
+            },
+            {
+              "slug": "42cursus-ft_ssl_md5",
+              "name": "ft_ssl_md5",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-darkly",
+              "name": "darkly",
+              "xp": 6300
+            },
+            {
+              "slug": "42cursus-snow-crash",
+              "name": "snow-crash",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-rainfall",
+              "name": "rainfall",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-override",
+              "name": "override",
+              "xp": 35700
+            },
+            {
+              "slug": "42cursus-boot2root",
+              "name": "boot2root",
+              "xp": 11500
+            },
+            {
+              "slug": "42cursus-ft_shield",
+              "name": "ft_shield",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-woody-woodpacker",
+              "name": "woody-woodpacker",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-famine",
+              "name": "famine",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-pestilence",
+              "name": "pestilence",
+              "xp": 15750
+            },
+            {
+              "slug": "cybersecurity",
+              "name": "Cybersecurity",
+              "xp": 0
+            },
+            {
+              "slug": "unleashthebox",
+              "name": "UnleashTheBox",
+              "xp": 15750
+            },
+            {
+              "slug": "activeconnect",
+              "name": "ActiveConnect",
+              "xp": 15750
+            },
+            {
+              "slug": "microforensx",
+              "name": "MicroForensX",
+              "xp": 9450
+            },
+            {
+              "slug": "activetechtales",
+              "name": "ActiveTechTales",
+              "xp": 15750
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "rncp-7",
+      "title": "Architecture des bases de données et data",
+      "dir": "rncp-7-architecture-des-bases-de-donnees-et-data",
+      "level": 21,
+      "events": 15,
+      "experiences": 2,
+      "suite": 1,
+      "blocks": [
+        {
+          "name": "Web - Database",
+          "minXp": 50000,
+          "minN": 2,
+          "file": "lists/rncp/rncp-7-architecture-des-bases-de-donnees-et-data/web-database.txt",
+          "projects": [
+            {
+              "slug": "42cursus-piscine-php-symfony",
+              "name": "Piscine PHP Symfony",
+              "xp": 9450
+            },
+            {
+              "slug": "piscine-django",
+              "name": "Piscine Django",
+              "xp": 0
+            },
+            {
+              "slug": "42cursus-piscine-ruby-on-rails",
+              "name": "Piscine Ruby on Rails",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-camagru",
+              "name": "camagru",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-matcha",
+              "name": "matcha",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-hypertube",
+              "name": "hypertube",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-red-tetris",
+              "name": "red-tetris",
+              "xp": 15750
+            },
+            {
+              "slug": "42cursus-darkly",
+              "name": "darkly",
+              "xp": 6300
+            },
+            {
+              "slug": "42cursus-h42n42",
+              "name": "h42n42",
+              "xp": 9450
+            },
+            {
+              "slug": "tokenizer",
+              "name": "Tokenizer",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-music-room",
+              "name": "music-room",
+              "xp": 25200
+            },
+            {
+              "slug": "tokenizeart",
+              "name": "TokenizeArt",
+              "xp": 9450
+            }
+          ]
+        },
+        {
+          "name": "Artificial Intelligence",
+          "minXp": 70000,
+          "minN": 3,
+          "file": "lists/rncp/rncp-7-architecture-des-bases-de-donnees-et-data/artificial-intelligence.txt",
+          "projects": [
+            {
+              "slug": "42cursus-ft_linear_regression",
+              "name": "ft_linear_regression",
+              "xp": 4200
+            },
+            {
+              "slug": "42cursus-dslr",
+              "name": "dslr",
+              "xp": 6000
+            },
+            {
+              "slug": "42cursus-multilayer-perceptron",
+              "name": "multilayer-perceptron",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-gomoku",
+              "name": "gomoku",
+              "xp": 25200
+            },
+            {
+              "slug": "42cursus-total-perspective-vortex",
+              "name": "total-perspective-vortex",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-expert-system",
+              "name": "expert-system",
+              "xp": 9450
+            },
+            {
+              "slug": "42cursus-krpsim",
+              "name": "krpsim",
+              "xp": 9450
+            },
+            {
+              "slug": "matrix",
+              "name": "matrix",
+              "xp": 7000
+            },
+            {
+              "slug": "ready-set-boole",
+              "name": "ready set boole",
+              "xp": 7000
+            },
+            {
+              "slug": "leaffliction",
+              "name": "Leaffliction",
+              "xp": 15750
+            },
+            {
+              "slug": "piscine-data-science",
+              "name": "Piscine Data Science",
+              "xp": 0
+            },
+            {
+              "slug": "python-for-data-science",
+              "name": "Python for Data Science",
+              "xp": 0
+            },
+            {
+              "slug": "learn2slither",
+              "name": "Learn2Slither",
+              "xp": 9450
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "suite": [
+    {
+      "slug": "42cursus-42sh",
+      "name": "42sh",
+      "xp": 15750
+    },
+    {
+      "slug": "42cursus-doom-nukem",
+      "name": "doom-nukem",
+      "xp": 15750
+    },
+    {
+      "slug": "inception-of-things",
+      "name": "Inception-of-Things",
+      "xp": 25450
+    },
+    {
+      "slug": "42cursus-humangl",
+      "name": "humangl",
+      "xp": 4200
+    },
+    {
+      "slug": "42cursus-kfs-2",
+      "name": "kfs-2",
+      "xp": 15750
+    },
+    {
+      "slug": "42cursus-override",
+      "name": "override",
+      "xp": 35700
+    },
+    {
+      "slug": "42cursus-pestilence",
+      "name": "pestilence",
+      "xp": 15750
+    },
+    {
+      "slug": "42cursus-rt",
+      "name": "rt",
+      "xp": 20750
+    },
+    {
+      "slug": "42cursus-total-perspective-vortex",
+      "name": "total-perspective-vortex",
+      "xp": 9450
+    },
+    {
+      "slug": "bgp-at-doors-of-autonomous-systems-is-simple",
+      "name": " Bgp At Doors of Autonomous Systems is Simple",
+      "xp": 22450
+    }
+  ],
+  "experience": [
+    {
+      "slug": "internship-i",
+      "name": "Internship I",
+      "xp": 42000
+    },
+    {
+      "slug": "internship-ii",
+      "name": "Internship II",
+      "xp": 63000
+    },
+    {
+      "slug": "42cursus-startup-internship",
+      "name": "Startup Internship",
+      "xp": 42000
+    },
+    {
+      "slug": "apprentissage-1-an-apprentissage-1-an-4",
+      "name": "Apprentissage 1 an - 4",
+      "xp": null
+    },
+    {
+      "slug": "apprentissage-2-ans-1ere-annee-apprentissage-2-ans-1ere-annee-4",
+      "name": "Apprentissage 2 ans - 1ère année - 4",
+      "xp": null
+    },
+    {
+      "slug": "apprentissage-2-ans-2eme-annee-apprentissage-2-ans-2eme-annee-4",
+      "name": "Apprentissage 2 ans - 2ème année - 4",
+      "xp": null
+    }
+  ]
+}
