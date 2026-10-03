@@ -11,7 +11,7 @@ Script Node (versione 22.9 o successiva, per `--env-file-if-exists`; nessuna dip
 | CDN dell'intra (`cdn.intra.42.fr`) | i PDF dei subject | niente, è pubblico |
 | Dataset di [42calculator](https://github.com/lucas-ht/42calculator) | titoli RNCP 6 e 7 con blocchi e minimi, moduli delle piscine | niente, è pubblico |
 
-Alcune pagine dell'intra rispondono 403 anche con un cookie valido (ottobre 2026: Active Discovery, Automatic Directory, Administrative Directory, Accessible Directory, Active Connect, ActiveTechTales, MicroForensX, tinky-winkey, Piscine Machine Learning). Gli script le saltano e usano solo l'API: per quei progetti mancano dimensione del team e subject.
+Alcune pagine dell'intra rispondono 403 anche con un cookie valido (ottobre 2026: Active Discovery, Automatic Directory, Administrative Directory, Accessible Directory, Active Connect, ActiveTechTales, MicroForensX, tinky-winkey, Piscine Machine Learning). Gli script le saltano e usano solo l'API. Questi progetti sono stati tolti dalla pagina, perché il link alla pagina del progetto non funziona.
 
 Con lo scope `public` l'API **non** dà la dimensione dei team (`max_people` è sempre vuoto) né i PDF (`/v2/attachments` risponde con una lista vuota). Per questo serve anche il cookie dell'intra.
 
@@ -75,7 +75,7 @@ lists/rncp/suite.txt
 
 In testa a ogni lista ci sono i minimi del blocco (XP e numero di progetti). `data/rncp.json` contiene tutto in un unico file. `--refresh` riscarica il dataset.
 
-Le liste in `lists/rncp/` vengono rigenerate da zero a ogni avvio. Le liste copiate dalla pagina RNCP dell'intra stanno invece in `lists/official/`, che `npm run rncp` non tocca, e vanno preferite quando ci sono. Nell'ottobre 2026 ci sono quelle dell'RNCP 6 e dell'RNCP 7, ognuna con la sua Suite (`rncp-6-suite.txt`, `rncp-7-suite.txt`). La pagina coincide con le liste ufficiali dell'RNCP 6 e dell'RNCP 7.
+Le liste in `lists/rncp/` vengono rigenerate da zero a ogni avvio. Le liste copiate dalla pagina RNCP dell'intra stanno invece in `lists/official/`, che `npm run rncp` non tocca, e vanno preferite quando ci sono. Nell'ottobre 2026 ci sono quelle dell'RNCP 6 e dell'RNCP 7, ognuna con la sua Suite (`rncp-6-suite.txt`, `rncp-7-suite.txt`). La pagina coincide con le liste ufficiali dell'RNCP 6 e dell'RNCP 7, tranne i progetti con la pagina dell'intra riservata (vedi sopra).
 
 Confrontate con le liste ufficiali dell'RNCP 7 (ottobre 2026), quelle del dataset:
 

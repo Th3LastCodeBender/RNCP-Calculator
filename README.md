@@ -25,7 +25,7 @@ Aggiornati a ottobre 2026:
 - **XP, ore stimate, dimensione dei team, link ai subject**: API di 42 e pagine dei progetti sull'intra.
 - **Descrizioni e linguaggi**: scritti a mano leggendo i subject.
 
-Per alcuni progetti RNCP 7 la pagina dell'intra non è accessibile (Active Discovery, tinky-winkey e altri): per loro mancano subject e dimensione del team, e la descrizione viene dall'API.
+Alcuni progetti delle liste RNCP 7 hanno la pagina dell'intra riservata (risponde 403) e non sono nella pagina: Active Discovery, Automatic Directory, Administrative Directory, Accessible Directory, Active Connect, MicroForensX, ActiveTechTales, tinky-winkey e la Piscine Machine Learning (deprecata).
 
 Gli XP sono quelli a voto 100, tranne per i progetti fatti importati dall'intra, che scalano col voto (125 = +25%). Requisiti comuni: livello 17 per l'RNCP 6 e 21 per l'RNCP 7 (tabella XP dei livelli dall'API di 42, tramite il dataset di 42calculator), eventi ed esperienze professionali. In caso di dubbio fa fede la pagina RNCP dell'intra.
 

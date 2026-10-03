@@ -86,22 +86,13 @@ const PROJECTS = [
     { id: "ping", n: "ft_ping", s: "42cursus-ft_ping", l: "C", xp: 4200, p: [1, 1], b: ["sys"], c: ["net"], pdf: 208554, d: "Reimplementazione di ping in C, prendendo come riferimento quello di inetutils: invii pacchetti ICMP a un indirizzo IPv4 o a un nome host e misuri il tempo di andata e ritorno." },
     { id: "traceroute", n: "ft_traceroute", s: "42cursus-ft_traceroute", l: "C", xp: 4200, p: [1, 1], b: ["sys"], c: ["net"], pdf: 221754, d: "Reimplementazione di traceroute in C, con la sola libc: mostri il percorso dei pacchetti verso un host IPv4, salto per salto." },
     { id: "nmap", n: "ft_nmap", s: "42cursus-ft_nmap", l: "C", xp: 15750, p: [2, 2], b: ["sys"], c: ["net", "sec"], pdf: 215019, d: "Reimplementazione di una parte di nmap in C con libpcap e pthread: scansioni le porte di un host con vari tipi di scan, in parallelo su più thread, e riconosci i servizi." },
-    { id: "activediscovery", n: "Active Discovery", s: "activediscovery", l: "Windows Server", xp: 15750, p: null, b: ["sys"], c: ["devops"], pdf: null, d: "Basi dell'amministrazione di sistema con Windows Server. Subject non disponibile (pagina dell'intra riservata): descrizione dall'API di 42." },
-    { id: "automaticdirectory", n: "Automatic Directory", s: "automaticdirectory", l: "PowerShell", xp: 9450, p: null, b: ["sys"], c: ["devops"], pdf: null, d: "Script PowerShell per amministrare Active Directory. Subject non disponibile (pagina dell'intra riservata): descrizione dall'API di 42." },
-    { id: "administrativedirectory", n: "Administrative Directory", s: "administrativedirectory", l: "Windows Server", xp: 9450, p: null, b: ["sys"], c: ["devops", "sec"], pdf: null, d: "Criteri di gruppo (GPO) di Active Directory e un SIEM per analizzare i log degli eventi. Subject non disponibile (pagina dell'intra riservata): descrizione dall'API di 42." },
-    { id: "accessibledirectory", n: "Accessible Directory", s: "accessibledirectory", l: "Windows · C#/.NET", xp: 9450, p: null, b: ["sys"], c: ["devops", "net"], pdf: null, d: "Active Directory raggiungibile via internet, OpenSSH su Windows e un server web su piattaforma Microsoft. Subject non disponibile (pagina dell'intra riservata): descrizione dall'API di 42." },
     { id: "ioc", n: "Inception of Context", s: "inception-of-context", l: "Libero (es. Python) · LLM locale", xp: 19800, p: [2, 3], b: ["sys"], c: ["devops", "ai"], pdf: 228205, d: "Assistente al codice che gira tutto in locale, in tre parti: indice vettoriale di un progetto sempre sincronizzato, API che risponde alle domande con un piccolo modello linguistico (RAG), poi modifiche al codice generate, applicate e validate, con ritorno indietro se falliscono." },
     { id: "iow", n: "Inception of Wisdom", s: "inception-of-wisdom", l: "Python · LLM locale", xp: 21600, p: [2, 3], b: ["sys"], c: ["devops", "ai"], pdf: 228206, d: "Agente in Python con un modello linguistico locale che sorveglia un servizio in container: legge stato, log e risposte HTTP, riconosce i crash e propone correzioni, fino al redeploy automatico. Prosegue Inception of Things e Inception of Context." },
     { id: "lgtm", n: "ft_lgtm", s: "ft_lgtm", l: "Libero (WASM) · Kubernetes", xp: 16200, p: [2, 2], b: ["sys"], c: ["devops", "web"], pdf: 228204, d: "Playground web per eseguire codice in sicurezza in una sandbox WASM, con condivisione su IPFS, tutto su un cluster Kubernetes locale e monitorato con lo stack LGTM (Loki, Grafana, Tempo, Mimir) e OpenTelemetry." },
     // RNCP 7 · Security
     { id: "pcyber", n: "Piscine Cybersecurity", s: "cybersecurity", l: "Libero", xp: 9450, p: [1, 1], b: ["sec"], c: ["sec"], pdf: 213170, d: "Piscine di sicurezza informatica in moduli brevi, ognuno su un tema: web e metadati, password monouso, anonimato in rete, analisi di programmi, cifratura di file, reti locali e database. Obiettivi e vincoli nei subject dei moduli." },
     { id: "htb", n: "UnleashTheBox", s: "unleashthebox", l: "HackTheBox", xp: 15750, p: [1, 1], b: ["sec"], c: ["sec"], pdf: 212058, d: "Ramo sicurezza sulla piattaforma HackTheBox: prima il percorso introduttivo, poi le stagioni, fino a raggiungere il livello minimo richiesto. Il progetto non si può ripetere." },
-    { id: "activeconnect", n: "Active Connect", s: "activeconnect", l: "Web · OpenID", xp: 15750, p: null, b: ["sec"], c: ["web", "sec"], pdf: null, d: "Applicazione web che usa OpenID per autenticare gli utenti e gestirne le autorizzazioni. Subject non disponibile (pagina dell'intra riservata): descrizione dall'API di 42." },
-    { id: "microforensx", n: "MicroForensX", s: "microforensx", l: "App desktop", xp: 9450, p: null, b: ["sec"], c: ["sec"], pdf: null, d: "Applicazione desktop per analizzare l'attività recente sui file di un sistema. Subject non disponibile (pagina dell'intra riservata): descrizione dall'API di 42." },
-    { id: "activetechtales", n: "ActiveTechTales", s: "activetechtales", l: "Windows", xp: 15750, p: null, b: ["sec"], c: ["sec", "low"], pdf: null, d: "Ramo sicurezza su Windows: analisi di programmi compilati. Subject non disponibile (pagina dell'intra riservata): descrizione dall'API di 42." },
-    { id: "tinky", n: "tinky-winkey", s: "tinky-winkey", l: "Windows", xp: 16800, p: null, b: ["sec"], c: ["sec", "low"], pdf: null, d: "Ramo sicurezza, introduzione al sistema operativo Windows attraverso i suoi servizi. Obiettivi e vincoli nel subject, che però non è disponibile (pagina dell'intra riservata)." },
     // RNCP 7 · Artificial Intelligence
-    { id: "pml", n: "Piscine Machine Learning (deprecata)", s: "machine-learning", l: "Python", xp: 550, p: [1, 1], b: ["ai"], c: ["ai"], pdf: null, d: "Vecchia piscine di introduzione al machine learning in Python, segnata come deprecata nella lista RNCP: 6 moduli per soli 550 XP in totale. Subject non disponibile (pagina dell'intra riservata)." },
     { id: "pyds", n: "Piscine Python for Data Science", s: "python-for-data-science", l: "Python", xp: 4725, p: [1, 1], b: ["ai"], c: ["ai"], pdf: 211905, d: "Piscine di Python 3.10 in cinque moduli: basi del linguaggio, array e immagini con NumPy, tabelle di dati con pandas, programmazione a oggetti e design orientato ai dati." },
     { id: "pds", n: "Piscine Data Science", s: "piscine-data-science", l: "SQL · Libero", xp: 4725, p: [1, 1], b: ["ai"], c: ["ai"], pdf: 220007, d: "Piscine sui dati in cinque moduli: creazione di un database PostgreSQL, data warehouse, visualizzazione dei dati, analisi e modelli per prevedere l'andamento futuro." },
     { id: "linreg", n: "ft_linear_regression", s: "42cursus-ft_linear_regression", l: "Libero", xp: 4200, p: [1, 1], b: ["ai"], c: ["ai"], pdf: 212344, d: "Primo algoritmo di machine learning: prevedi il prezzo di un'auto dal chilometraggio con una regressione lineare allenata con la discesa del gradiente, scritta da te senza librerie che facciano il lavoro." },
@@ -941,24 +932,16 @@ intraForm.addEventListener("submit", async (e) => {
         intraGo.disabled = false;
     }
 });
-// moduli delle piscine che l'intra registra come progetti separati (da data/info.json, campo children)
-const CHILDREN = {
-    "machine-learning": ["machine-learning-using-python-ml_01", "machine-learning-using-python-ml_02", "machine-learning-using-python-ml_03",
-        "machine-learning-using-python-ml_04", "machine-learning-ibm-machine-learning-00", "machine-learning-ibm-machine-learning-01"],
-};
 // dagli slug dell'intra al formato di npm run me (id della pagina), così passa da mergeIntra
 function intraToPlan(data) {
     const status = {}, marks = {};
     for (const pr of PROJECTS) {
         const got = data.p[pr.s];
-        let s = got ? (got[0] === "d" ? "done" : "doing") : null;
-        const kids = (CHILDREN[pr.s] || []).map((k) => data.p[k]?.[0]);
-        if (!s && kids.length)
-            s = kids.every((k) => k === "d") ? "done" : kids.some(Boolean) ? "doing" : null; // piscina: fatta con tutti i moduli
-        if (!s)
+        if (!got)
             continue;
+        const s = got[0] === "d" ? "done" : "doing";
         status[pr.id] = s;
-        if (s === "done" && got && got[1] != null)
+        if (s === "done" && got[1] != null)
             marks[pr.id] = got[1];
     }
     return JSON.stringify({ version: 2, source: "intra", login: data.login, date: data.date, level: data.level, picked: Object.keys(status), status, marks });
