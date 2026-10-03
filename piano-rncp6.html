@@ -48,6 +48,11 @@
       <button type="button" id="auth-go">Accedi con 42</button>
       <span class="intra-msg" id="auth-msg" role="status">Importa i tuoi progetti fatti e in corso, i voti e il livello dall'intra.</span>
     </div>
+    <!-- dopo un import dall'intra: di chi sono i dati e "Esci" per dimenticarli -->
+    <div class="intra" id="intra-session" hidden>
+      <span class="intra-msg" id="intra-who"></span>
+      <button type="button" class="link" id="intra-logout">Esci</button>
+    </div>
     <!-- visibile solo con npm run serve: il server locale legge i progetti dall'API di 42 -->
     <form class="intra" id="intra-form" hidden>
       <label for="intra-login">Login intra</label>

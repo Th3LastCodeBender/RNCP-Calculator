@@ -38,6 +38,9 @@ interface Title {
   options: Record<OptionId, { name: string; blocks: BlockId[] }>;
 }
 
+// dati importati dall'intra: login, data e, per ogni progetto che l'import ha segnato, lo stato che aveva prima ("" = non scelto)
+interface IntraSession { login: string; date: string; prev: Record<string, Status | ""> }
+
 interface State {
   title: TitleId;
   opt: OptionId;
@@ -46,6 +49,7 @@ interface State {
   level: number | null; // livello attuale nel 42cursus, scritto a mano o dall'intra
   events: number; // eventi a cui hai partecipato
   exps: number; // esperienze professionali (stage, contratti) validate
+  intra: IntraSession | null; // da chi e quando vengono i dati importati dall'intra (per "Esci")
   team: Team;
   only: boolean;
   tags: Set<Tag>;
@@ -238,7 +242,7 @@ const otherBlocks = (pr: Project): BlockId[] => {
 
 /* ---------- stato ---------- */
 const KEY = "rncp6-plan-v1"; // nome storico: ora contiene anche il titolo
-const state: State = { title: 6, opt: 2, picked: {}, marks: {}, level: null, events: 0, exps: 0, team: "all", only: false, tags: new Set(), q: "", dayHours: 8 };
+const state: State = { title: 6, opt: 2, picked: {}, marks: {}, level: null, events: 0, exps: 0, intra: null, team: "all", only: false, tags: new Set(), q: "", dayHours: 8 };
 
 // Ore al giorno: quante ore lavori in una giornata (default 8); i giorni sono le ore dell'intra divise per questo numero
 const DAY_HOURS_MIN = 1, DAY_HOURS_MAX = 24;
@@ -273,10 +277,11 @@ try {
     opt: saved.opt === 1 ? 1 : 2, picked: cleanPicked(saved.picked || {}), marks: cleanMarks(saved.marks),
     level: validLevel(saved.level) ? saved.level : null, dayHours: validDayHours(saved.dayHours) ? saved.dayHours : 8,
     events: validCount(saved.events) ? saved.events : 0, exps: validCount(saved.exps) ? saved.exps : 0,
+    intra: saved.intra && typeof saved.intra.login === "string" && saved.intra.prev && typeof saved.intra.prev === "object" ? saved.intra : null,
   });
 } catch { /* storage non disponibile: la pagina funziona lo stesso */ }
 function save(): void {
-  try { localStorage.setItem(KEY, JSON.stringify({ title: state.title, opt: state.opt, picked: state.picked, marks: state.marks, level: state.level, events: state.events, exps: state.exps, dayHours: state.dayHours })); } catch {}
+  try { localStorage.setItem(KEY, JSON.stringify({ title: state.title, opt: state.opt, picked: state.picked, marks: state.marks, level: state.level, events: state.events, exps: state.exps, intra: state.intra, dayHours: state.dayHours })); } catch {}
   writeLinked();
 }
 
@@ -667,6 +672,7 @@ function render(): void {
   if (document.activeElement !== dayHoursInput) dayHoursInput.value = fmtDayHours(state.dayHours); // non disturba chi sta scrivendo
   renderMeters();
   renderLeft();
+  renderSession();
   renderBlocks();
 }
 
@@ -780,6 +786,12 @@ function mergeIntra(text: string): string {
   const plan = JSON.parse(text) as Partial<PlanFile>;
   if (plan.source !== "intra" || !plan.status) throw new Error("non è un file di npm run me");
   const got = cleanPicked(plan.status);
+  // ricorda lo stato di prima dei progetti che l'import cambia, per ripristinarlo con "Esci";
+  // con lo stesso login vale lo stato di prima del primo import
+  const login = plan.login || "intra";
+  const prev = state.intra && state.intra.login === login ? state.intra.prev : {};
+  for (const id of Object.keys(got)) if (!(id in prev)) prev[id] = state.picked[id] || "";
+  state.intra = { login, date: plan.date || "", prev };
   Object.assign(state.picked, got);
   Object.assign(state.marks, cleanMarks(plan.marks));
   if (validLevel(plan.level)) state.level = plan.level;
@@ -787,6 +799,33 @@ function mergeIntra(text: string): string {
   return "Dall'intra" + (plan.login ? " (" + plan.login + (plan.date ? ", " + plan.date : "") + ")" : "") + ": "
     + n.filter((s) => s === "done").length + (n.filter((s) => s === "done").length === 1 ? " fatto, " : " fatti, ")
     + n.filter((s) => s === "doing").length + " in corso";
+}
+
+// "Esci": riporta i progetti importati com'erano prima dell'import, e toglie voti, livello e login
+function intraLogout(): void {
+  const s = state.intra;
+  if (!s) return;
+  if (!confirm("Dimenticare i dati dell'intra di " + s.login + "?\n\nI progetti importati tornano com'erano prima dell'import; voti e livello vengono tolti. Il resto del piano non cambia.")) return;
+  for (const [id, before] of Object.entries(s.prev)) {
+    if (before) state.picked[id] = before; else delete state.picked[id];
+    delete state.marks[id];
+  }
+  state.level = null;
+  state.intra = null;
+  try { localStorage.removeItem(LOGIN_KEY); } catch {}
+  intraLogin.value = "";
+  authMsg.textContent = "Dati dell'intra dimenticati.";
+  intraMsg.textContent = "";
+  save(); render();
+}
+
+// riga "Dati dell'intra di jdoe (2026-10-03) · Esci", visibile dopo un import
+function renderSession(): void {
+  const box = byId("intra-session");
+  box.hidden = !state.intra;
+  byId("auth-go").textContent = state.intra ? "Aggiorna dall'intra" : "Accedi con 42";
+  if (!state.intra) return;
+  byId("intra-who").textContent = "Dati dell'intra di " + state.intra.login + (state.intra.date ? " (" + state.intra.date + ")" : "");
 }
 
 function setStatus(text: string): void {
@@ -949,6 +988,8 @@ if (authUrl && location.protocol.startsWith("http")) authBox.hidden = false;
 byId("auth-go").addEventListener("click", () => {
   location.href = authUrl + "/login?return=" + encodeURIComponent(location.origin + location.pathname);
 });
+
+byId("intra-logout").addEventListener("click", intraLogout);
 
 // ritorno dal login: legge il frammento e lo cancella dall'indirizzo (non resta nella cronologia né nei link copiati)
 function readAuthReturn(): void {

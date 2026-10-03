@@ -400,6 +400,15 @@ body {
   cursor: pointer;
 }
 
+/* "Esci": link, non pulsante pieno */
+.intra button.link {
+  padding: 0;
+  font-weight: 400;
+  color: var(--muted);
+  background: transparent;
+  border-radius: 0;
+}
+
 .intra button:disabled {
   opacity: 0.6;
   cursor: default;
