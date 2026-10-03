@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Piano RNCP</title>
+<title>RNCP Calculator</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,7 @@
 <div class="wrap">
   <header class="top">
     <div class="top-text">
-      <h1 id="page-title">Piano RNCP</h1>
+      <h1>RNCP Calculator</h1>
     </div>
     <div class="menu">
       <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-pop">Esporta</button>
@@ -19,6 +19,8 @@
         <button type="button" id="export">Salva piano</button>
         <button type="button" id="import">Carica piano</button>
         <input type="file" id="import-file" accept=".json,application/json" hidden>
+        <button type="button" id="import-intra" title="Carica piano-intra.json, scritto da npm run me">Importa dall'intra</button>
+        <input type="file" id="intra-file" accept=".json,application/json" hidden>
         <button type="button" id="export-md">Esporta Markdown</button>
         <button type="button" id="export-pdf">Esporta PDF</button>
       </div>
@@ -39,6 +41,24 @@
     <div class="meters" id="meters"></div>
   </section>
 
+  <!-- requisiti comuni e tempo che resta: fuori dalla barra fissa, scorrono con la pagina -->
+  <section class="reqs reqs-common" aria-label="Requisiti comuni">
+    <!-- "Accedi con 42": data-auth è l'indirizzo del Cloudflare Worker (worker/README.md); vuoto = pulsante nascosto -->
+    <div class="intra" id="auth-box" data-auth="https://rncp-calculator.rncp-calculator-worker.workers.dev" hidden>
+      <button type="button" id="auth-go">Accedi con 42</button>
+      <span class="intra-msg" id="auth-msg" role="status">Importa i tuoi progetti fatti e in corso, i voti e il livello dall'intra.</span>
+    </div>
+    <!-- visibile solo con npm run serve: il server locale legge i progetti dall'API di 42 -->
+    <form class="intra" id="intra-form" hidden>
+      <label for="intra-login">Login intra</label>
+      <input type="text" id="intra-login" autocomplete="username" spellcheck="false" placeholder="es. jdoe" required pattern="[A-Za-z0-9\-]{2,32}">
+      <button type="submit" id="intra-go">Importa dall'intra</button>
+      <span class="intra-msg" id="intra-msg" role="status"></span>
+    </form>
+    <div class="meters" id="common"></div>
+    <p class="plan-left" id="plan-left" role="status"></p>
+  </section>
+
   <div class="filters">
     <input type="search" id="q" placeholder="Cerca un progetto" aria-label="Cerca un progetto">
     <div class="seg" role="group" aria-label="Numero di persone">
@@ -52,7 +72,6 @@
     </label>
     <div class="tags" id="tags" role="group" aria-label="Categorie"></div>
     <label class="check" for="only"><input type="checkbox" id="only"> Scelti</label>
-    <label class="check" for="exclusive" id="exclusive-box"><input type="checkbox" id="exclusive" checked> <span id="exclusive-label">Mostra RNCP 7</span></label>
     <div class="actions">
       <span class="plan-status" id="plan-status" role="status" hidden></span>
       <button type="button" class="link" id="reconnect" hidden>Riapri piano</button>
@@ -67,7 +86,7 @@
     <p><b>Giorni</b>: tempo stimato dall'intra diviso per le tue <b>Ore al giorno</b> (da 1 a 24, default 8), con sabato e domenica liberi: ogni 5 giorni lavorativi si aggiungono 2 giorni di weekend. Le ore esatte compaiono passando sopra il chip. Si aggiornano con <code>npm run hours</code>. <b>Linguaggio</b>: indicativo, "Libero" vuol dire a scelta: fa fede il subject.</p>
     <p><b>Persone</b>: dimensione del team indicata sull'intra (ottobre 2026, aggiornabile con <code>npm run info</code>). Può cambiare tra campus e versioni del subject. Alcuni progetti RNCP 7 (Active Discovery, tinky-winkey…) hanno la pagina dell'intra riservata: per loro mancano persone e subject, e la descrizione viene dall'API di 42.</p>
     <p><b>Subject</b>: apre il PDF ufficiale sul CDN di 42, senza login (ottobre 2026; <code>npm run info</code> segnala i link cambiati). <b>Pagina del progetto</b>: apre la pagina sull'intra, dove trovi sempre il PDF più recente (serve il login 42).</p>
-    <p><b>Requisiti comuni</b>, non tracciati qui: <span id="common-rules">livello 17, 10 eventi, 2 esperienze professionali</span>. Un progetto presente in più blocchi è contato in ognuno: conferma sulla pagina RNCP dell'intra.</p>
+    <p><b>Requisiti comuni</b> (<span id="common-rules">livello 17, 10 eventi, 2 esperienze professionali</span>): si scrivono a mano nei riquadri in alto; il livello arriva anche da <code>npm run me</code>. Il livello col piano somma al livello attuale gli XP dei progetti scelti non ancora fatti, a voto 100. Un progetto presente in più blocchi è contato in ognuno: conferma sulla pagina RNCP dell'intra.</p>
   </footer>
 </div>
 

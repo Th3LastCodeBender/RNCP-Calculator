@@ -50,6 +50,18 @@ Gli argomenti si passano dopo `--`: `npm run info -- --file lista.txt`.
 
 ## Comandi
 
+### `npm run serve`: la pagina con l'import dall'intra
+
+Avvia un server su http://localhost:4242 (`--port` per cambiarla) che serve la pagina e risponde a `/api/me?login=<login>` con gli stessi dati di `npm run me`. La pagina se ne accorge e mostra il campo **Login intra**. Il server ascolta solo su `127.0.0.1`, serve solo i file della cartella principale (mai `.env` né sottocartelle) e tiene le credenziali per sé. Senza `FT_UID` e `FT_SECRET` la pagina funziona, ma il campo è disattivato.
+
+### `npm run me`: i tuoi progetti dall'intra
+
+```
+npm run me -- <login>
+```
+
+Legge dall'API il tuo profilo (bastano `FT_UID` e `FT_SECRET`; il login si può mettere anche in `.env` come `INTRA_LOGIN`) e scrive `piano-intra.json` con i progetti della pagina che hai validato (con il voto) o che hai in corso, e il tuo livello nel 42cursus. Le piscine a moduli contano come fatte quando sono validati tutti i moduli (`children` in `data/info.json`). Nella pagina si importa da *Esporta → Importa dall'intra*. `--out altro.json` cambia il file di destinazione. Il file contiene dati personali ed è nel `.gitignore`.
+
 ### `npm run rncp`: liste dei titoli RNCP
 
 Scarica il dataset di 42calculator e crea una lista di progetti per ogni blocco di ogni titolo RNCP 6 e 7:

@@ -15,7 +15,7 @@ import { datasetChildren } from "./dataset.mjs";
 
 export const ROOT = new URL("../../", import.meta.url);
 
-const VALUE_FLAGS = new Set(["--file", "--cursus", "--lang", "--out"]);
+const VALUE_FLAGS = new Set(["--file", "--cursus", "--lang", "--out", "--port"]);
 
 // { slugs: [...], flags: { file, cursus, lang, out, force, children, ... } }
 export function parseArgs(argv = process.argv.slice(2)) {
@@ -30,13 +30,14 @@ export function parseArgs(argv = process.argv.slice(2)) {
   return { slugs, flags };
 }
 
-// slug della pagina (script.ts), con nome e persone attuali per i confronti
+// slug della pagina (script.ts), con id, nome e persone attuali per i confronti
 export async function pageProjects() {
   const source = await readFile(new URL("script.ts", ROOT), "utf8");
   const out = new Map();
-  for (const m of source.matchAll(/\{ id: "[^"]+", n: "([^"]*)", s: "([^"]+)",[^\n]*? xp: (null|\d+), p: (null|\[\d+, \d+\])(?:[^\n]*? pdf: (null|\d+),)?/g)) {
+  for (const m of source.matchAll(/\{ id: "([^"]+)", n: "([^"]*)", s: "([^"]+)",[^\n]*? xp: (null|\d+), p: (null|\[\d+, \d+\])(?:[^\n]*? pdf: (null|\d+),)?/g)) {
+    m.shift(); // così i gruppi restano numerati come prima, con l'id in m[0]
     out.set(m[2], {
-      name: m[1], xp: m[3] === "null" ? null : Number(m[3]), p: m[4] === "null" ? null : JSON.parse(m[4]),
+      id: m[0], name: m[1], xp: m[3] === "null" ? null : Number(m[3]), p: m[4] === "null" ? null : JSON.parse(m[4]),
       pdf: m[5] == null || m[5] === "null" ? null : Number(m[5]),
     });
   }

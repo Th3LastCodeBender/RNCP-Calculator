@@ -141,6 +141,7 @@ const TITLES = {
     6: {
         name: "RNCP 6",
         rules: "livello 17, 10 eventi, 2 esperienze professionali",
+        level: 17, events: 10, exps: 2,
         options: {
             1: { name: "Opzione 1 · Web e mobile", blocks: ["suite", "web", "mobile"] },
             2: { name: "Opzione 2 · Software applicativo", blocks: ["suite", "oop", "fun", "imp"] },
@@ -149,6 +150,7 @@ const TITLES = {
     7: {
         name: "RNCP 7",
         rules: "livello 21, 15 eventi, 2 esperienze professionali",
+        level: 21, events: 15, exps: 2,
         options: {
             1: { name: "Opzione 1 · Sistemi informativi e reti", blocks: ["suite", "unix", "sys", "sec"] },
             2: { name: "Opzione 2 · Basi di dati e data", blocks: ["suite", "webdb", "ai"] },
@@ -159,10 +161,8 @@ const TITLES = {
 const optBlocks = () => TITLES[state.title].options[state.opt].blocks;
 const optName = () => TITLES[state.title].options[state.opt].name;
 const titleName = () => TITLES[state.title].name;
-// entrando nell'RNCP 7 i progetti in comune con l'RNCP 6 sono nascosti; nell'RNCP 6 si vedono tutti
 function setTitle(t) {
     state.title = t;
-    state.exclusive = t === 7;
 }
 // l'altro titolo e i blocchi in cui un progetto conta lì (di tutte e due le sue opzioni)
 const otherTitle = () => (state.title === 6 ? 7 : 6);
@@ -172,22 +172,50 @@ const otherBlocks = (pr) => {
 };
 /* ---------- stato ---------- */
 const KEY = "rncp6-plan-v1"; // nome storico: ora contiene anche il titolo
-const state = { title: 6, opt: 2, picked: {}, team: "all", only: false, exclusive: false, tags: new Set(), q: "", dayHours: 8 };
+const state = { title: 6, opt: 2, picked: {}, marks: {}, level: null, events: 0, exps: 0, team: "all", only: false, tags: new Set(), q: "", dayHours: 8 };
 // Ore al giorno: quante ore lavori in una giornata (default 8); i giorni sono le ore dell'intra divise per questo numero
 const DAY_HOURS_MIN = 1, DAY_HOURS_MAX = 24;
 const validDayHours = (v) => typeof v === "number" && Number.isFinite(v) && v >= DAY_HOURS_MIN && v <= DAY_HOURS_MAX;
 const fmtDayHours = (v) => v.toLocaleString("it-IT", { maximumFractionDigits: 2 });
+const STATUS_NAMES = { todo: "Da fare", doing: "In corso", done: "Fatto" };
+const toStatus = (v) => (v === "doing" || v === "done" ? v : "todo"); // le scelte di prima (true) diventano "da fare"
+// tiene solo i progetti che esistono ancora, con uno stato valido
+function cleanPicked(raw) {
+    const known = new Set(PROJECTS.map((pr) => pr.id));
+    const out = {};
+    for (const [id, v] of Object.entries(raw))
+        if (known.has(id))
+            out[id] = toStatus(v);
+    return out;
+}
+// voti: solo progetti esistenti e numeri tra 0 e 125 (il massimo con i bonus)
+function cleanMarks(raw) {
+    const known = new Set(PROJECTS.map((pr) => pr.id));
+    const out = {};
+    if (raw && typeof raw === "object")
+        for (const [id, v] of Object.entries(raw))
+            if (known.has(id) && typeof v === "number" && v >= 0 && v <= 125)
+                out[id] = v;
+    return out;
+}
+const LEVEL_MAX = 30;
+const validLevel = (v) => typeof v === "number" && Number.isFinite(v) && v >= 0 && v < LEVEL_MAX;
+const validCount = (v) => typeof v === "number" && Number.isInteger(v) && v >= 0 && v <= 99;
 try {
     const saved = JSON.parse(localStorage.getItem(KEY) || "null");
     if (saved)
         setTitle(saved.title === 7 ? 7 : 6);
     if (saved)
-        Object.assign(state, { opt: saved.opt === 1 ? 1 : 2, picked: saved.picked || {}, dayHours: validDayHours(saved.dayHours) ? saved.dayHours : 8 });
+        Object.assign(state, {
+            opt: saved.opt === 1 ? 1 : 2, picked: cleanPicked(saved.picked || {}), marks: cleanMarks(saved.marks),
+            level: validLevel(saved.level) ? saved.level : null, dayHours: validDayHours(saved.dayHours) ? saved.dayHours : 8,
+            events: validCount(saved.events) ? saved.events : 0, exps: validCount(saved.exps) ? saved.exps : 0,
+        });
 }
 catch { /* storage non disponibile: la pagina funziona lo stesso */ }
 function save() {
     try {
-        localStorage.setItem(KEY, JSON.stringify({ title: state.title, opt: state.opt, picked: state.picked, dayHours: state.dayHours }));
+        localStorage.setItem(KEY, JSON.stringify({ title: state.title, opt: state.opt, picked: state.picked, marks: state.marks, level: state.level, events: state.events, exps: state.exps, dayHours: state.dayHours }));
     }
     catch { }
     writeLinked();
@@ -224,16 +252,46 @@ const timeLabel = (pr) => {
 const pageUrl = (pr) => "https://projects.intra.42.fr/projects/" + pr.s;
 // PDF del subject sul CDN di 42: pubblico, si apre senza login
 const subjectPdf = (pr) => pr.pdf == null ? null : "https://cdn.intra.42.fr/pdf/pdf/" + pr.pdf + "/en.subject.pdf";
-function tally(blockId) {
-    const chosen = PROJECTS.filter((pr) => pr.b.includes(blockId) && state.picked[pr.id]);
-    const xp = chosen.reduce((sum, pr) => sum + (pr.xp || 0), 0);
-    const blk = BLOCKS[blockId];
-    return { n: chosen.length, xp, done: chosen.length >= blk.minN && xp >= blk.minXp };
+// XP di un progetto: per quelli fatti con il voto dell'intra scalano col voto (125 = +25%), gli altri valgono a voto 100
+function xpOf(pr) {
+    if (pr.xp == null)
+        return null;
+    const mark = state.picked[pr.id] === "done" ? state.marks[pr.id] : undefined;
+    return mark == null ? pr.xp : Math.round(pr.xp * mark / 100);
 }
+// XP totali per arrivare a ogni livello del 42cursus (0…30), dall'API di 42 via experience_21.json di 42calculator
+const LEVEL_XP = [0, 462, 2688, 5885, 11777, 29217, 46255, 63559, 74340, 85483, 95000, 105630, 124446, 145782, 169932,
+    197316, 228354, 263508, 303366, 348516, 399672, 457632, 523320, 597786, 682164, 777756, 886074, 1008798, 1147902, 1305486, 1484070];
+// livello 12,45 = 45% della strada tra il 12 e il 13
+function levelToXp(level) {
+    const i = Math.min(Math.floor(level), LEVEL_XP.length - 2);
+    return LEVEL_XP[i] + (level - i) * (LEVEL_XP[i + 1] - LEVEL_XP[i]);
+}
+function xpToLevel(xp) {
+    let i = 0;
+    while (i < LEVEL_XP.length - 2 && xp >= LEVEL_XP[i + 1])
+        i++;
+    return i + Math.min((xp - LEVEL_XP[i]) / (LEVEL_XP[i + 1] - LEVEL_XP[i]), 1);
+}
+const fmtLevel = (v) => (Math.floor(v * 100) / 100).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+// XP che il piano aggiunge al livello attuale: i progetti scelti non ancora fatti (quelli fatti sono già nel livello)
+const pendingXp = () => PROJECTS.reduce((s, pr) => s + (state.picked[pr.id] && state.picked[pr.id] !== "done" ? xpOf(pr) || 0 : 0), 0);
+// n, xp, done: tutti i progetti scelti (il piano) · dn, dxp, valid: solo quelli fatti
+function tally(blockId) {
+    const blk = BLOCKS[blockId];
+    const chosen = PROJECTS.filter((pr) => pr.b.includes(blockId) && state.picked[pr.id]);
+    const made = chosen.filter((pr) => state.picked[pr.id] === "done");
+    const sum = (list) => list.reduce((s, pr) => s + (xpOf(pr) || 0), 0);
+    const xp = sum(chosen), dxp = sum(made);
+    return {
+        n: chosen.length, xp, done: chosen.length >= blk.minN && xp >= blk.minXp,
+        dn: made.length, dxp, valid: made.length >= blk.minN && dxp >= blk.minXp,
+    };
+}
+// quanto di un blocco è coperto, da 0 a 1: conta il requisito più indietro tra progetti e XP
+const coverage = (blk, n, xp) => Math.min(n / blk.minN, blk.minXp ? xp / blk.minXp : 1, 1);
 function visible(pr) {
     if (state.only && !state.picked[pr.id])
-        return false;
-    if (state.exclusive && otherBlocks(pr).length)
         return false;
     if (state.tags.size && !pr.c.some((t) => state.tags.has(t)))
         return false; // basta una delle categorie accese
@@ -261,10 +319,12 @@ function byId(id) {
         throw new Error("Elemento #" + id + " mancante");
     return node;
 }
-// spunta del blocco completato, nel pannello e accanto al nome del blocco
-function doneCheck() {
-    const check = el("span", "meter-check", "✓");
-    check.setAttribute("aria-label", "Completato");
+// spunta del blocco, nel pannello e accanto al nome del blocco:
+// piena se è già validato con i progetti fatti, vuota se è solo coperto dal piano
+function doneCheck(valid) {
+    const check = el("span", "meter-check" + (valid ? "" : " planned"), "✓");
+    check.setAttribute("aria-label", valid ? "Validato" : "Coperto dal piano");
+    check.title = valid ? "Validato con i progetti fatti" : "Coperto dal piano, non ancora validato";
     return check;
 }
 function renderMeters() {
@@ -272,15 +332,16 @@ function renderMeters() {
     box.textContent = "";
     for (const id of optBlocks()) {
         const blk = BLOCKS[id], t = tally(id);
-        const m = el("div", "meter" + (t.done ? " done" : ""));
+        const m = el("div", "meter" + (t.valid ? " done" : t.done ? " planned" : ""));
         const top = el("div", "meter-top");
         top.append(el("span", "meter-name", blk.name));
         if (t.done)
-            top.append(doneCheck());
-        const ratio = blk.minXp ? Math.min(t.xp / blk.minXp, 1) : Math.min(t.n / blk.minN, 1);
-        const bar = el("div", "bar"), fill = el("i");
-        fill.style.width = Math.round(Math.min(ratio, t.n / blk.minN, 1) * 100) + "%";
-        bar.append(fill);
+            top.append(doneCheck(t.valid));
+        // due riempimenti: pieno per i progetti fatti, chiaro per il resto del piano
+        const bar = el("div", "bar"), plan = el("i", "plan"), made = el("i");
+        plan.style.width = Math.round(coverage(blk, t.n, t.xp) * 100) + "%";
+        made.style.width = Math.round(coverage(blk, t.dn, t.dxp) * 100) + "%";
+        bar.append(plan, made);
         const nums = el("div", "meter-nums");
         const a = el("span");
         a.append(el("b", null, String(t.n)), "/" + blk.minN + " progetti");
@@ -290,28 +351,145 @@ function renderMeters() {
             b.append(el("b", null, fmt(t.xp)), "/" + fmt(blk.minXp) + " XP");
             nums.append(b);
         }
-        m.append(top, bar, nums);
+        const madeNums = el("div", "meter-made", "Fatti: " + t.dn + (t.dn === 1 ? " progetto" : " progetti") + (blk.minXp ? " · " + fmt(t.dxp) + " XP" : ""));
+        m.append(top, bar, nums, madeNums);
         box.append(m);
     }
 }
+function commonMeter(label, inputLabel, onInput) {
+    const box = el("div", "meter common");
+    const top = el("div", "meter-top"), name = el("span", "meter-name", label);
+    top.append(name);
+    const bar = el("div", "bar"), plan = el("i", "plan"), made = el("i");
+    bar.append(plan, made);
+    const row = el("label", "meter-input");
+    const input = el("input");
+    input.type = "text";
+    input.inputMode = "decimal";
+    input.size = 5;
+    input.setAttribute("aria-label", inputLabel);
+    const info = el("span");
+    row.append(input, info);
+    input.addEventListener("input", () => onInput(input.value.trim().replace(",", "."), input));
+    box.append(top, bar, row);
+    byId("common").append(box);
+    return { box, top, name, plan, made, info, input };
+}
+const parseCount = (raw) => (/^\d{1,2}$/.test(raw) ? Number(raw) : null);
+const mLevel = commonMeter("Livello", "Livello attuale nel 42cursus", (raw, input) => {
+    const v = raw === "" ? null : Number(raw);
+    const ok = v === null || validLevel(v);
+    input.setAttribute("aria-invalid", String(!ok));
+    if (!ok)
+        return;
+    state.level = v;
+    save();
+    renderCommon();
+});
+const mEvents = commonMeter("Eventi", "Eventi a cui hai partecipato", (raw, input) => {
+    const v = parseCount(raw);
+    input.setAttribute("aria-invalid", String(v == null));
+    if (v == null)
+        return;
+    state.events = v;
+    save();
+    renderCommon();
+});
+const mExps = commonMeter("Esperienze professionali", "Esperienze professionali validate", (raw, input) => {
+    const v = parseCount(raw);
+    input.setAttribute("aria-invalid", String(v == null));
+    if (v == null)
+        return;
+    state.exps = v;
+    save();
+    renderCommon();
+});
+// stato di un riquadro: validato (verde pieno), coperto dal piano (bordo verde), da completare
+function paintCommon(m, have, planned, need) {
+    const valid = have >= need, covered = planned >= need;
+    m.box.className = "meter common" + (valid ? " done" : covered ? " planned" : "");
+    m.top.querySelector(".meter-check")?.remove();
+    if (covered)
+        m.top.append(doneCheck(valid));
+    m.made.style.width = Math.round(Math.min(have / need, 1) * 100) + "%";
+    m.plan.style.width = Math.round(Math.min(planned / need, 1) * 100) + "%";
+}
+function renderCommon() {
+    const ttl = TITLES[state.title];
+    const active = (inp) => document.activeElement === inp; // non riscrive il campo mentre ci scrivi
+    // livello: le barre sono in XP, perché tra un livello e l'altro gli XP non sono costanti
+    const need = levelToXp(ttl.level);
+    if (state.level == null) {
+        paintCommon(mLevel, 0, 0, need);
+        mLevel.info.textContent = "livello attuale · minimo " + ttl.level;
+    }
+    else {
+        const have = levelToXp(state.level), planned = have + pendingXp();
+        paintCommon(mLevel, have, planned, need);
+        const end = xpToLevel(planned);
+        mLevel.info.textContent = (pendingXp() ? "→ " + fmtLevel(end) + " col piano" : "nessun progetto da fare") + " · minimo " + ttl.level
+            + (planned < need ? " · mancano " + fmt(Math.ceil(need - planned)) + " XP" : "");
+    }
+    if (!active(mLevel.input))
+        mLevel.input.value = state.level == null ? "" : fmtLevel(state.level);
+    // eventi ed esperienze: si contano a mano, il piano non li cambia
+    paintCommon(mEvents, state.events, state.events, ttl.events);
+    mEvents.info.textContent = "/" + ttl.events + " eventi";
+    if (!active(mEvents.input))
+        mEvents.input.value = String(state.events);
+    paintCommon(mExps, state.exps, state.exps, ttl.exps);
+    mExps.info.textContent = "/" + ttl.exps + " esperienze";
+    if (!active(mExps.input))
+        mExps.input.value = String(state.exps);
+}
+// quanto manca: i progetti scelti non ancora fatti, uno dopo l'altro, con le ore al giorno scelte
+function renderLeft() {
+    const box = byId("plan-left");
+    box.title = "";
+    // tutto validato: blocchi dell'opzione e requisiti comuni
+    const ttl = TITLES[state.title];
+    if (optBlocks().every((id) => tally(id).valid) && state.level != null && state.level >= ttl.level
+        && state.events >= ttl.events && state.exps >= ttl.exps) {
+        box.textContent = "";
+        box.append(el("b", null, "Requisiti dell'" + ttl.name + " validati."), " Prima di fare domanda controlla sulla pagina RNCP dell'intra: è quella che fa fede.");
+        return;
+    }
+    const left = PROJECTS.filter((pr) => state.picked[pr.id] && state.picked[pr.id] !== "done");
+    if (!left.length) {
+        box.textContent = Object.keys(state.picked).length ? "Tutti i progetti scelti sono fatti." : "Scegli i progetti cliccando sulle card: qui vedrai quanto tempo ti resta.";
+        return;
+    }
+    const doing = left.filter((pr) => state.picked[pr.id] === "doing").length;
+    const missing = left.filter((pr) => hours(pr) == null);
+    const h = left.reduce((s, pr) => s + (hours(pr) || 0), 0);
+    const days = calendarDays(workDays(h));
+    box.textContent = "";
+    box.append("Restano ", el("b", null, left.length + (left.length === 1 ? " progetto" : " progetti")), (doing ? " (" + doing + " in corso)" : "") + ": ", el("b", null, "~" + fmt(days) + (days === 1 ? " giorno" : " giorni")), days < 7 ? ". Se inizi oggi finisci verso il " : ", circa " + fmt(Math.round(days / 7)) + (Math.round(days / 7) === 1 ? " settimana" : " settimane") + ". Se inizi oggi finisci verso il ", el("b", null, dateIn(days)), ".");
+    box.title = fmt(h) + " h stimate dall'intra a " + fmtDayHours(state.dayHours) + " h al giorno, weekend liberi; i progetti in corso contano per intero";
+    if (missing.length)
+        box.append(" Senza stima: " + missing.map((pr) => pr.n).join(", ") + ".");
+}
+for (const m of [mLevel, mEvents, mExps])
+    m.input.addEventListener("blur", () => { m.input.removeAttribute("aria-invalid"); renderCommon(); });
 function card(pr, blockId) {
-    const on = !!state.picked[pr.id];
-    const c = el("article", "card" + (on ? " on" : ""));
+    const status = state.picked[pr.id];
+    const c = el("article", "card" + (status ? " on " + status : ""));
     const key = blockId + ":" + pr.id;
     c.dataset.key = key;
     c.tabIndex = 0;
-    c.setAttribute("aria-label", pr.n + (on ? ", scelto" : ", non scelto"));
+    c.setAttribute("aria-label", pr.n + (status ? ", scelto, " + STATUS_NAMES[status].toLowerCase() : ", non scelto"));
+    // il clic sulla card sceglie il progetto (da fare) o lo toglie dal piano
     const toggle = () => {
-        if (on)
+        if (status)
             delete state.picked[pr.id];
         else
-            state.picked[pr.id] = true;
+            state.picked[pr.id] = "todo";
         save();
         render();
     };
-    // tutta la card seleziona, tranne il link al subject
+    // tutta la card seleziona, tranne i link e i bottoni dello stato
     c.addEventListener("click", (e) => {
-        if (e.target.closest("a"))
+        if (e.target.closest("a, button"))
             return;
         if (window.getSelection()?.toString())
             return; // stava selezionando testo
@@ -326,8 +504,31 @@ function card(pr, blockId) {
     });
     const top = el("div", "card-top");
     top.append(el("h3", null, pr.n));
+    if (status) {
+        const seg = el("div", "seg status");
+        seg.setAttribute("role", "group");
+        seg.setAttribute("aria-label", "Stato di " + pr.n);
+        for (const s of Object.keys(STATUS_NAMES)) {
+            const b = el("button", null, STATUS_NAMES[s]);
+            b.type = "button";
+            b.dataset.status = s;
+            b.setAttribute("aria-pressed", String(s === status));
+            b.addEventListener("click", () => {
+                state.picked[pr.id] = s;
+                save();
+                render();
+                document.querySelector('[data-key="' + key + '"] [data-status="' + s + '"]')?.focus();
+            });
+            seg.append(b);
+        }
+        top.append(seg);
+    }
     const facts = el("div", "facts");
-    facts.append(el("span", "fact", pr.xp == null ? "XP n.d." : fmt(pr.xp) + " XP"));
+    const xpChip = el("span", "fact", xpLabel(pr));
+    const mark = state.picked[pr.id] === "done" ? state.marks[pr.id] : undefined;
+    if (mark != null && pr.xp != null)
+        xpChip.title = "Voto " + mark + " sull'intra: " + fmt(pr.xp) + " XP a voto 100";
+    facts.append(xpChip);
     facts.append(el("span", "fact", peopleLabel(pr)));
     const h = hours(pr);
     const hf = el("span", "fact", h == null ? "giorni n.d." : daysLabel(h));
@@ -363,6 +564,9 @@ function card(pr, blockId) {
 }
 // blocchi chiusi dall'utente: di default sono tutti aperti
 const collapsed = new Set();
+// nell'RNCP 7 un blocco già completo (anche con i progetti fatti per l'RNCP 6) mostra solo i progetti scelti;
+// qui i blocchi in cui l'utente ha chiesto di vedere anche gli altri
+const expandedDone = new Set();
 function renderBlocks() {
     const root = byId("blocks");
     root.textContent = "";
@@ -376,12 +580,30 @@ function renderBlocks() {
             collapsed.add(id); });
         const head = el("summary", "block-head");
         const list = PROJECTS.filter((pr) => pr.b.includes(id));
-        const shown = list.filter(visible);
+        const t = tally(id), done = t.done;
+        const hideRest = state.title === 7 && done && !expandedDone.has(id);
+        const shown = list.filter((pr) => visible(pr) && (!hideRest || state.picked[pr.id]));
         const title = el("h2", null, blk.name);
-        if (tally(id).done)
-            title.append(doneCheck());
+        if (done)
+            title.append(doneCheck(t.valid));
         head.append(title, el("span", null, "Minimo " + blk.rule + " · " + shown.length + " di " + list.length + " mostrati"));
         sec.append(head);
+        if (state.title === 7 && done) {
+            const hidden = list.filter((pr) => !state.picked[pr.id]).length;
+            if (hidden) {
+                const note = el("p", "empty", hideRest
+                    ? "Blocco già coperto dai progetti scelti: gli altri " + hidden + " sono nascosti. "
+                    : "Blocco già coperto dai progetti scelti. ");
+                const btn = el("button", "link", hideRest ? "Mostra tutti" : "Mostra solo gli scelti");
+                btn.type = "button";
+                btn.addEventListener("click", () => { if (hideRest)
+                    expandedDone.add(id);
+                else
+                    expandedDone.delete(id); renderBlocks(); });
+                note.append(btn);
+                sec.append(note);
+            }
+        }
         if (shown.length) {
             const grid = el("div", "grid");
             shown.forEach((pr) => grid.append(card(pr, id)));
@@ -400,13 +622,9 @@ const toOpt = (v) => (v === "1" ? 1 : 2);
 const toTeam = (v) => (v === "solo" || v === "group" ? v : "all");
 const dayHoursInput = byId("day-hours");
 function render() {
-    // titolo della pagina, nomi delle opzioni e requisiti comuni cambiano con il titolo scelto
-    document.title = "Piano " + titleName();
-    byId("page-title").textContent = "Piano " + titleName();
+    // nomi delle opzioni e requisiti comuni cambiano con il titolo scelto
     byId("common-rules").textContent = TITLES[state.title].rules;
-    byId("exclusive-label").textContent = "Mostra " + TITLES[otherTitle()].name;
-    byId("exclusive-box").title = "Mostra anche i progetti che contano nell'" + TITLES[otherTitle()].name;
-    byId("exclusive").checked = !state.exclusive;
+    renderCommon();
     titleButtons.forEach((b) => b.setAttribute("aria-pressed", String(toTitle(b.dataset.title) === state.title)));
     optButtons.forEach((b) => {
         const opt = toOpt(b.dataset.opt);
@@ -417,6 +635,7 @@ function render() {
     if (document.activeElement !== dayHoursInput)
         dayHoursInput.value = fmtDayHours(state.dayHours); // non disturba chi sta scrivendo
     renderMeters();
+    renderLeft();
     renderBlocks();
 }
 titleButtons.forEach((b) => b.addEventListener("click", () => { setTitle(toTitle(b.dataset.title)); save(); render(); }));
@@ -433,13 +652,12 @@ dayHoursInput.addEventListener("input", () => {
         return;
     state.dayHours = v;
     save();
+    renderLeft();
     renderBlocks();
 });
 dayHoursInput.addEventListener("blur", () => { dayHoursInput.value = fmtDayHours(state.dayHours); dayHoursInput.removeAttribute("aria-invalid"); });
 const only = byId("only");
 only.addEventListener("change", () => { state.only = only.checked; renderBlocks(); });
-const exclusive = byId("exclusive");
-exclusive.addEventListener("change", () => { state.exclusive = !exclusive.checked; renderBlocks(); });
 // bottoni delle categorie: si accendono e spengono uno per uno
 const tagBox = byId("tags");
 for (const t of Object.keys(TAGS)) {
@@ -468,21 +686,43 @@ const picker = () => ({
 const planStatus = byId("plan-status");
 const reconnect = byId("reconnect");
 let linked = null;
-const planJson = () => JSON.stringify({ version: 1, title: state.title, opt: state.opt, picked: Object.keys(state.picked), dayHours: state.dayHours }, null, 2);
+const planJson = () => JSON.stringify({
+    version: 2, title: state.title, opt: state.opt, picked: Object.keys(state.picked), status: state.picked,
+    marks: state.marks, level: state.level, events: state.events, exps: state.exps, dayHours: state.dayHours,
+}, null, 2);
 function applyPlan(text) {
     const plan = JSON.parse(text);
     if (!Array.isArray(plan.picked))
         throw new Error("campo picked mancante");
     // tiene solo gli id che esistono ancora nella lista dei progetti
-    const known = new Set(PROJECTS.map((pr) => pr.id));
-    state.picked = {};
+    const raw = {};
     for (const id of plan.picked)
-        if (typeof id === "string" && known.has(id))
-            state.picked[id] = true;
+        if (typeof id === "string")
+            raw[id] = plan.status?.[id];
+    state.picked = cleanPicked(raw);
+    state.marks = cleanMarks(plan.marks);
+    state.level = validLevel(plan.level) ? plan.level : null;
+    state.events = validCount(plan.events) ? plan.events : 0;
+    state.exps = validCount(plan.exps) ? plan.exps : 0;
     setTitle(plan.title === 7 ? 7 : 6);
     state.opt = plan.opt === 1 ? 1 : 2;
     if (validDayHours(plan.dayHours))
         state.dayHours = plan.dayHours;
+}
+// file di npm run me: aggiorna stati, voti e livello e lascia com'è il resto del piano (i "da fare", il titolo, l'opzione)
+function mergeIntra(text) {
+    const plan = JSON.parse(text);
+    if (plan.source !== "intra" || !plan.status)
+        throw new Error("non è un file di npm run me");
+    const got = cleanPicked(plan.status);
+    Object.assign(state.picked, got);
+    Object.assign(state.marks, cleanMarks(plan.marks));
+    if (validLevel(plan.level))
+        state.level = plan.level;
+    const n = Object.values(got);
+    return "Dall'intra" + (plan.login ? " (" + plan.login + (plan.date ? ", " + plan.date : "") + ")" : "") + ": "
+        + n.filter((s) => s === "done").length + (n.filter((s) => s === "done").length === 1 ? " fatto, " : " fatti, ")
+        + n.filter((s) => s === "doing").length + " in corso";
 }
 function setStatus(text) {
     planStatus.textContent = text;
@@ -586,6 +826,129 @@ importFile.addEventListener("change", async () => {
         fail(err);
     }
 });
+const intraFile = byId("intra-file");
+byId("import-intra").addEventListener("click", () => intraFile.click());
+intraFile.addEventListener("change", async () => {
+    const file = intraFile.files?.[0];
+    intraFile.value = "";
+    if (!file)
+        return;
+    try {
+        const msg = mergeIntra(await file.text());
+        save();
+        render();
+        setStatus(msg);
+    }
+    catch (err) {
+        fail(err);
+    }
+});
+/* import diretto: con npm run serve la pagina chiede il login e il server locale legge l'API di 42 */
+const intraForm = byId("intra-form");
+const intraLogin = byId("intra-login");
+const intraGo = byId("intra-go");
+const intraMsg = byId("intra-msg");
+const LOGIN_KEY = "rncp-intra-login";
+try {
+    intraLogin.value = localStorage.getItem(LOGIN_KEY) || "";
+}
+catch { }
+async function checkServer() {
+    if (!location.protocol.startsWith("http"))
+        return; // aperta come file: niente server
+    try {
+        const res = await fetch("api/ping", { cache: "no-store" });
+        if (!res.ok)
+            return; // GitHub Pages o un altro server statico
+        const info = (await res.json());
+        intraForm.hidden = false;
+        if (!info.intra) {
+            intraLogin.disabled = intraGo.disabled = true;
+            intraMsg.textContent = "Mancano FT_UID e FT_SECRET in .env: vedi tools/README.md.";
+        }
+    }
+    catch { /* nessun server locale */ }
+}
+intraForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const login = intraLogin.value.trim().toLowerCase();
+    if (!intraLogin.checkValidity())
+        return;
+    try {
+        localStorage.setItem(LOGIN_KEY, login);
+    }
+    catch { }
+    intraGo.disabled = true;
+    intraMsg.textContent = "Lettura dall'intra…";
+    try {
+        const res = await fetch("api/me?login=" + encodeURIComponent(login), { cache: "no-store" });
+        const text = await res.text();
+        if (!res.ok)
+            throw new Error(JSON.parse(text).error || "HTTP " + res.status);
+        intraMsg.textContent = mergeIntra(text) + (state.level != null ? ", livello " + fmtLevel(state.level) : "") + ".";
+        save();
+        render();
+    }
+    catch (err) {
+        intraMsg.textContent = "Import non riuscito: " + (err instanceof Error ? err.message : String(err));
+    }
+    finally {
+        intraGo.disabled = false;
+    }
+});
+// moduli delle piscine che l'intra registra come progetti separati (da data/info.json, campo children)
+const CHILDREN = {
+    "machine-learning": ["machine-learning-using-python-ml_01", "machine-learning-using-python-ml_02", "machine-learning-using-python-ml_03",
+        "machine-learning-using-python-ml_04", "machine-learning-ibm-machine-learning-00", "machine-learning-ibm-machine-learning-01"],
+};
+// dagli slug dell'intra al formato di npm run me (id della pagina), così passa da mergeIntra
+function intraToPlan(data) {
+    const status = {}, marks = {};
+    for (const pr of PROJECTS) {
+        const got = data.p[pr.s];
+        let s = got ? (got[0] === "d" ? "done" : "doing") : null;
+        const kids = (CHILDREN[pr.s] || []).map((k) => data.p[k]?.[0]);
+        if (!s && kids.length)
+            s = kids.every((k) => k === "d") ? "done" : kids.some(Boolean) ? "doing" : null; // piscina: fatta con tutti i moduli
+        if (!s)
+            continue;
+        status[pr.id] = s;
+        if (s === "done" && got && got[1] != null)
+            marks[pr.id] = got[1];
+    }
+    return JSON.stringify({ version: 2, source: "intra", login: data.login, date: data.date, level: data.level, picked: Object.keys(status), status, marks });
+}
+const authBox = byId("auth-box");
+const authMsg = byId("auth-msg");
+const authUrl = (authBox.dataset.auth || "").replace(/\/+$/, "");
+if (authUrl && location.protocol.startsWith("http"))
+    authBox.hidden = false;
+byId("auth-go").addEventListener("click", () => {
+    location.href = authUrl + "/login?return=" + encodeURIComponent(location.origin + location.pathname);
+});
+// ritorno dal login: legge il frammento e lo cancella dall'indirizzo (non resta nella cronologia né nei link copiati)
+function readAuthReturn() {
+    const hash = location.hash.slice(1);
+    if (!hash.startsWith("intra=") && !hash.startsWith("intra-error="))
+        return;
+    history.replaceState(null, "", location.pathname + location.search);
+    authBox.hidden = !authUrl;
+    if (hash.startsWith("intra-error=")) {
+        authMsg.textContent = "Accesso non riuscito: " + decodeURIComponent(hash.slice("intra-error=".length));
+        return;
+    }
+    try {
+        const b64 = hash.slice("intra=".length).replace(/-/g, "+").replace(/_/g, "/");
+        const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+        const data = JSON.parse(new TextDecoder().decode(bytes));
+        authMsg.textContent = mergeIntra(intraToPlan(data)) + (state.level != null ? ", livello " + fmtLevel(state.level) : "") + ".";
+        save();
+        render();
+    }
+    catch (err) {
+        authMsg.textContent = "Dati dell'intra non leggibili: " + (err instanceof Error ? err.message : String(err));
+    }
+}
 // dopo il ricaricamento il browser chiede di nuovo il permesso: serve un clic
 reconnect.addEventListener("click", async () => {
     const h = await idb((st) => st.get("handle"), "readonly").catch(() => undefined);
@@ -627,17 +990,29 @@ function planSections() {
         chosen: PROJECTS.filter((pr) => pr.b.includes(id) && state.picked[pr.id]),
     }));
 }
-// XP totali senza contare due volte un progetto presente in più blocchi
+// XP totali senza contare due volte un progetto presente in più blocchi; h: ore dei progetti non ancora fatti
 function planTotal(secs) {
     const uniq = new Map();
     secs.forEach((sec) => sec.chosen.forEach((pr) => uniq.set(pr.id, pr)));
     let xp = 0, h = 0;
-    uniq.forEach((pr) => { xp += pr.xp || 0; h += hours(pr) || 0; });
+    uniq.forEach((pr) => { xp += xpOf(pr) || 0; if (state.picked[pr.id] !== "done")
+        h += hours(pr) || 0; });
     return { n: uniq.size, xp, h };
 }
 const today = () => new Date().toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
-const xpLabel = (pr) => (pr.xp == null ? "XP n.d." : fmt(pr.xp) + " XP");
-const progress = (sec) => sec.t.n + "/" + sec.blk.minN + " progetti" + (sec.blk.minXp ? " · " + fmt(sec.t.xp) + "/" + fmt(sec.blk.minXp) + " XP" : "");
+function xpLabel(pr) {
+    const xp = xpOf(pr);
+    if (xp == null)
+        return "XP n.d.";
+    const mark = state.picked[pr.id] === "done" ? state.marks[pr.id] : undefined;
+    return fmt(xp) + " XP" + (mark != null && mark !== 100 ? " (voto " + mark + ")" : "");
+}
+const progress = (sec) => sec.t.n + "/" + sec.blk.minN + " progetti" + (sec.blk.minXp ? " · " + fmt(sec.t.xp) + "/" + fmt(sec.blk.minXp) + " XP" : "")
+    + " (fatti: " + sec.t.dn + (sec.blk.minXp ? ", " + fmt(sec.t.dxp) + " XP" : "") + ")";
+// stato del blocco: validato con i progetti fatti, coperto dal piano o da completare
+const blockState = (t) => (t.valid ? "Validato" : t.done ? "Coperto dal piano" : "Da completare");
+const blockIcon = (t) => (t.valid ? "✅" : t.done ? "☑️" : "⏳");
+const statusOf = (pr) => STATUS_NAMES[state.picked[pr.id] || "todo"];
 function planMarkdown() {
     const secs = planSections();
     const tot = planTotal(secs);
@@ -650,18 +1025,18 @@ function planMarkdown() {
         "",
         "| Blocco | Minimo | Avanzamento | Stato |",
         "| --- | --- | --- | --- |",
-        ...secs.map((sec) => "| " + sec.blk.name + " | " + sec.blk.rule + " | " + progress(sec) + " | " + (sec.t.done ? "✅ Completato" : "⏳ Da completare") + " |"),
+        ...secs.map((sec) => "| " + sec.blk.name + " | " + sec.blk.rule + " | " + progress(sec) + " | " + blockIcon(sec.t) + " " + blockState(sec.t) + " |"),
         "",
-        "Totale: **" + tot.n + " progetti**, **" + fmt(tot.xp) + " XP**, **" + daysDetail(tot.h).replace(" (", "** (") + ". Ogni progetto è contato una volta; ore stimate dall'intra, giornate da " + fmtDayHours(state.dayHours) + " h, sabato e domenica liberi.",
+        "Totale: **" + tot.n + " progetti**, **" + fmt(tot.xp) + " XP**; da fare: **" + daysDetail(tot.h).replace(" (", "** (") + ". Ogni progetto è contato una volta; ore stimate dall'intra, giornate da " + fmtDayHours(state.dayHours) + " h, sabato e domenica liberi.",
     ];
     for (const sec of secs) {
-        lines.push("", "## " + (sec.t.done ? "✅ " : "⏳ ") + sec.blk.name, "", "_" + progress(sec) + "_", "");
+        lines.push("", "## " + blockIcon(sec.t) + " " + sec.blk.name, "", "_" + progress(sec) + "_", "");
         if (!sec.chosen.length) {
             lines.push("Nessun progetto scelto.");
             continue;
         }
         for (const pr of sec.chosen) {
-            lines.push("- **" + pr.n + "** · " + pr.l + " · " + xpLabel(pr) + " · " + timeLabel(pr) + " · " + peopleLabel(pr) + " · [subject](" + pageUrl(pr) + ")");
+            lines.push("- **" + pr.n + "** · _" + statusOf(pr) + "_ · " + pr.l + " · " + xpLabel(pr) + " · " + timeLabel(pr) + " · " + peopleLabel(pr) + " · [subject](" + pageUrl(pr) + ")");
             lines.push("  " + pr.d);
         }
     }
@@ -678,7 +1053,8 @@ function download(name, text, type) {
 const calendarStart = (w) => w + 2 * Math.floor(w / 5);
 function planTimeline(secs) {
     const uniq = new Map();
-    secs.forEach((sec) => sec.chosen.forEach((pr) => uniq.set(pr.id, pr)));
+    secs.forEach((sec) => sec.chosen.forEach((pr) => { if (state.picked[pr.id] !== "done")
+        uniq.set(pr.id, pr); })); // quelli fatti sono alle spalle
     const legs = [], missing = [];
     let doneH = 0, doneW = 0;
     uniq.forEach((pr) => {
@@ -704,10 +1080,10 @@ function timelineSection(secs) {
     part.append(el("h2", null, "Linea del tempo"));
     const { legs, total, missing } = planTimeline(secs);
     if (!legs.length) {
-        part.append(el("p", "rep-empty", "Nessun progetto scelto con una stima delle ore."));
+        part.append(el("p", "rep-empty", "Nessun progetto da fare con una stima delle ore."));
         return part;
     }
-    part.append(el("p", "rep-rule", "Un progetto alla volta, nell'ordine del piano: ~" + fmt(total) + " giorni"
+    part.append(el("p", "rep-rule", "I progetti non ancora fatti, uno alla volta, nell'ordine del piano: ~" + fmt(total) + " giorni"
         + " (circa " + fmt(Math.round(total / 7)) + " settimane). Se inizi oggi finisci verso il " + dateIn(total) + "."));
     const chart = el("div", "tl");
     chart.style.setProperty("--week", (700 / total) + "%"); // una riga verticale a settimana
@@ -741,22 +1117,22 @@ function printPlan() {
     root.append(head);
     const sum = el("div", "rep-summary");
     for (const sec of secs) {
-        const box = el("div", "rep-meter" + (sec.t.done ? " done" : ""));
-        box.append(el("b", null, (sec.t.done ? "✓ " : "") + sec.blk.name), el("span", null, progress(sec)));
+        const box = el("div", "rep-meter" + (sec.t.valid ? " done" : ""));
+        box.append(el("b", null, (sec.t.valid ? "✓ " : "") + sec.blk.name), el("span", null, blockState(sec.t) + " · " + progress(sec)));
         sum.append(box);
     }
-    root.append(sum, el("p", "rep-total", "Totale: " + tot.n + " progetti, " + fmt(tot.xp) + " XP, " + daysDetail(tot.h) + ". Ogni progetto è contato una volta; ore stimate dall'intra, giornate da " + fmtDayHours(state.dayHours) + " h, sabato e domenica liberi."), timelineSection(secs));
+    root.append(sum, el("p", "rep-total", "Totale: " + tot.n + " progetti, " + fmt(tot.xp) + " XP; da fare: " + daysDetail(tot.h) + ". Ogni progetto è contato una volta; ore stimate dall'intra, giornate da " + fmtDayHours(state.dayHours) + " h, sabato e domenica liberi."), timelineSection(secs));
     for (const sec of secs) {
         const part = el("section", "rep-block");
         const h = el("h2", null, sec.blk.name);
-        h.append(el("span", "rep-state" + (sec.t.done ? " done" : ""), sec.t.done ? "✓ Completato" : "Da completare"));
+        h.append(el("span", "rep-state" + (sec.t.valid ? " done" : ""), (sec.t.valid ? "✓ " : "") + blockState(sec.t)));
         part.append(h, el("p", "rep-rule", "Minimo " + sec.blk.rule + " · " + progress(sec)));
         if (!sec.chosen.length)
             part.append(el("p", "rep-empty", "Nessun progetto scelto."));
         for (const pr of sec.chosen) {
             const item = el("article", "rep-item");
             const title = el("h3", null, pr.n);
-            title.append(el("span", null, pr.l + " · " + xpLabel(pr) + " · " + timeLabel(pr) + " · " + peopleLabel(pr)));
+            title.append(el("span", null, statusOf(pr) + " · " + pr.l + " · " + xpLabel(pr) + " · " + timeLabel(pr) + " · " + peopleLabel(pr)));
             const a = el("a", null, pageUrl(pr));
             a.href = pageUrl(pr);
             item.append(title, el("p", null, pr.d), a);
@@ -792,4 +1168,5 @@ document.addEventListener("keydown", (e) => {
     menuBtn.focus();
 });
 render();
-void restoreLink();
+void restoreLink().then(readAuthReturn); // dopo l'eventuale file collegato, che altrimenti sovrascriverebbe l'import
+void checkServer();

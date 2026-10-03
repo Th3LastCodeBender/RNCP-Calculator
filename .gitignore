@@ -8,8 +8,14 @@ CLAUDE.md
 # dipendenze, si ricreano con npm install
 node_modules/
 
+# file locali di wrangler (Cloudflare Worker)
+.wrangler/
+
 # PDF di prova esportati dalla pagina
 export/
+
+# i tuoi progetti e il tuo livello dall'intra (npm run me): dati personali
+piano-intra.json
 
 # subject di 42: non vanno ripubblicati (si scaricano con npm run subjects).
 # Resta solo subjects/index.json, con i link pubblici al CDN di 42.

@@ -1,0 +1,12 @@
+# Cloudflare Worker per "Accedi con 42" (vedi worker/README.md)
+name = "rncp-calculator"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# pagine a cui il Worker può rimandare dopo il login, separate da virgola
+ALLOWED_ORIGINS = "https://th3lastcodebender.github.io,http://localhost:4242"
+
+# FT_UID e FT_SECRET sono secret, non vanno qui:
+#   npx wrangler secret put FT_UID
+#   npx wrangler secret put FT_SECRET

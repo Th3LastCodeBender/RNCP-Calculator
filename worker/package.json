@@ -1,0 +1,9 @@
+{
+  "name": "rncp-calculator-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "npx wrangler deploy",
+    "logs": "npx wrangler tail"
+  }
+}
