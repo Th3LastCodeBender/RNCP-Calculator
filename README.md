@@ -35,10 +35,13 @@ Serve [Node.js](https://nodejs.org/) 22.9 o successivo.
 
 ```bash
 npm install      # installa TypeScript
-npm run build    # compila script.ts in script.js
+npm run build    # compila script.ts in script.js e aggiorna le versioni dei file
+npm run version  # solo le versioni: dopo aver cambiato style.css
 ```
 
 Si modifica solo `script.ts` (dati dei progetti e logica): `script.js` viene rigenerato dalla build ed è nel repository perché la pagina funzioni senza compilare.
+
+In `piano-rncp6.html` CSS e script hanno un `?v=` con l'impronta del file: GitHub Pages li tiene in cache per 10 minuti e senza versione il browser può unire l'HTML nuovo a uno `script.js` vecchio (pagina vuota). La build lo aggiorna da sola; dopo aver toccato solo `style.css` serve `npm run version` prima del push.
 
 | File | Contenuto |
 | --- | --- |

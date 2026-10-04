@@ -152,17 +152,19 @@ body {
 }
 
 .menu-btn {
-  padding: 8px 16px;
+  padding: 7px 14px;
   font: inherit;
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent-ink);
-  background: var(--accent);
-  border: 0;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 8px;
   cursor: pointer;
+}
+
+.menu-btn:hover {
+  background: var(--sunken);
 }
 
 /* sopra la barra dei requisiti, che è sticky con z-index 5 */
@@ -238,47 +240,19 @@ body {
     background: var(--bg);
   }
 
-  /* barra compatta mentre scorri (classe messa da script.ts): niente selettori
-     né riga "Fatti", nome e numeri sulla stessa riga sopra la barra */
-  .reqs.compact {
-    gap: 0;
-    padding: 8px 12px;
+  /* barra compatta mentre scorri: --p va da 0 (intera) a 1 (compatta) seguendo lo scroll,
+     messo da script.ts insieme a --head-h, l'altezza dei selettori. Selettori, spazio e padding
+     si riducono in proporzione; il margine sotto restituisce l'altezza persa */
+  .reqs:not(.reqs-common) {
+    gap: calc(12px * (1 - var(--p, 0)));
+    padding-block: calc(14px - 6px * var(--p, 0));
+    margin-bottom: calc((var(--head-h, 0px) + 24px) * var(--p, 0));
   }
 
-  .reqs.compact .reqs-head,
-  .reqs.compact .meter-made,
-  .reqs.compact .meter-unit {
-    display: none;
-  }
-
-  .reqs.compact .meters {
-    gap: 8px 12px;
-  }
-
-  .reqs.compact .meter {
-    display: grid;
-    grid-template-columns: minmax(0, auto) auto;
-    justify-content: space-between;
-    align-items: center;
-    gap: 4px 8px;
-    padding: 5px 10px;
-  }
-
-  .reqs.compact .meter-top { grid-area: 1 / 1; }
-  .reqs.compact .meter-nums { grid-area: 1 / 2; flex-wrap: nowrap; font-size: 12px; }
-  .reqs.compact .bar { grid-area: 2 / 1 / 3 / 3; height: 4px; }
-
-  .reqs.compact .meter-name {
+  .reqs:not(.reqs-common) .reqs-head {
+    height: calc(var(--head-h, auto) * (1 - var(--p, 0)));
     overflow: hidden;
-    font-size: 13px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .reqs.compact .meter-check {
-    width: 16px;
-    height: 16px;
-    font-size: 11px;
+    opacity: calc(1 - 2 * var(--p, 0));
   }
 }
 
@@ -321,30 +295,15 @@ body {
 .meters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 14px 22px;
+  gap: 14px 28px;
 }
 
-/* ogni misuratore è un riquadro: blu mentre manca, verde quando è coperto */
+/* ogni misuratore: nome, barra e numeri; diventa verde quando il requisito è validato */
 .meter {
   display: flex;
   flex-direction: column;
   gap: 6px;
   min-width: 0;
-  padding: 10px 12px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--accent);
-  border-radius: 8px;
-}
-
-.meter.done {
-  background: var(--ok-soft);
-  border-color: var(--ok);
-}
-
-/* coperto dal piano ma non ancora validato: bordo verde, sfondo normale */
-.meter.planned {
-  border-left-color: var(--ok);
 }
 
 .meter-top {
@@ -357,7 +316,7 @@ body {
 .meter-name {
   font-size: 14px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .meter.done .meter-name {
@@ -420,7 +379,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 2px 12px;
-  font-family: var(--f-data);
+  font-family: var(--f-body);
   font-size: 12.5px;
   font-variant-numeric: tabular-nums;
   color: var(--muted);
@@ -428,7 +387,7 @@ body {
 
 .meter-nums b {
   font-weight: 600;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .meter.done .meter-nums b {
@@ -506,7 +465,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 4px 8px;
-  font-family: var(--f-data);
+  font-family: var(--f-body);
   font-size: 12.5px;
   font-variant-numeric: tabular-nums;
   color: var(--muted);
@@ -524,14 +483,6 @@ body {
 
 .meter-input input[aria-invalid="true"] {
   border-color: var(--warn);
-}
-
-/* "Fatti: 1 progetto · 9 450 XP" */
-.meter-made {
-  font-family: var(--f-data);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  color: var(--muted);
 }
 
 
@@ -570,7 +521,7 @@ body {
   width: 4.5em;
   padding: 5px 8px;
   font: inherit;
-  font-family: var(--f-data);
+  font-family: var(--f-body);
   font-variant-numeric: tabular-nums;
   text-align: right;
   color: var(--ink);
@@ -898,14 +849,19 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-width: 78ch;
   padding-top: 16px;
   border-top: 1px solid var(--line);
   font-size: 13.5px;
   color: var(--muted);
 }
 
+.notes summary {
+  width: fit-content;
+  cursor: pointer;
+}
+
 .notes p {
+  max-width: 78ch;
   margin: 0;
 }
 

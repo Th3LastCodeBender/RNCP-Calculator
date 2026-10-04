@@ -347,8 +347,8 @@ function renderMeters() {
             b.append(el("b", null, fmt(t.xp)), "/" + fmt(blk.minXp) + " XP");
             nums.append(b);
         }
-        const madeNums = el("div", "meter-made", "Fatti: " + t.dn + (t.dn === 1 ? " progetto" : " progetti") + (blk.minXp ? " · " + fmt(t.dxp) + " XP" : ""));
-        m.append(top, bar, nums, madeNums);
+        m.title = "Fatti: " + t.dn + (t.dn === 1 ? " progetto" : " progetti") + (blk.minXp ? " · " + fmt(t.dxp) + " XP" : ""); // la barra piena sono i fatti, la chiara il resto del piano
+        m.append(top, bar, nums);
         box.append(m);
     }
 }
@@ -680,29 +680,39 @@ if (reqsBar)
     new ResizeObserver(() => {
         document.documentElement.style.setProperty("--reqs-h", reqsBar.offsetHeight + "px");
     }).observe(reqsBar);
-// mentre scorri la barra diventa compatta; il margine sotto restituisce l'altezza persa, così la pagina non salta
+// mentre scorri la barra si compatta in modo continuo: si accorcia di un pixel per ogni pixel di scroll,
+// finché i selettori RNCP/Opzione non sono spariti. Il margine sotto restituisce l'altezza persa,
+// così il contenuto sotto scorre insieme al dito e la pagina non salta (style.css usa --p e --head-h)
 const wide = matchMedia("(min-width: 860px)");
 const reqsPrev = reqsBar?.previousElementSibling;
+const reqsHead = reqsBar?.querySelector(".reqs-head");
+let compactQueued = false;
 function compactReqs() {
-    if (!reqsBar || !reqsPrev)
+    compactQueued = false;
+    if (!reqsBar || !reqsPrev || !reqsHead)
         return;
-    const start = reqsPrev.getBoundingClientRect().bottom + scrollY; // dove la barra comincia a restare ferma
-    const on = reqsBar.classList.contains("compact");
-    const want = wide.matches && (on ? scrollY > start + 10 : scrollY > start + 40); // due soglie: niente sfarfallio
-    if (want === on)
+    if (!wide.matches) {
+        reqsBar.style.removeProperty("--p");
         return;
-    if (want) {
-        const full = reqsBar.offsetHeight;
-        reqsBar.classList.add("compact");
-        reqsBar.style.marginBottom = full - reqsBar.offsetHeight + "px";
     }
-    else {
-        reqsBar.classList.remove("compact");
-        reqsBar.style.marginBottom = "";
-    }
+    // letture prima delle scritture: un solo calcolo del layout per frame
+    const head = reqsHead.scrollHeight;
+    const gap = parseFloat(getComputedStyle(reqsBar.parentElement).rowGap) || 0;
+    const start = reqsPrev.getBoundingClientRect().bottom + scrollY + gap; // dove la barra comincia a restare ferma
+    const lost = head + 24; // selettori + spazio sotto + 6 px di padding sopra e sotto (style.css)
+    const p = Math.min(Math.max((scrollY - start) / lost, 0), 1);
+    reqsBar.style.setProperty("--head-h", head + "px");
+    reqsBar.style.setProperty("--p", String(p));
 }
-addEventListener("scroll", compactReqs, { passive: true });
-wide.addEventListener("change", compactReqs);
+function queueCompact() {
+    if (compactQueued)
+        return;
+    compactQueued = true;
+    requestAnimationFrame(compactReqs);
+}
+addEventListener("scroll", queueCompact, { passive: true });
+addEventListener("resize", queueCompact);
+wide.addEventListener("change", queueCompact);
 compactReqs();
 const fsw = window;
 const canLink = typeof fsw.showOpenFilePicker === "function" && typeof fsw.showSaveFilePicker === "function";

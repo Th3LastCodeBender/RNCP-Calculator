@@ -2,10 +2,11 @@
   "name": "rncp-calculator",
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node tools/version-assets.mjs",
+    "version": "node tools/version-assets.mjs",
     "watch": "tsc --watch",
     "typecheck": "tsc --noEmit",
-    "hours": "node --env-file-if-exists=.env tools/fetch-hours.mjs",
+    "hours": "node --env-file-if-exists=.env tools/fetch-hours.mjs && node tools/version-assets.mjs",
     "subjects": "node --env-file-if-exists=.env tools/fetch-subjects.mjs",
     "info": "node --env-file-if-exists=.env tools/fetch-info.mjs",
     "subjects:summary": "node tools/subjects-summary.mjs",
