@@ -108,6 +108,7 @@ body {
 
 .top {
   display: flex;
+  flex-wrap: wrap; /* su schermi stretti i pulsanti vanno sotto il titolo */
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
@@ -135,7 +136,16 @@ body {
   color: var(--muted);
 }
 
-/* pulsante "Esporta" in alto a destra con il popup di salvataggio ed export */
+/* pulsanti in alto a destra: Salva, Carica ed Esporta, che apre il popup Markdown/PDF */
+.top-actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-left: auto;
+  gap: 8px;
+}
+
 .menu {
   position: relative;
   flex: none;
@@ -205,10 +215,70 @@ body {
 
 /* su schermi larghi la barra dei requisiti resta in alto mentre scorri */
 @media (min-width: 860px) {
+  /* niente scroll anchoring: quando la barra si compatta Chrome sposterebbe la pagina
+     (fino a riportarla in cima) per inseguire gli elementi fissi che cambiano posto */
+  html {
+    overflow-anchor: none;
+  }
+
   .reqs:not(.reqs-common) {
     position: sticky;
     top: env(safe-area-inset-top, 0px);
     z-index: 5;
+  }
+
+  /* anche i filtri restano in alto, subito sotto la barra dei requisiti:
+     --reqs-h è l'altezza della barra, misurata da script.ts */
+  .filters {
+    position: sticky;
+    top: calc(env(safe-area-inset-top, 0px) + var(--reqs-h, 0px));
+    z-index: 4;
+    margin-block: -10px;
+    padding-block: 10px;
+    background: var(--bg);
+  }
+
+  /* barra compatta mentre scorri (classe messa da script.ts): niente selettori
+     né riga "Fatti", nome e numeri sulla stessa riga sopra la barra */
+  .reqs.compact {
+    gap: 0;
+    padding: 8px 12px;
+  }
+
+  .reqs.compact .reqs-head,
+  .reqs.compact .meter-made,
+  .reqs.compact .meter-unit {
+    display: none;
+  }
+
+  .reqs.compact .meters {
+    gap: 8px 12px;
+  }
+
+  .reqs.compact .meter {
+    display: grid;
+    grid-template-columns: minmax(0, auto) auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px 8px;
+    padding: 5px 10px;
+  }
+
+  .reqs.compact .meter-top { grid-area: 1 / 1; }
+  .reqs.compact .meter-nums { grid-area: 1 / 2; flex-wrap: nowrap; font-size: 12px; }
+  .reqs.compact .bar { grid-area: 2 / 1 / 3 / 3; height: 4px; }
+
+  .reqs.compact .meter-name {
+    overflow: hidden;
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .reqs.compact .meter-check {
+    width: 16px;
+    height: 16px;
+    font-size: 11px;
   }
 }
 

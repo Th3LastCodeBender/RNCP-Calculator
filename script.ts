@@ -5,7 +5,7 @@ type TitleId = 6 | 7;
 type OptionId = 1 | 2;
 type Team = "all" | "solo" | "group";
 type PeopleRange = [min: number, max: number];
-type Tag = "web" | "mobile" | "gfx" | "game" | "net" | "low" | "devops" | "sec" | "ai";
+type Tag = "web" | "mobile" | "gfx" | "game" | "net" | "low" | "devops" | "sec" | "ai" | "oop" | "func" | "math";
 // stato di un progetto scelto: da fare, in corso o fatto (validato)
 type Status = "todo" | "doing" | "done";
 
@@ -52,6 +52,7 @@ interface State {
   intra: IntraSession | null; // da chi e quando vengono i dati importati dall'intra (per "Esci")
   team: Team;
   only: boolean;
+  both: boolean; // solo i progetti che contano sia nell'RNCP 6 sia nell'RNCP 7
   tags: Set<Tag>;
   q: string;
   dayHours: number; // ore di lavoro in una giornata
@@ -73,12 +74,12 @@ const PROJECTS: Project[] = [
   { id: "tpv", n: "Total perspective vortex", s: "42cursus-total-perspective-vortex", l: "Python", xp: 9450, p: [1, 1], b: ["suite", "ai"], c: ["ai"], pdf: 209510, d: "Interfaccia cervello-computer: elabori segnali EEG con MNE, estrai le feature, costruisci una pipeline scikit-learn e classifichi in tempo reale i movimenti immaginati. Seguito di dslr." },
 
   // Piscine
-  { id: "symfony", n: "Piscine PHP Symfony", s: "piscine-symfony", l: "PHP", xp: 9450, p: [1, 1], b: ["web", "oop", "webdb"], c: ["web"], pdf: 209481, d: "Piscine su PHP e Symfony divisa in moduli: basi del web e della programmazione a oggetti in PHP, Composer, primi passi con Symfony, SQL e ORM, sessioni, concetti avanzati e progetto finale." },
+  { id: "symfony", n: "Piscine PHP Symfony", s: "piscine-symfony", l: "PHP", xp: 9450, p: [1, 1], b: ["web", "oop", "webdb"], c: ["web", "oop"], pdf: 209481, d: "Piscine su PHP e Symfony divisa in moduli: basi del web e della programmazione a oggetti in PHP, Composer, primi passi con Symfony, SQL e ORM, sessioni, concetti avanzati e progetto finale." },
   { id: "django", n: "Piscine Python Django", s: "piscine-django", l: "Python", xp: 9450, p: [1, 1], b: ["web", "oop", "webdb"], c: ["web"], pdf: 210657, d: "Piscine su Python e Django divisa in moduli: basi del web e di Python, librerie, primi passi con Django, SQL e ORM, sessioni, concetti avanzati e progetto finale." },
   { id: "ror", n: "Piscine Ruby on Rails", s: "piscine-ror", l: "Ruby", xp: 9450, p: [1, 1], b: ["web", "oop", "webdb"], c: ["web"], pdf: 210088, d: "Piscine su Ruby e Rails divisa in moduli: basi del web e di Ruby, gem, primi passi con Rails, SQL, sessioni, concetti avanzati e progetto finale." },
   { id: "pmobile", n: "Piscine Mobile", s: "mobile", l: "Libero (mobile)", xp: 9450, p: [1, 1], b: ["mobile", "oop"], c: ["mobile"], pdf: 212922, d: "Piscine di sviluppo mobile: struttura e navigazione di un'app, chiamate ad API esterne, layout responsive, autenticazione e salvataggio dati, fino a un progetto finale." },
-  { id: "pobject", n: "Piscine Object", s: "piscine-object", l: "C++", xp: 9450, p: [1, 1], b: ["oop"], c: [], pdf: 210719, d: "Piscine sulla programmazione a oggetti in C++: incapsulamento, relazioni tra classi, UML, principi SOLID e i design pattern più usati, applicati a esercizi concreti." },
-  { id: "ocaml", n: "Piscine OCaml", s: "42cursus-piscine-ocaml", l: "OCaml", xp: 9450, p: [1, 1], b: ["fun"], c: [], pdf: 208548, d: "Piscine OCaml: sintassi, ricorsione e funzioni di ordine superiore, pattern matching e tipi, moduli e funtori, parti imperative e a oggetti, fino a monoidi e monadi. Ottima base per il blocco Functional." },
+  { id: "pobject", n: "Piscine Object", s: "piscine-object", l: "C++", xp: 9450, p: [1, 1], b: ["oop"], c: ["oop"], pdf: 210719, d: "Piscine sulla programmazione a oggetti in C++: incapsulamento, relazioni tra classi, UML, principi SOLID e i design pattern più usati, applicati a esercizi concreti." },
+  { id: "ocaml", n: "Piscine OCaml", s: "42cursus-piscine-ocaml", l: "OCaml", xp: 9450, p: [1, 1], b: ["fun"], c: ["func"], pdf: 208548, d: "Piscine OCaml: sintassi, ricorsione e funzioni di ordine superiore, pattern matching e tipi, moduli e funtori, parti imperative e a oggetti, fino a monoidi e monadi. Ottima base per il blocco Functional." },
 
   // Web
   { id: "camagru", n: "Camagru", s: "42cursus-camagru", l: "Libero (solo lib. standard)", xp: 4200, p: [1, 1], b: ["web", "oop", "webdb"], c: ["web"], pdf: 203658, d: "Web app per foto in stile Instagram: scatto da webcam o upload, sovrapposizione di immagini lato server, gallery pubblica, like, commenti e gestione account. Lato server niente framework: solo ciò che esiste nella libreria standard di PHP." },
@@ -86,7 +87,7 @@ const PROJECTS: Project[] = [
   { id: "hypertube", n: "Hypertube", s: "42cursus-hypertube", l: "Libero", xp: 15750, p: [2, 4], b: ["web", "oop", "webdb"], c: ["web", "net"], pdf: 209673, d: "Piattaforma di streaming in gruppo: cerchi un film su fonti esterne, il server lo scarica via BitTorrent e lo riproduce nel browser mentre scarica. Login OAuth, sottotitoli e API REST." },
   { id: "redtetris", n: "Red Tetris", s: "42cursus-red-tetris", l: "JavaScript", xp: 15750, p: [2, 2], b: ["web", "oop", "webdb"], c: ["web", "game", "net"], pdf: 211093, d: "Tetris multiplayer in tempo reale: stanze di gioco, linee penalità agli avversari, frontend React, server Node con socket e una copertura di test minima obbligatoria." },
   { id: "darkly", n: "Darkly", s: "42cursus-darkly", l: "Sicurezza web", xp: 6300, p: [2, 2], b: ["web", "oop", "imp", "sec", "webdb"], c: ["web", "sec"], pdf: 221875, d: "Introduzione alla sicurezza web: su un sito di prova volutamente fragile individui i problemi più comuni, spieghi come funzionano e come si correggono." },
-  { id: "h42n42", n: "h42n42", s: "42cursus-h42n42", l: "OCaml", xp: 9450, p: [1, 1], b: ["web", "oop", "fun", "webdb"], c: ["web", "game"], pdf: 209576, d: "Simulazione nel browser in OCaml con Ocsigen ed Eliom: una popolazione di creature minacciata da un virus, che salvi spostandole con il mouse. Lo stesso codice gira su client e server." },
+  { id: "h42n42", n: "h42n42", s: "42cursus-h42n42", l: "OCaml", xp: 9450, p: [1, 1], b: ["web", "oop", "fun", "webdb"], c: ["web", "game", "func"], pdf: 209576, d: "Simulazione nel browser in OCaml con Ocsigen ed Eliom: una popolazione di creature minacciata da un virus, che salvi spostandole con il mouse. Lo stesso codice gira su client e server." },
   { id: "tokenizer", n: "Tokenizer", s: "tokenizer", l: "Libero (es. Solidity)", xp: 9450, p: [1, 1], b: ["web", "webdb"], c: ["web"], pdf: 211049, d: "Primo progetto Web3: crei il tuo token su una blockchain pubblica a scelta (per esempio BNB Chain), rispettandone lo standard (ERC-20 o equivalente), lo pubblichi e documenti scelte tecniche e funzionamento." },
   { id: "tokenizeart", n: "TokenizeArt", s: "tokenizeart", l: "Libero (es. Solidity)", xp: 9450, p: [1, 1], b: ["web", "webdb"], c: ["web"], pdf: 214858, d: "Crei e pubblichi un NFT su una blockchain pubblica a scelta, rispettandone lo standard (ERC-721 o equivalente): smart contract, metadati e immagine su storage decentralizzato come IPFS, più la documentazione." },
   { id: "musicroom", n: "Music Room", s: "42cursus-music-room", l: "Libero (mobile) + back-end libero", xp: 25200, p: [2, 4], b: ["web", "mobile", "webdb"], c: ["web", "mobile"], pdf: 209570, d: "Soluzione mobile completa in gruppo, per Android o iOS con la tecnologia che preferisci: voto dei brani in diretta, delega del controllo della musica e playlist modificabili da più utenti in tempo reale, con back-end e API documentata. Conta in Web e Mobile." },
@@ -98,17 +99,17 @@ const PROJECTS: Project[] = [
 
   // Object Oriented
   { id: "bomberman", n: "Bomberman", s: "42cursus-bomberman", l: "Libero + OpenGL/Vulkan/Metal", xp: 25200, p: [4, 5], b: ["oop"], c: ["gfx", "game"], pdf: 209477, d: "Clone 3D di Bomberman in gruppo: linguaggio a scelta, ma grafica con OpenGL, Vulkan o Metal e niente motori di gioco. Livelli, nemici, bonus, menu, audio e impostazioni: un gioco finito, pronto da distribuire." },
-  { id: "nibbler", n: "Nibbler", s: "42cursus-nibbler", l: "C++", xp: 9450, p: [2, 2], b: ["oop"], c: ["gfx", "game"], pdf: 209541, d: "Snake in C++ con tre librerie grafiche diverse caricate dinamicamente: si cambia libreria con un tasto durante la partita, senza che il gioco se ne accorga." },
-  { id: "avaj", n: "Avaj launcher", s: "42cursus-avaj-launcher", l: "Java", xp: 4200, p: [1, 1], b: ["oop"], c: [], pdf: 217430, d: "Simulatore di traffico aereo in Java a partire da un diagramma UML: aerei, elicotteri e mongolfiere reagiscono al meteo usando i pattern Observer, Singleton e Factory." },
-  { id: "swingy", n: "Swingy", s: "42cursus-swingy", l: "Java", xp: 9450, p: [1, 1], b: ["oop"], c: ["game"], pdf: 208601, d: "Gioco di ruolo in Java con interfaccia sia a console sia grafica con Swing, intercambiabili: architettura MVC, eroi salvati in un file di testo (database relazionale come bonus) e validazione dell'input con annotazioni." },
-  { id: "fixme", n: "fix-me", s: "42cursus-fix-me", l: "Java", xp: 15750, p: [1, 1], b: ["oop"], c: ["net"], pdf: 208928, d: "Simulatore di mercato finanziario in Java: un router smista i messaggi tra broker e market con una versione semplificata del protocollo FIX, usando socket asincroni e l'executor framework di Java." },
-  { id: "libftpp", n: "libftpp", s: "libftpp", l: "C++", xp: 5880, p: [1, 1], b: ["oop"], c: [], pdf: 225598, d: "Toolbox C++ (C++11 o successivo) da riusare nei progetti successivi: design pattern come Singleton, Observer e Memento, strutture dati thread-safe, multithreading, rete, classi vettoriali e generatori di numeri casuali." },
-  { id: "abstractdata", n: "abstract_data", s: "abstract_data", l: "C++", xp: 20084, p: [1, 1], b: ["oop"], c: [], pdf: 225597, d: "Container della libreria standard C++ in versione «hard mode»: reimplementi parte dei container standard (come map e multimap), con la stessa struttura e tutte le funzionalità del C++98, iteratori compresi." },
+  { id: "nibbler", n: "Nibbler", s: "42cursus-nibbler", l: "C++", xp: 9450, p: [2, 2], b: ["oop"], c: ["gfx", "game", "oop"], pdf: 209541, d: "Snake in C++ con tre librerie grafiche diverse caricate dinamicamente: si cambia libreria con un tasto durante la partita, senza che il gioco se ne accorga." },
+  { id: "avaj", n: "Avaj launcher", s: "42cursus-avaj-launcher", l: "Java", xp: 4200, p: [1, 1], b: ["oop"], c: ["oop"], pdf: 217430, d: "Simulatore di traffico aereo in Java a partire da un diagramma UML: aerei, elicotteri e mongolfiere reagiscono al meteo usando i pattern Observer, Singleton e Factory." },
+  { id: "swingy", n: "Swingy", s: "42cursus-swingy", l: "Java", xp: 9450, p: [1, 1], b: ["oop"], c: ["game", "oop"], pdf: 208601, d: "Gioco di ruolo in Java con interfaccia sia a console sia grafica con Swing, intercambiabili: architettura MVC, eroi salvati in un file di testo (database relazionale come bonus) e validazione dell'input con annotazioni." },
+  { id: "fixme", n: "fix-me", s: "42cursus-fix-me", l: "Java", xp: 15750, p: [1, 1], b: ["oop"], c: ["net", "oop"], pdf: 208928, d: "Simulatore di mercato finanziario in Java: un router smista i messaggi tra broker e market con una versione semplificata del protocollo FIX, usando socket asincroni e l'executor framework di Java." },
+  { id: "libftpp", n: "libftpp", s: "libftpp", l: "C++", xp: 5880, p: [1, 1], b: ["oop"], c: ["oop"], pdf: 225598, d: "Toolbox C++ (C++11 o successivo) da riusare nei progetti successivi: design pattern come Singleton, Observer e Memento, strutture dati thread-safe, multithreading, rete, classi vettoriali e generatori di numeri casuali." },
+  { id: "abstractdata", n: "abstract_data", s: "abstract_data", l: "C++", xp: 20084, p: [1, 1], b: ["oop"], c: ["oop", "math"], pdf: 225597, d: "Container della libreria standard C++ in versione «hard mode»: reimplementi parte dei container standard (come map e multimap), con la stessa struttura e tutte le funzionalità del C++98, iteratori compresi." },
   { id: "retroemu", n: "RetroEmu", s: "retroemu", l: "C++ o Rust", xp: 37800, p: [2, 4], b: ["oop", "unix"], c: ["gfx", "game", "low"], pdf: 228207, d: "Emulatore del Game Boy originale (DMG) in C++ o Rust, in gruppo: CPU a 8 bit simile allo Z80, grafica (PPU), memoria (MMU) e mapping delle cartucce, riprodotti fedelmente a partire dalla documentazione tecnica pubblica e verificati con ROM di test." },
 
   // Functional
-  { id: "turing", n: "ft_turing", s: "42cursus-ft_turing", l: "Funzionale (es. OCaml)", xp: 9450, p: [2, 2], b: ["fun"], c: [], pdf: 209599, d: "Simulatore di macchina di Turing in un linguaggio funzionale (OCaml consigliato): legge la descrizione della macchina da JSON e la esegue passo passo; poi scrivi tu alcune macchine, ad esempio per riconoscere 0ⁿ1ⁿ." },
-  { id: "ality", n: "ft_ality", s: "42cursus-ft_ality", l: "Funzionale (es. OCaml)", xp: 4200, p: [2, 2], b: ["fun"], c: ["game"], pdf: 210927, d: "Ricrei la modalità allenamento di un picchiaduro in un linguaggio funzionale: da una grammatica di mosse costruisci e alleni un automa a stati finiti che riconosce le combo dai tasti premuti." },
+  { id: "turing", n: "ft_turing", s: "42cursus-ft_turing", l: "Funzionale (es. OCaml)", xp: 9450, p: [2, 2], b: ["fun"], c: ["func", "math"], pdf: 209599, d: "Simulatore di macchina di Turing in un linguaggio funzionale (OCaml consigliato): legge la descrizione della macchina da JSON e la esegue passo passo; poi scrivi tu alcune macchine, ad esempio per riconoscere 0ⁿ1ⁿ." },
+  { id: "ality", n: "ft_ality", s: "42cursus-ft_ality", l: "Funzionale (es. OCaml)", xp: 4200, p: [2, 2], b: ["fun"], c: ["game", "func", "math"], pdf: 210927, d: "Ricrei la modalità allenamento di un picchiaduro in un linguaggio funzionale: da una grammatica di mosse costruisci e alleni un automa a stati finiti che riconosce le combo dai tasti premuti." },
 
   // Imperative
   { id: "libasm", n: "libasm", s: "libasm", l: "ASM", xp: 966, p: [1, 1], b: ["imp", "unix"], c: ["low"], pdf: 216943, d: "Piccola libreria in assembly x86-64 con nasm e sintassi Intel: ft_strlen, ft_strcpy, ft_strcmp, ft_write, ft_read e ft_strdup, rispettando le convenzioni di chiamata e la gestione di errno." },
@@ -123,7 +124,7 @@ const PROJECTS: Project[] = [
   { id: "lemipc", n: "lem_ipc", s: "42cursus-lem-ipc", l: "C", xp: 9450, p: [1, 1], b: ["imp", "unix"], c: ["low"], pdf: 210295, d: "Gioco a squadre tra processi su una mappa condivisa, in C: comunicazione con memoria condivisa, semafori e code di messaggi System V." },
   { id: "kfs1", n: "kfs-1", s: "42cursus-kfs-1", l: "Libero + ASM", xp: 15750, p: [2, 2], b: ["imp", "unix"], c: ["low"], pdf: 209026, d: "Primo passo del kernel da zero: un kernel avviabile con GRUB, codice di partenza in assembly, linker script e interfaccia per scrivere a schermo. Linguaggio a scelta (C, C++, Rust…) più ASM." },
   { id: "malcolm", n: "ft_malcolm", s: "ft_malcolm", l: "C", xp: 6000, p: [1, 1], b: ["imp", "sec"], c: ["net", "sec"], pdf: 228824, d: "Ramo sicurezza di rete: un progetto in C sul protocollo ARP per capire come le macchine si trovano su una rete locale e perché questo meccanismo è fragile." },
-  { id: "sslmd5", n: "ft_ssl_md5", s: "42cursus-ft_ssl_md5", l: "C", xp: 9450, p: [1, 1], b: ["imp", "sec"], c: ["sec"], pdf: 205815, d: "Porta d'ingresso al ramo crittografia: ricrei in C una parte di OpenSSL, il comando ft_ssl con gli hash MD5 e SHA-256, con lettura da file, stdin e stringhe." },
+  { id: "sslmd5", n: "ft_ssl_md5", s: "42cursus-ft_ssl_md5", l: "C", xp: 9450, p: [1, 1], b: ["imp", "sec"], c: ["sec", "math"], pdf: 205815, d: "Porta d'ingresso al ramo crittografia: ricrei in C una parte di OpenSSL, il comando ft_ssl con gli hash MD5 e SHA-256, con lettura da file, stdin e stringhe." },
   { id: "snowcrash", n: "Snowcrash", s: "42cursus-snow-crash", l: "Shell (reverse)", xp: 9450, p: [2, 2], b: ["imp", "sec"], c: ["sec"], pdf: 221871, d: "Porta d'ingresso al ramo sicurezza: livelli su una macchina virtuale in cui impari a osservare un sistema, trovare indizi e ragionare come un analista." },
   { id: "rainfall", n: "Rainfall", s: "42cursus-rainfall", l: "ASM (reverse)", xp: 25200, p: [2, 2], b: ["imp", "sec"], c: ["low", "sec"], pdf: 221872, d: "Ramo sicurezza: livelli su una macchina virtuale basati sull'analisi di programmi compilati, con debugger e lettura dell'assembly. Seguito di Snowcrash." },
   { id: "boot2root", n: "Boot2root", s: "42cursus-boot2root", l: "Sicurezza", xp: 11500, p: [2, 4], b: ["imp", "sec"], c: ["sec"], pdf: 221874, d: "Ramo sicurezza in gruppo: una macchina virtuale completa da analizzare dall'esterno fino ad averne il pieno controllo, documentando ogni percorso trovato." },
@@ -163,14 +164,14 @@ const PROJECTS: Project[] = [
   // RNCP 7 · Artificial Intelligence
   { id: "pyds", n: "Piscine Python for Data Science", s: "python-for-data-science", l: "Python", xp: 4725, p: [1, 1], b: ["ai"], c: ["ai"], pdf: 211905, d: "Piscine di Python 3.10 in cinque moduli: basi del linguaggio, array e immagini con NumPy, tabelle di dati con pandas, programmazione a oggetti e design orientato ai dati." },
   { id: "pds", n: "Piscine Data Science", s: "piscine-data-science", l: "SQL · Libero", xp: 4725, p: [1, 1], b: ["ai"], c: ["ai"], pdf: 220007, d: "Piscine sui dati in cinque moduli: creazione di un database PostgreSQL, data warehouse, visualizzazione dei dati, analisi e modelli per prevedere l'andamento futuro." },
-  { id: "linreg", n: "ft_linear_regression", s: "42cursus-ft_linear_regression", l: "Libero", xp: 4200, p: [1, 1], b: ["ai"], c: ["ai"], pdf: 212344, d: "Primo algoritmo di machine learning: prevedi il prezzo di un'auto dal chilometraggio con una regressione lineare allenata con la discesa del gradiente, scritta da te senza librerie che facciano il lavoro." },
+  { id: "linreg", n: "ft_linear_regression", s: "42cursus-ft_linear_regression", l: "Libero", xp: 4200, p: [1, 1], b: ["ai"], c: ["ai", "math"], pdf: 212344, d: "Primo algoritmo di machine learning: prevedi il prezzo di un'auto dal chilometraggio con una regressione lineare allenata con la discesa del gradiente, scritta da te senza librerie che facciano il lavoro." },
   { id: "dslr", n: "DSLR", s: "42cursus-dslr", l: "Libero (es. Python)", xp: 6000, p: [2, 2], b: ["ai"], c: ["ai"], pdf: 211419, d: "Data science e regressione logistica: analizzi e visualizzi un dataset (statistiche descrittive, istogrammi, scatter plot) e alleni un classificatore one-vs-all che smista gli studenti di Hogwarts nelle case." },
   { id: "mlp", n: "Multilayer Perceptron", s: "42cursus-multilayer-perceptron", l: "Libero", xp: 9450, p: [1, 1], b: ["ai"], c: ["ai"], pdf: 209575, d: "Rete neurale scritta da zero, senza librerie di reti neurali: feedforward, backpropagation e discesa del gradiente per classificare tumori al seno come benigni o maligni a partire da un dataset." },
   { id: "gomoku", n: "Gomoku", s: "42cursus-gomoku", l: "Libero", xp: 25200, p: [2, 2], b: ["ai"], c: ["ai", "game"], pdf: 208550, d: "Gomoku con interfaccia grafica e un'IA che deve battere i giocatori umani: algoritmo Min-Max e soprattutto una funzione euristica efficace e veloce. Anche partita tra due umani con suggerimento delle mosse." },
-  { id: "expert", n: "Expert System", s: "42cursus-expert-system", l: "Libero", xp: 9450, p: [2, 2], b: ["ai"], c: ["ai"], pdf: 210325, d: "Sistema esperto per il calcolo proposizionale: un motore a backward chaining legge regole e fatti da file e risponde alle domande con vero, falso o indeterminato, gestendo AND, OR, XOR, negazioni e parentesi." },
-  { id: "krpsim", n: "Krpsim", s: "42cursus-krpsim", l: "Libero", xp: 9450, p: [2, 3], b: ["ai"], c: [], pdf: 211241, d: "Ottimizzazione di una catena di processi: da un file con scorte e processi trovi una sequenza che massimizza un risultato o riduce il tempo, più un programma che verifica la soluzione." },
-  { id: "matrix", n: "Matrix", s: "matrix", l: "Libero (prototipi in Rust)", xp: 7000, p: [1, 1], b: ["ai"], c: [], pdf: 210505, d: "Algebra lineare senza librerie matematiche: vettori e matrici, combinazioni lineari, prodotto scalare e vettoriale, norme, trasposta, forma a scalini, determinante, inversa e rango." },
-  { id: "rsb", n: "Ready set boole", s: "ready-set-boole", l: "Libero (prototipi in Rust)", xp: 7000, p: [1, 1], b: ["ai"], c: [], pdf: 212628, d: "Algebra booleana e teoria degli insiemi, senza librerie matematiche: addizioni e moltiplicazioni con operatori bit a bit, codice Gray, tabelle di verità, forme normali, SAT, insiemi e curve che riempiono lo spazio." },
+  { id: "expert", n: "Expert System", s: "42cursus-expert-system", l: "Libero", xp: 9450, p: [2, 2], b: ["ai"], c: ["ai", "math"], pdf: 210325, d: "Sistema esperto per il calcolo proposizionale: un motore a backward chaining legge regole e fatti da file e risponde alle domande con vero, falso o indeterminato, gestendo AND, OR, XOR, negazioni e parentesi." },
+  { id: "krpsim", n: "Krpsim", s: "42cursus-krpsim", l: "Libero", xp: 9450, p: [2, 3], b: ["ai"], c: ["ai", "math"], pdf: 211241, d: "Ottimizzazione di una catena di processi: da un file con scorte e processi trovi una sequenza che massimizza un risultato o riduce il tempo, più un programma che verifica la soluzione." },
+  { id: "matrix", n: "Matrix", s: "matrix", l: "Libero (prototipi in Rust)", xp: 7000, p: [1, 1], b: ["ai"], c: ["math"], pdf: 210505, d: "Algebra lineare senza librerie matematiche: vettori e matrici, combinazioni lineari, prodotto scalare e vettoriale, norme, trasposta, forma a scalini, determinante, inversa e rango." },
+  { id: "rsb", n: "Ready set boole", s: "ready-set-boole", l: "Libero (prototipi in Rust)", xp: 7000, p: [1, 1], b: ["ai"], c: ["math"], pdf: 212628, d: "Algebra booleana e teoria degli insiemi, senza librerie matematiche: addizioni e moltiplicazioni con operatori bit a bit, codice Gray, tabelle di verità, forme normali, SAT, insiemi e curve che riempiono lo spazio." },
   { id: "leaffliction", n: "Leaffliction", s: "leaffliction", l: "Libero (es. Python)", xp: 15750, p: [2, 3], b: ["ai"], c: ["ai"], pdf: 212502, d: "Visione artificiale: riconosci le malattie delle piante dalle foto delle foglie, con analisi e bilanciamento del dataset, trasformazioni delle immagini e un classificatore." },
   { id: "learn2slither", n: "Learn2Slither", s: "learn2slither", l: "Libero (es. Python)", xp: 9450, p: [1, 1], b: ["ai"], c: ["ai", "game"], pdf: 225974, d: "Apprendimento per rinforzo: un serpente su una griglia 10×10 impara da solo a mangiare le mele giuste e a sopravvivere, con Q-learning e una visione limitata del campo." },
 ];
@@ -194,7 +195,7 @@ const BLOCKS: Record<BlockId, Block> = {
 // categorie dei filtri, nell'ordine dei bottoni; un progetto può averne più di una
 const TAGS: Record<Tag, string> = {
   web: "Web", mobile: "Mobile", gfx: "Graphics", game: "Gaming", net: "Reti",
-  low: "Kernel/LowLevel", devops: "DevOps/Container", sec: "CyberSec", ai: "IA/Data",
+  low: "Kernel/LowLevel", devops: "DevOps/Container", sec: "CyberSec", ai: "IA/Data", oop: "OOP", func: "Funzionale", math: "Algoritmi/Math",
 };
 // i due titoli: la Suite è la stessa lista per entrambi
 const TITLES: Record<TitleId, Title> = {
@@ -233,7 +234,7 @@ const otherBlocks = (pr: Project): BlockId[] => {
 
 /* ---------- stato ---------- */
 const KEY = "rncp6-plan-v1"; // nome storico: ora contiene anche il titolo
-const state: State = { title: 6, opt: 2, picked: {}, marks: {}, level: null, events: 0, exps: 0, intra: null, team: "all", only: false, tags: new Set(), q: "", dayHours: 8 };
+const state: State = { title: 6, opt: 2, picked: {}, marks: {}, level: null, events: 0, exps: 0, intra: null, team: "all", only: false, both: false, tags: new Set(), q: "", dayHours: 8 };
 
 // Ore al giorno: quante ore lavori in una giornata (default 8); i giorni sono le ore dell'intra divise per questo numero
 const DAY_HOURS_MIN = 1, DAY_HOURS_MAX = 24;
@@ -350,6 +351,7 @@ const coverage = (blk: Block, n: number, xp: number): number =>
   Math.min(n / blk.minN, blk.minXp ? xp / blk.minXp : 1, 1);
 function visible(pr: Project): boolean {
   if (state.only && !state.picked[pr.id]) return false;
+  if (state.both && !otherBlocks(pr).length) return false;
   if (state.tags.size && !pr.c.some((t) => state.tags.has(t))) return false; // basta una delle categorie accese
   const p = pr.p;
   if (state.team === "solo" && !(p && p[0] === 1)) return false;
@@ -387,7 +389,9 @@ function renderMeters(): void {
     const blk = BLOCKS[id], t = tally(id);
     const m = el("div", "meter" + (t.valid ? " done" : t.done ? " planned" : ""));
     const top = el("div", "meter-top");
-    top.append(el("span", "meter-name", blk.name));
+    const name = el("span", "meter-name", blk.name);
+    name.title = blk.name; // nella barra compatta il nome può essere tagliato
+    top.append(name);
     if (t.done) top.append(doneCheck(t.valid));
     // due riempimenti: pieno per i progetti fatti, chiaro per il resto del piano
     const bar = el("div", "bar"), plan = el("i", "plan"), made = el("i");
@@ -395,7 +399,7 @@ function renderMeters(): void {
     made.style.width = Math.round(coverage(blk, t.dn, t.dxp) * 100) + "%";
     bar.append(plan, made);
     const nums = el("div", "meter-nums");
-    const a = el("span"); a.append(el("b", null, String(t.n)), "/" + blk.minN + " progetti");
+    const a = el("span"); a.append(el("b", null, String(t.n)), "/" + blk.minN, el("span", "meter-unit", " progetti")); // "progetti" sparisce nella barra compatta
     nums.append(a);
     if (blk.minXp) { const b = el("span"); b.append(el("b", null, fmt(t.xp)), "/" + fmt(blk.minXp) + " XP"); nums.append(b); }
     const madeNums = el("div", "meter-made", "Fatti: " + t.dn + (t.dn === 1 ? " progetto" : " progetti") + (blk.minXp ? " · " + fmt(t.dxp) + " XP" : ""));
@@ -686,6 +690,8 @@ dayHoursInput.addEventListener("input", () => {
 dayHoursInput.addEventListener("blur", () => { dayHoursInput.value = fmtDayHours(state.dayHours); dayHoursInput.removeAttribute("aria-invalid"); });
 const only = byId<HTMLInputElement>("only");
 only.addEventListener("change", () => { state.only = only.checked; renderBlocks(); });
+const both = byId<HTMLInputElement>("both");
+both.addEventListener("change", () => { state.both = both.checked; renderBlocks(); });
 
 // bottoni delle categorie: si accendono e spengono uno per uno
 const tagBox = byId("tags");
@@ -701,6 +707,34 @@ for (const t of Object.keys(TAGS) as Tag[]) {
   tagBox.append(b);
 }
 byId("reset").addEventListener("click", () => { state.picked = {}; save(); render(); });
+
+// i filtri restano in alto sotto la barra dei requisiti (style.css): passa al CSS l'altezza della barra, che cambia con il contenuto
+const reqsBar = document.querySelector<HTMLElement>(".reqs:not(.reqs-common)");
+if (reqsBar) new ResizeObserver(() => {
+  document.documentElement.style.setProperty("--reqs-h", reqsBar.offsetHeight + "px");
+}).observe(reqsBar);
+
+// mentre scorri la barra diventa compatta; il margine sotto restituisce l'altezza persa, così la pagina non salta
+const wide = matchMedia("(min-width: 860px)");
+const reqsPrev = reqsBar?.previousElementSibling;
+function compactReqs(): void {
+  if (!reqsBar || !reqsPrev) return;
+  const start = reqsPrev.getBoundingClientRect().bottom + scrollY; // dove la barra comincia a restare ferma
+  const on = reqsBar.classList.contains("compact");
+  const want = wide.matches && (on ? scrollY > start + 10 : scrollY > start + 40); // due soglie: niente sfarfallio
+  if (want === on) return;
+  if (want) {
+    const full = reqsBar.offsetHeight;
+    reqsBar.classList.add("compact");
+    reqsBar.style.marginBottom = full - reqsBar.offsetHeight + "px";
+  } else {
+    reqsBar.classList.remove("compact");
+    reqsBar.style.marginBottom = "";
+  }
+}
+addEventListener("scroll", compactReqs, { passive: true });
+wide.addEventListener("change", compactReqs);
+compactReqs();
 
 /* ---------- salva / carica piano come file JSON ----------
  * Su Chrome/Edge (File System Access API) il file scelto resta collegato:
@@ -740,8 +774,8 @@ interface FsWindow {
 
 const fsw = window as unknown as FsWindow;
 const canLink = typeof fsw.showOpenFilePicker === "function" && typeof fsw.showSaveFilePicker === "function";
-// nome dei file esportati: piano-rncp6.json, piano-rncp7.md…
-const fileName = (ext: string): string => "piano-rncp" + state.title + "." + ext;
+// nome dei file salvati ed esportati: piano-rncp.json, piano-rncp.md (il piano vale per entrambi i titoli)
+const fileName = (ext: string): string => "piano-rncp." + ext;
 const picker = (): PickerOpts => ({
   suggestedName: fileName("json"),
   types: [{ description: "Piano RNCP", accept: { "application/json": [".json"] } }],
@@ -864,8 +898,18 @@ async function link(h: PlanHandle): Promise<void> {
   await storeHandle(h);
 }
 
+// il file di npm run me (source "intra") si unisce al piano invece di sostituirlo
+const isIntra = (text: string): boolean => { try { return JSON.parse(text)?.source === "intra"; } catch { return false; } };
+function loadIntra(text: string): void {
+  const msg = mergeIntra(text);
+  save();
+  render();
+  setStatus(msg);
+}
+
 async function loadFrom(h: PlanHandle): Promise<void> {
   const text = await (await h.getFile()).text();
+  if (isIntra(text)) { loadIntra(text); return; } // non si collega: il piano non va scritto lì sopra
   if (text.trim()) applyPlan(text);
   else { await link(h); writeLinked(); return; } // file vuoto: ci scrive il piano attuale
   await link(h);
@@ -896,16 +940,10 @@ importFile.addEventListener("change", async () => {
   const file = importFile.files?.[0];
   importFile.value = "";
   if (!file) return;
-  try { applyPlan(await file.text()); save(); render(); } catch (err) { fail(err); }
-});
-
-const intraFile = byId<HTMLInputElement>("intra-file");
-byId("import-intra").addEventListener("click", () => intraFile.click());
-intraFile.addEventListener("change", async () => {
-  const file = intraFile.files?.[0];
-  intraFile.value = "";
-  if (!file) return;
-  try { const msg = mergeIntra(await file.text()); save(); render(); setStatus(msg); } catch (err) { fail(err); }
+  try {
+    const text = await file.text();
+    if (isIntra(text)) loadIntra(text); else { applyPlan(text); save(); render(); }
+  } catch (err) { fail(err); }
 });
 
 /* import diretto: con npm run serve la pagina chiede il login e il server locale legge l'API di 42 */
@@ -1200,7 +1238,7 @@ function printPlan(): void {
 byId("export-md").addEventListener("click", () => download(fileName("md"), planMarkdown(), "text/markdown"));
 byId("export-pdf").addEventListener("click", printPlan);
 
-/* ---------- popup "Esporta" ----------
+/* ---------- popup "Esporta" (Markdown e PDF) ----------
  * Si apre col pulsante in alto a destra e si chiude con un clic fuori,
  * con Esc o dopo aver scelto una voce.
  */

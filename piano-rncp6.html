@@ -13,16 +13,17 @@
     <div class="top-text">
       <h1>RNCP Calculator</h1>
     </div>
-    <div class="menu">
-      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-pop">Esporta</button>
-      <div class="menu-pop" id="menu-pop" hidden>
-        <button type="button" id="export">Salva piano</button>
-        <button type="button" id="import">Carica piano</button>
-        <input type="file" id="import-file" accept=".json,application/json" hidden>
-        <button type="button" id="import-intra" title="Carica piano-intra.json, scritto da npm run me">Importa dall'intra</button>
-        <input type="file" id="intra-file" accept=".json,application/json" hidden>
-        <button type="button" id="export-md">Esporta Markdown</button>
-        <button type="button" id="export-pdf">Esporta PDF</button>
+    <div class="top-actions">
+      <button type="button" class="menu-btn" id="export" title="Salva il piano in un file JSON">Salva</button>
+      <!-- Carica accetta sia un piano salvato sia piano-intra.json, scritto da npm run me -->
+      <button type="button" class="menu-btn" id="import" title="Carica un piano salvato o il file di npm run me">Carica</button>
+      <input type="file" id="import-file" accept=".json,application/json" hidden>
+      <div class="menu">
+        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-pop">Esporta</button>
+        <div class="menu-pop" id="menu-pop" hidden>
+          <button type="button" id="export-md">Esporta Markdown</button>
+          <button type="button" id="export-pdf">Esporta PDF</button>
+        </div>
       </div>
     </div>
   </header>
@@ -77,6 +78,7 @@
     </label>
     <div class="tags" id="tags" role="group" aria-label="Categorie"></div>
     <label class="check" for="only"><input type="checkbox" id="only"> Scelti</label>
+    <label class="check" for="both" title="Solo i progetti che contano sia nell'RNCP 6 sia nell'RNCP 7"><input type="checkbox" id="both"> In comune RNCP 6 e 7</label>
     <div class="actions">
       <span class="plan-status" id="plan-status" role="status" hidden></span>
       <button type="button" class="link" id="reconnect" hidden>Riapri piano</button>
