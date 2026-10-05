@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RNCP Calculator</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="style.css?v=bfb253ac">
+<link rel="stylesheet" href="style.css?v=acb8a58e">
 </head>
 <body>
 <div class="wrap">
@@ -72,6 +72,11 @@
       <button type="button" id="team-solo" data-team="solo">Da solo</button>
       <button type="button" id="team-group" data-team="group">In gruppo</button>
     </div>
+    <div class="sort" role="group" aria-label="Ordina i progetti">
+      <label for="sort">Ordina per</label>
+      <select id="sort"></select>
+      <button type="button" id="sort-dir"></button>
+    </div>
     <label class="day-hours" for="day-hours" title="Quante ore lavori in una giornata: i giorni sono le ore stimate dall'intra divise per questo numero">
       Ore al giorno <input type="text" inputmode="decimal" id="day-hours" value="8" size="4" aria-describedby="day-hours-help">
       <span class="day-hours-help" id="day-hours-help">h</span>
@@ -102,6 +107,6 @@
 <div class="report" id="report"></div>
 
 <script src="hours.js?v=3f962136"></script>
-<script src="script.js?v=5283799f"></script>
+<script src="script.js?v=4cea8c61"></script>
 </body>
 </html>

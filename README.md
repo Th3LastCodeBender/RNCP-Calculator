@@ -35,18 +35,24 @@ Serve [Node.js](https://nodejs.org/) 22.9 o successivo.
 
 ```bash
 npm install      # installa TypeScript
-npm run build    # compila script.ts in script.js e aggiorna le versioni dei file
+npm run build    # compila src/ in script.js e aggiorna le versioni dei file
 npm run version  # solo le versioni: dopo aver cambiato style.css
 ```
 
-Si modifica solo `script.ts` (dati dei progetti e logica): `script.js` viene rigenerato dalla build ed è nel repository perché la pagina funzioni senza compilare.
+Si modificano solo i file in `src/`: `script.js` viene rigenerato dalla build (tsc unisce i file in un solo script) ed è nel repository perché la pagina funzioni senza compilare.
 
 In `piano-rncp6.html` CSS e script hanno un `?v=` con l'impronta del file: GitHub Pages li tiene in cache per 10 minuti e senza versione il browser può unire l'HTML nuovo a uno `script.js` vecchio (pagina vuota). La build lo aggiorna da sola; dopo aver toccato solo `style.css` serve `npm run version` prima del push.
 
 | File | Contenuto |
 | --- | --- |
 | `piano-rncp6.html` | struttura della pagina |
-| `script.ts` | progetti, blocchi, titoli e logica |
+| `src/data.ts` | progetti, blocchi, categorie e titoli |
+| `src/state.ts` | stato della pagina e salvataggio nel browser |
+| `src/calc.ts` | calcoli: XP, livelli, giorni, copertura dei blocchi, filtri |
+| `src/view.ts` | barre, requisiti comuni, card, blocchi e filtri |
+| `src/plan-file.ts` | Salva e Carica (file JSON) |
+| `src/intra.ts` | import dall'intra e "Accedi con 42" |
+| `src/export.ts` | esportazione in Markdown e PDF |
 | `style.css` | stile, tema chiaro e scuro, stampa |
 | `hours.js` | ore stimate dall'intra, generato da `npm run hours` |
 | `tools/` | script per aggiornare e verificare i dati |
@@ -60,7 +66,7 @@ Gli script in [`tools/`](tools/) leggono XP, ore, team e subject dall'intra. Han
 | --- | --- |
 | `npm run serve` | apre la pagina su http://localhost:4242 con l'import dall'intra dal campo **Login intra** |
 | `npm run me -- <login>` | scrive `piano-intra.json` con i tuoi progetti fatti e in corso, i voti e il livello, da importare nella pagina |
-| `npm run info` | scarica XP, ore, team e link ai subject e segnala le differenze con `script.ts` |
+| `npm run info` | scarica XP, ore, team e link ai subject e segnala le differenze con `src/data.ts` |
 | `npm run hours` | rigenera `hours.js` |
 | `npm run subjects` | scarica i PDF dei subject in `subjects/` (non inclusi nel repository) |
 | `npm run subjects:summary` | estrae dai PDF le righe su linguaggi, team e vincoli |

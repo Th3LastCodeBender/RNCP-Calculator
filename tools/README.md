@@ -38,7 +38,7 @@ Tutti gli script (tranne `rncp`) accettano la stessa scelta dei progetti:
 
 | Argomento | Progetti |
 | --- | --- |
-| *(niente)* | quelli della pagina, letti da `script.ts` |
+| *(niente)* | quelli della pagina, letti da `src/data.ts` |
 | `slug1 slug2 ...` | gli slug indicati, per esempio `42cursus-matcha nm` |
 | `--file lista.txt` | uno slug per riga; righe vuote e commenti `#` vengono ignorati |
 | `--cursus 21` | tutti i progetti di un cursus (21 = 42cursus, quasi 500 progetti) |
@@ -87,7 +87,7 @@ Confrontate con le liste ufficiali dell'RNCP 7 (ottobre 2026), quelle del datase
 
 Per ogni progetto salva in `data/info.json` XP, ore stimate, team `[min, max]`, obiettivi, descrizione ufficiale, sotto-progetti e link al subject. Il file viene aggiornato, non sostituito. `--out altro.json` cambia il file di destinazione.
 
-Sui progetti della pagina confronta anche XP, persone e PDF del subject (campo `pdf`) con `script.ts` e stampa le differenze. Non modifica `script.ts`.
+Sui progetti della pagina confronta anche XP, persone e PDF del subject (campo `pdf`) con `src/data.ts` e stampa le differenze. Non modifica `src/data.ts`.
 
 ### `npm run subjects`: PDF dei subject
 
@@ -107,7 +107,7 @@ Richiede `pdftotext` (pacchetto `poppler-utils`). `--quiet` stampa solo il total
 
 ### `npm run hours`: ore per la pagina
 
-Riscrive `hours.js`, il file con le ore stimate che la pagina carica. Va rilanciato quando si aggiungono progetti a `script.ts`.
+Riscrive `hours.js`, il file con le ore stimate che la pagina carica. Va rilanciato quando si aggiungono progetti a `src/data.ts`.
 
 ## Esempi
 

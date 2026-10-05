@@ -230,7 +230,7 @@ body {
   }
 
   /* anche i filtri restano in alto, subito sotto la barra dei requisiti:
-     --reqs-h è l'altezza della barra, misurata da script.ts */
+     --reqs-h è l'altezza della barra, misurata da src/view.ts */
   .filters {
     position: sticky;
     top: calc(env(safe-area-inset-top, 0px) + var(--reqs-h, 0px));
@@ -241,7 +241,7 @@ body {
   }
 
   /* barra compatta mentre scorri: --p va da 0 (intera) a 1 (compatta) seguendo lo scroll,
-     messo da script.ts insieme a --head-h, l'altezza dei selettori. Selettori, spazio e padding
+     messo da src/view.ts insieme a --head-h, l'altezza dei selettori. Selettori, spazio e padding
      si riducono in proporzione; il margine sotto restituisce l'altezza persa */
   .reqs:not(.reqs-common) {
     gap: calc(12px * (1 - var(--p, 0)));
@@ -505,6 +505,33 @@ body {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
+}
+
+/* ordinamento: criterio e direzione */
+.sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.sort select,
+.sort button {
+  padding: 5px 8px;
+  font: inherit;
+  font-family: var(--f-body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sort button {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 /* campo "Ore al giorno": ore di lavoro in una giornata */

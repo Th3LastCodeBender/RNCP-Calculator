@@ -7,7 +7,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    // i file di src/ sono script normali (niente import/export) che condividono lo stesso scope:
+    // tsc li unisce in un solo script.js, così la pagina funziona anche aperta come file
+    "outFile": "script.js"
   },
-  "files": ["script.ts"]
+  // l'ordine conta: ogni file usa ciò che è definito nei file prima, e main.ts avvia la pagina
+  "files": ["src/data.ts", "src/state.ts", "src/calc.ts", "src/dom.ts", "src/view.ts", "src/plan-file.ts", "src/intra.ts", "src/export.ts", "src/main.ts"]
 }

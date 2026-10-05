@@ -1,7 +1,7 @@
 /*
  * Scrive hours.js, il file con le ore stimate dall'intra che la pagina carica.
- * Le ore sono quelle dell'intra così come sono: la moltiplicazione e il
- * calcolo dei giorni li fa la pagina (il Pace scelto dall'utente e HOURS_PER_DAY in script.ts).
+ * Le ore sono quelle dell'intra così come sono: il
+ * calcolo dei giorni lo fa la pagina (con le ore al giorno scelte dall'utente, src/calc.ts).
  *
  * Uso: npm run hours -- [sorgente]   (default: i progetti della pagina)
  */

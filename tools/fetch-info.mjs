@@ -7,7 +7,7 @@
  * Il file esistente viene aggiornato, non sostituito: i progetti non toccati restano.
  *
  * Se i progetti sono quelli della pagina (nessuna sorgente indicata), alla fine
- * confronta XP, persone e PDF del subject con script.ts e stampa le differenze. Non modifica script.ts.
+ * confronta XP, persone e PDF del subject con src/data.ts e stampa le differenze. Non modifica src/data.ts.
  *
  * Uso: npm run info -- [sorgente] [--children] [--out file.json]
  *   (sorgenti in tools/lib/projects.mjs; default --out data/info.json)
@@ -89,7 +89,7 @@ await writeFile(outFile, JSON.stringify(info, null, 2) + "\n");
 console.log("\nAggiornati " + (slugs.length - missing.length) + " progetti in " + fileURLToPath(outFile) + " (" + Object.keys(info).length + " in totale).");
 if (missing.length) console.log("Non trovati: " + missing.join(", "));
 
-// confronto con la pagina, solo se i progetti sono quelli di script.ts
+// confronto con la pagina, solo se i progetti sono quelli di src/data.ts
 if (fromPage(args)) {
   const current = await pageProjects();
   const diffs = [];
@@ -103,5 +103,5 @@ if (fromPage(args)) {
     const pdf = Number(i.subject?.match(/\/pdf\/pdf\/(\d+)\//)?.[1]) || null;
     if (pdf && pdf !== cur.pdf) diffs.push("  " + cur.name.padEnd(28) + " pdf     pagina: " + cur.pdf + "   intra: " + pdf);
   }
-  console.log(diffs.length ? "\nDifferenze con script.ts:\n" + diffs.join("\n") : "\nNessuna differenza con script.ts su XP, persone e PDF.");
+  console.log(diffs.length ? "\nDifferenze con src/data.ts:\n" + diffs.join("\n") : "\nNessuna differenza con src/data.ts su XP, persone e PDF.");
 }

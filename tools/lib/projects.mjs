@@ -5,7 +5,7 @@
  *   slug1 slug2 ...      gli slug scritti sulla riga di comando
  *   --file lista.txt     uno slug per riga (righe vuote e # commenti ignorati)
  *   --cursus 21          tutti i progetti di un cursus dall'API (21 = 42cursus)
- *   (niente)             gli slug della pagina, letti da script.ts
+ *   (niente)             gli slug della pagina, letti da src/data.ts
  * Con --children si aggiungono anche i sotto-progetti (moduli delle piscine, ecc.),
  * presi dall'API o, se l'API non li collega, dal dataset di 42calculator.
  */
@@ -30,15 +30,15 @@ export function parseArgs(argv = process.argv.slice(2)) {
   return { slugs, flags };
 }
 
-// slug della pagina (script.ts), con id, nome e persone attuali per i confronti
+// slug della pagina (src/data.ts), con id, nome e persone attuali per i confronti
 export async function pageProjects() {
-  const source = await readFile(new URL("script.ts", ROOT), "utf8");
+  const source = await readFile(new URL("src/data.ts", ROOT), "utf8");
   const out = new Map();
-  for (const m of source.matchAll(/\{ id: "([^"]+)", n: "([^"]*)", s: "([^"]+)",[^\n]*? xp: (null|\d+), p: (null|\[\d+, \d+\])(?:[^\n]*? pdf: (null|\d+),)?/g)) {
-    m.shift(); // così i gruppi restano numerati come prima, con l'id in m[0]
-    out.set(m[2], {
-      id: m[0], name: m[1], xp: m[3] === "null" ? null : Number(m[3]), p: m[4] === "null" ? null : JSON.parse(m[4]),
-      pdf: m[5] == null || m[5] === "null" ? null : Number(m[5]),
+  const line = /\{ id: "([^"]+)", name: "([^"]*)", slug: "([^"]+)",[^\n]*? xp: (null|\d+), people: (null|\[\d+, \d+\])[^\n]*? pdf: (null|\d+),/g;
+  for (const [, id, name, slug, xp, people, pdf] of source.matchAll(line)) {
+    out.set(slug, {
+      id, name, xp: xp === "null" ? null : Number(xp), p: people === "null" ? null : JSON.parse(people),
+      pdf: pdf === "null" ? null : Number(pdf),
     });
   }
   return out;
@@ -78,5 +78,5 @@ export async function childrenOf(slug, get) {
   return datasetChildren(slug);
 }
 
-// la sorgente è la pagina? (solo allora ha senso confrontare con script.ts)
+// la sorgente è la pagina? (solo allora ha senso confrontare con src/data.ts)
 export const fromPage = ({ slugs, flags }) => !slugs.length && !flags.file && !flags.cursus;
