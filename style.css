@@ -1033,13 +1033,17 @@ body {
     color: var(--muted);
   }
 
+  /* un blocco che non sta nel resto della pagina va tutto alla pagina dopo, titolo in cima;
+     se è più lungo di una pagina il browser lo spezza comunque, ma tra un progetto e l'altro */
   .rep-block {
     margin-top: 16pt;
+    break-inside: avoid;
   }
 
   /* linea del tempo: una riga per progetto, una linea verticale a settimana */
   .rep-time {
     margin-top: 16pt;
+    break-inside: avoid;
   }
 
   .rep-time h2 {

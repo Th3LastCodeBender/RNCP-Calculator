@@ -105,8 +105,13 @@ const PROJECTS = [
     { id: "rsb", name: "Ready set boole", slug: "ready-set-boole", lang: "Libero (prototipi in Rust)", xp: 7000, people: [1, 1], blocks: ["ai"], tags: ["math"], pdf: 212628, desc: "Algebra booleana e teoria degli insiemi, senza librerie matematiche: addizioni e moltiplicazioni con operatori bit a bit, codice Gray, tabelle di verità, forme normali, SAT, insiemi e curve che riempiono lo spazio." },
     { id: "leaffliction", name: "Leaffliction", slug: "leaffliction", lang: "Libero (es. Python)", xp: 15750, people: [2, 3], blocks: ["ai"], tags: ["ai"], pdf: 212502, desc: "Visione artificiale: riconosci le malattie delle piante dalle foto delle foglie, con analisi e bilanciamento del dataset, trasformazioni delle immagini e un classificatore." },
     { id: "learn2slither", name: "Learn2Slither", slug: "learn2slither", lang: "Libero (es. Python)", xp: 9450, people: [1, 1], blocks: ["ai"], tags: ["ai", "game"], pdf: 225974, desc: "Apprendimento per rinforzo: un serpente su una griglia 10×10 impara da solo a mangiare le mele giuste e a sopravvivere, con Q-learning e una visione limitata del campo." },
+    // Esperienze professionali: nessun blocco, i loro XP contano solo per il livello
+    { id: "internship-1", name: "Internship I", slug: "internship-i", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: [], pdf: null, desc: "Primo stage in azienda, seguito sull'intra: contratto, valutazioni del tutor e rapporto finale. Conta anche tra le esperienze professionali." },
+    { id: "internship-2", name: "Internship II", slug: "internship-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: [], pdf: null, desc: "Secondo stage in azienda, dopo l'Internship I, con le stesse tappe sull'intra. Conta anche tra le esperienze professionali." },
+    { id: "startup-internship", name: "Startup Internship", slug: "42cursus-startup-internship", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: [], pdf: null, desc: "Stage in una startup, seguito sull'intra come gli altri stage. Conta anche tra le esperienze professionali." },
 ];
 const PROJECT_IDS = new Set(PROJECTS.map((pr) => pr.id));
+const INTERNSHIPS = PROJECTS.filter((pr) => !pr.blocks.length);
 // minimi del regolamento, dalle liste ufficiali RNCP dell'intra (lists/official/)
 const BLOCKS = {
     suite: { name: "Suite", minXp: 0, minN: 1 },
@@ -507,7 +512,7 @@ function renderLeft() {
         box.append(el("b", null, "Requisiti dell'" + t.name + " validati."), " Prima di fare domanda controlla sulla pagina RNCP dell'intra: è quella che fa fede.");
         return;
     }
-    const left = PROJECTS.filter(isPending);
+    const left = PROJECTS.filter((pr) => isPending(pr) && pr.blocks.length); // gli stage non hanno una stima in ore
     if (!left.length) {
         box.textContent = Object.keys(state.picked).length ? "Tutti i progetti scelti sono fatti." : "Scegli i progetti cliccando sulle card: qui vedrai quanto tempo ti resta.";
         return;
@@ -663,6 +668,31 @@ function renderBlocks() {
             sec.append(el("p", "empty", "Nessun progetto con questi filtri."));
         root.append(sec);
     }
+    root.append(internshipSection());
+}
+// stage: non contano in nessun blocco, ma quelli scelti e non ancora fatti alzano il livello col piano
+function internshipSection() {
+    const list = sortProjects(INTERNSHIPS);
+    const shown = list.filter(visible);
+    const sec = el("details", "block");
+    sec.id = "block-exp";
+    sec.open = !collapsed.has("exp");
+    sec.addEventListener("toggle", () => { if (sec.open)
+        collapsed.delete("exp");
+    else
+        collapsed.add("exp"); });
+    const head = el("summary", "block-head");
+    head.append(el("h2", null, "Esperienze professionali"), el("span", null, "XP per il livello · " + shown.length + " di " + list.length + " mostrati"));
+    sec.append(head);
+    if (shown.length) {
+        const grid = el("div", "grid");
+        for (const pr of shown)
+            grid.append(card(pr, "exp"));
+        sec.append(grid);
+    }
+    else
+        sec.append(el("p", "empty", "Nessuno stage con questi filtri."));
+    return sec;
 }
 /* ---------- tutto insieme ---------- */
 const titleButtons = document.querySelectorAll("[data-title]");

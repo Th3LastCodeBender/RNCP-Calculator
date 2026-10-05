@@ -16,7 +16,7 @@ interface Project {
   lang: string; // linguaggio, indicativo ("Libero" = a scelta)
   xp: number | null; // XP a voto 100 (null = non disponibile)
   people: [min: number, max: number] | null;
-  blocks: BlockId[]; // blocchi in cui il progetto conta
+  blocks: BlockId[]; // blocchi in cui il progetto conta (nessuno per gli stage)
   tags: Tag[]; // categorie per i filtri
   pdf: number | null; // id del subject sul CDN di 42 (null = non disponibile)
   desc: string;
@@ -150,8 +150,13 @@ const PROJECTS: Project[] = [
   { id: "rsb", name: "Ready set boole", slug: "ready-set-boole", lang: "Libero (prototipi in Rust)", xp: 7000, people: [1, 1], blocks: ["ai"], tags: ["math"], pdf: 212628, desc: "Algebra booleana e teoria degli insiemi, senza librerie matematiche: addizioni e moltiplicazioni con operatori bit a bit, codice Gray, tabelle di verità, forme normali, SAT, insiemi e curve che riempiono lo spazio." },
   { id: "leaffliction", name: "Leaffliction", slug: "leaffliction", lang: "Libero (es. Python)", xp: 15750, people: [2, 3], blocks: ["ai"], tags: ["ai"], pdf: 212502, desc: "Visione artificiale: riconosci le malattie delle piante dalle foto delle foglie, con analisi e bilanciamento del dataset, trasformazioni delle immagini e un classificatore." },
   { id: "learn2slither", name: "Learn2Slither", slug: "learn2slither", lang: "Libero (es. Python)", xp: 9450, people: [1, 1], blocks: ["ai"], tags: ["ai", "game"], pdf: 225974, desc: "Apprendimento per rinforzo: un serpente su una griglia 10×10 impara da solo a mangiare le mele giuste e a sopravvivere, con Q-learning e una visione limitata del campo." },
+  // Esperienze professionali: nessun blocco, i loro XP contano solo per il livello
+  { id: "internship-1", name: "Internship I", slug: "internship-i", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: [], pdf: null, desc: "Primo stage in azienda, seguito sull'intra: contratto, valutazioni del tutor e rapporto finale. Conta anche tra le esperienze professionali." },
+  { id: "internship-2", name: "Internship II", slug: "internship-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: [], pdf: null, desc: "Secondo stage in azienda, dopo l'Internship I, con le stesse tappe sull'intra. Conta anche tra le esperienze professionali." },
+  { id: "startup-internship", name: "Startup Internship", slug: "42cursus-startup-internship", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: [], pdf: null, desc: "Stage in una startup, seguito sull'intra come gli altri stage. Conta anche tra le esperienze professionali." },
 ];
 const PROJECT_IDS = new Set(PROJECTS.map((pr) => pr.id));
+const INTERNSHIPS = PROJECTS.filter((pr) => !pr.blocks.length);
 
 // minimi del regolamento, dalle liste ufficiali RNCP dell'intra (lists/official/)
 const BLOCKS: Record<BlockId, Block> = {

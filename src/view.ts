@@ -137,7 +137,7 @@ function renderLeft(): void {
     box.append(el("b", null, "Requisiti dell'" + t.name + " validati."), " Prima di fare domanda controlla sulla pagina RNCP dell'intra: è quella che fa fede.");
     return;
   }
-  const left = PROJECTS.filter(isPending);
+  const left = PROJECTS.filter((pr) => isPending(pr) && pr.blocks.length); // gli stage non hanno una stima in ore
   if (!left.length) {
     box.textContent = Object.keys(state.picked).length ? "Tutti i progetti scelti sono fatti." : "Scegli i progetti cliccando sulle card: qui vedrai quanto tempo ti resta.";
     return;
@@ -159,7 +159,10 @@ function renderLeft(): void {
 const refocus = (selector: string): void => document.querySelector<HTMLElement>(selector)?.focus();
 const blockNames = (ids: BlockId[]): string => ids.map((b) => BLOCKS[b].name).join(", ");
 
-function card(pr: Project, blockId: BlockId): HTMLElement {
+// sezioni della pagina: i blocchi dell'opzione e gli stage
+type SectionId = BlockId | "exp";
+
+function card(pr: Project, blockId: SectionId): HTMLElement {
   const status = state.picked[pr.id];
   const key = blockId + ":" + pr.id; // lo stesso progetto può comparire in più blocchi
   const c = el("article", "card" + (status ? " on " + status : ""));
@@ -240,7 +243,7 @@ function factChips(pr: Project): HTMLElement {
 }
 
 /* ---------- blocchi ---------- */
-const collapsed = new Set<BlockId>(); // blocchi chiusi dall'utente: di default sono tutti aperti
+const collapsed = new Set<SectionId>(); // blocchi chiusi dall'utente: di default sono tutti aperti
 // nell'RNCP 7 un blocco già coperto mostra solo i progetti scelti; qui quelli in cui l'utente ha chiesto di vederli tutti
 const expandedDone = new Set<BlockId>();
 
@@ -283,6 +286,26 @@ function renderBlocks(): void {
     } else sec.append(el("p", "empty", "Nessun progetto con questi filtri."));
     root.append(sec);
   }
+  root.append(internshipSection());
+}
+
+// stage: non contano in nessun blocco, ma quelli scelti e non ancora fatti alzano il livello col piano
+function internshipSection(): HTMLElement {
+  const list = sortProjects(INTERNSHIPS);
+  const shown = list.filter(visible);
+  const sec = el("details", "block");
+  sec.id = "block-exp";
+  sec.open = !collapsed.has("exp");
+  sec.addEventListener("toggle", () => { if (sec.open) collapsed.delete("exp"); else collapsed.add("exp"); });
+  const head = el("summary", "block-head");
+  head.append(el("h2", null, "Esperienze professionali"), el("span", null, "XP per il livello · " + shown.length + " di " + list.length + " mostrati"));
+  sec.append(head);
+  if (shown.length) {
+    const grid = el("div", "grid");
+    for (const pr of shown) grid.append(card(pr, "exp"));
+    sec.append(grid);
+  } else sec.append(el("p", "empty", "Nessuno stage con questi filtri."));
+  return sec;
 }
 
 /* ---------- tutto insieme ---------- */
