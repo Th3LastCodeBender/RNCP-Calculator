@@ -202,12 +202,15 @@ const PROJECTS: Project[] = [
   { id: "internship-2", name: "Work Experience II", slug: "work-experience-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 188518, desc: "Seconda esperienza in azienda a tempo pieno, dopo la Work Experience I, con le stesse tappe sull'intra. Conta anche tra le esperienze professionali." },
   { id: "startup-internship", name: "Startup Experience", slug: "startup-experience", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 217666, desc: "Fondare una startup e lavorarci a tempo pieno per almeno sei mesi, seguiti da un tutor. Conta anche tra le esperienze professionali." },
   { id: "ftresume", name: "ft_resume", slug: "42_collaborative_resume", lang: "—", xp: 2100, people: [1, 1], blocks: [], tags: ["pro"], pdf: 224576, desc: "Un CV per rispondere a un'offerta di lavoro vera, costruito con un compagno: interviste a vicenda per riconoscere e raccontare i propri punti di forza." },
-  { id: "parttime-1", name: "Part Time I", slug: "part_time-i", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 206033, desc: "Lavoro part-time in azienda dopo il common core, in parallelo al cursus: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni." },
-  { id: "parttime-2", name: "Part Time II", slug: "part_time-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 220342, desc: "Secondo part-time in azienda, dopo il primo: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni." },
+  { id: "parttime-1", name: "Part Time I", slug: "part_time-i", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 206033, desc: "Lavoro part-time in azienda dopo il common core, in parallelo al cursus: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni. Conta anche tra le esperienze professionali." },
+  { id: "parttime-2", name: "Part Time II", slug: "part_time-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 220342, desc: "Secondo part-time in azienda, dopo il primo: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni. Conta anche tra le esperienze professionali." },
 ];
 const PROJECT_IDS = new Set(PROJECTS.map((pr) => pr.id));
 const isInternship = (pr: Project): boolean => pr.tags.includes("pro");
 const INTERNSHIPS = PROJECTS.filter(isInternship);
+// stage che l'intra conta tra le esperienze professionali (ft_resume è nel layer ma non è un'esperienza)
+const EXPERIENCE_IDS = new Set(["internship-1", "internship-2", "startup-internship", "parttime-1", "parttime-2"]);
+const isExperience = (pr: Project): boolean => EXPERIENCE_IDS.has(pr.id);
 
 // minimi del regolamento, dalle liste ufficiali RNCP dell'intra (lists/official/)
 const BLOCKS: Record<BlockId, Block> = {

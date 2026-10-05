@@ -78,6 +78,11 @@ function xpToLevel(xp: number): number {
 // XP che il piano aggiunge al livello attuale: i progetti scelti non ancora fatti (quelli fatti sono già nel livello)
 const pendingXp = (): number => sumXp(PROJECTS.filter(isPending));
 
+/* ---------- esperienze professionali: gli stage fatti più quelle scritte a mano ---------- */
+const doneExps = (): Project[] => PROJECTS.filter((pr) => isExperience(pr) && state.picked[pr.id] === "done");
+const pendingExps = (): Project[] => PROJECTS.filter((pr) => isExperience(pr) && isPending(pr));
+const totalExps = (): number => state.exps + doneExps().length;
+
 /* ---------- ordinamento (filtri ed export) ---------- */
 const SORT_NAMES: Record<SortKey, string> = { time: "Tempo", xp: "XP", people: "Persone", name: "Nome" };
 // il nome parte dalla A, i numeri dal più alto

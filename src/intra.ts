@@ -14,16 +14,21 @@ function mergeIntra(text: string): string {
   const login = plan.login || "intra";
   const prev = state.intra && state.intra.login === login ? state.intra.prev : {};
   for (const id of Object.keys(got)) if (!(id in prev)) prev[id] = state.picked[id] || "";
-  state.intra = { login, date: plan.date || "", prev };
+  const prevEvents = state.intra && state.intra.login === login ? state.intra.prevEvents : state.events;
+  state.intra = { login, date: plan.date || "", prev, prevEvents };
   Object.assign(state.picked, got);
   Object.assign(state.marks, cleanMarks(plan.marks));
   if (validLevel(plan.level)) state.level = plan.level;
+  // eventi: le iscrizioni a eventi già finiti, l'intra non dice le presenze; si correggono a mano
+  const events = typeof plan.events === "number" ? Math.min(plan.events, 99) : undefined;
+  if (validCount(events)) state.events = events;
   save();
   render();
   const statuses = Object.values(got);
   return "Dall'intra" + (plan.login ? " (" + plan.login + (plan.date ? ", " + plan.date : "") + ")" : "") + ": "
     + plural(statuses.filter((s) => s === "done").length, "fatto", "fatti") + ", "
-    + statuses.filter((s) => s === "doing").length + " in corso";
+    + statuses.filter((s) => s === "doing").length + " in corso"
+    + (validCount(events) ? ", " + plural(events, "evento", "eventi") + " (iscrizioni: controlla le presenze)" : "");
 }
 
 // file di npm run me aperto con "Carica" (plan-file.ts)
@@ -38,7 +43,7 @@ function renderSession(): void {
   const who = s ? s.login + (s.date ? " · " + s.date : "") : "";
   byId("auth-go").textContent = s ? "Aggiorna" : "Accedi con 42";
   byId("auth-go").title = s ? "Aggiorna i dati dall'intra" : "";
-  authMsg.textContent = authError || who || "Importa progetti, voti e livello dall'intra.";
+  authMsg.textContent = authError || who || "Importa progetti, voti, livello ed eventi dall'intra.";
   byId("auth-logout").hidden = !s;
   byId("intra-session").hidden = !s || !authBox.hidden;
   byId("intra-who").textContent = who;
@@ -48,12 +53,13 @@ function renderSession(): void {
 function logout(): void {
   const s = state.intra;
   if (!s) return;
-  if (!confirm("Dimenticare i dati dell'intra di " + s.login + "?\n\nI progetti importati tornano com'erano prima dell'import; voti e livello vengono tolti. Il resto del piano non cambia.")) return;
+  if (!confirm("Dimenticare i dati dell'intra di " + s.login + "?\n\nI progetti importati e gli eventi tornano com'erano prima dell'import; voti e livello vengono tolti. Il resto del piano non cambia.")) return;
   for (const [id, before] of Object.entries(s.prev)) {
     if (before) state.picked[id] = before; else delete state.picked[id];
     delete state.marks[id];
   }
   state.level = null;
+  if (validCount(s.prevEvents)) state.events = s.prevEvents;
   state.intra = null;
   authError = "";
   save();
@@ -64,7 +70,7 @@ byId("auth-logout").addEventListener("click", logout);
 
 /* ---------- "Accedi con 42" (sito pubblico, tramite il Cloudflare Worker) ---------- */
 // p: per slug dell'intra, ["d" fatto | "o" in corso, voto]
-interface IntraLogin { login: string; date: string; level: number | null; p: Record<string, ["d" | "o", number | null]> }
+interface IntraLogin { login: string; date: string; level: number | null; events?: number | null; p: Record<string, ["d" | "o", number | null]> }
 
 // dagli slug dell'intra al formato di npm run me (id della pagina), così passa da mergeIntra
 function intraToPlan(data: IntraLogin): string {
@@ -75,7 +81,7 @@ function intraToPlan(data: IntraLogin): string {
     status[pr.id] = got[0] === "d" ? "done" : "doing";
     if (got[0] === "d" && got[1] != null) marks[pr.id] = got[1];
   }
-  return JSON.stringify({ version: 2, source: "intra", login: data.login, date: data.date, level: data.level, picked: Object.keys(status), status, marks });
+  return JSON.stringify({ version: 2, source: "intra", login: data.login, date: data.date, level: data.level, events: data.events ?? undefined, picked: Object.keys(status), status, marks });
 }
 
 const authBox = byId("auth-box");

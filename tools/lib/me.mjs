@@ -18,6 +18,12 @@ function statusOf(pu) {
   return null;
 }
 
+// eventi già finiti a cui si è iscritti: l'API non dice se si era presenti, quindi è una stima per eccesso
+async function pastEvents(get, id) {
+  const now = new Date();
+  return (await get.all("/v2/users/" + id + "/events_users")).filter((eu) => eu.event && new Date(eu.event.end_at) < now).length;
+}
+
 /*
  * get: client dell'API (api42.mjs). Restituisce null se l'utente non esiste,
  * altrimenti { plan, rows } con plan da salvare/importare e rows [nome, stato, voto] da stampare.
@@ -51,6 +57,7 @@ export async function intraPlan(get, login) {
     login: me.login,
     date: new Date().toISOString().slice(0, 10),
     level: typeof cursus?.level === "number" ? cursus.level : null,
+    events: await pastEvents(get, me.id),
     picked: Object.keys(status),
     status,
     marks,

@@ -32,5 +32,5 @@ await writeFile(new URL(file, ROOT), JSON.stringify(plan, null, 2) + "\n");
 
 const n = Object.values(plan.status);
 console.log("\nScritto " + file + ": " + n.filter((s) => s === "done").length + " fatti, " + n.filter((s) => s === "doing").length + " in corso"
-  + (plan.level != null ? ", livello " + plan.level.toFixed(2) : "") + ".");
+  + (plan.level != null ? ", livello " + plan.level.toFixed(2) : "") + ", " + plan.events + " eventi passati (iscrizioni)" + ".");
 console.log("Nella pagina: Esporta > Importa dall'intra.");

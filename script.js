@@ -156,12 +156,15 @@ const PROJECTS = [
     { id: "internship-2", name: "Work Experience II", slug: "work-experience-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 188518, desc: "Seconda esperienza in azienda a tempo pieno, dopo la Work Experience I, con le stesse tappe sull'intra. Conta anche tra le esperienze professionali." },
     { id: "startup-internship", name: "Startup Experience", slug: "startup-experience", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 217666, desc: "Fondare una startup e lavorarci a tempo pieno per almeno sei mesi, seguiti da un tutor. Conta anche tra le esperienze professionali." },
     { id: "ftresume", name: "ft_resume", slug: "42_collaborative_resume", lang: "—", xp: 2100, people: [1, 1], blocks: [], tags: ["pro"], pdf: 224576, desc: "Un CV per rispondere a un'offerta di lavoro vera, costruito con un compagno: interviste a vicenda per riconoscere e raccontare i propri punti di forza." },
-    { id: "parttime-1", name: "Part Time I", slug: "part_time-i", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 206033, desc: "Lavoro part-time in azienda dopo il common core, in parallelo al cursus: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni." },
-    { id: "parttime-2", name: "Part Time II", slug: "part_time-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 220342, desc: "Secondo part-time in azienda, dopo il primo: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni." },
+    { id: "parttime-1", name: "Part Time I", slug: "part_time-i", lang: "—", xp: 42000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 206033, desc: "Lavoro part-time in azienda dopo il common core, in parallelo al cursus: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni. Conta anche tra le esperienze professionali." },
+    { id: "parttime-2", name: "Part Time II", slug: "part_time-ii", lang: "—", xp: 63000, people: [1, 1], blocks: [], tags: ["pro"], pdf: 220342, desc: "Secondo part-time in azienda, dopo il primo: contratto, valutazioni dell'azienda a metà e alla fine, video per i compagni. Conta anche tra le esperienze professionali." },
 ];
 const PROJECT_IDS = new Set(PROJECTS.map((pr) => pr.id));
 const isInternship = (pr) => pr.tags.includes("pro");
 const INTERNSHIPS = PROJECTS.filter(isInternship);
+// stage che l'intra conta tra le esperienze professionali (ft_resume è nel layer ma non è un'esperienza)
+const EXPERIENCE_IDS = new Set(["internship-1", "internship-2", "startup-internship", "parttime-1", "parttime-2"]);
+const isExperience = (pr) => EXPERIENCE_IDS.has(pr.id);
 // minimi del regolamento, dalle liste ufficiali RNCP dell'intra (lists/official/)
 const BLOCKS = {
     suite: { name: "Suite", minXp: 0, minN: 1 },
@@ -334,6 +337,10 @@ function xpToLevel(xp) {
 }
 // XP che il piano aggiunge al livello attuale: i progetti scelti non ancora fatti (quelli fatti sono già nel livello)
 const pendingXp = () => sumXp(PROJECTS.filter(isPending));
+/* ---------- esperienze professionali: gli stage fatti più quelle scritte a mano ---------- */
+const doneExps = () => PROJECTS.filter((pr) => isExperience(pr) && state.picked[pr.id] === "done");
+const pendingExps = () => PROJECTS.filter((pr) => isExperience(pr) && isPending(pr));
+const totalExps = () => state.exps + doneExps().length;
 /* ---------- ordinamento (filtri ed export) ---------- */
 const SORT_NAMES = { time: "Tempo", xp: "XP", people: "Persone", name: "Nome" };
 // il nome parte dalla A, i numeri dal più alto
@@ -550,7 +557,7 @@ const parseCount = (raw) => (/^\d{1,2}$/.test(raw) ? Number(raw) : undefined);
 const parseLevel = (raw) => (raw === "" ? null : validLevel(Number(raw)) ? Number(raw) : undefined);
 const mLevel = commonMeter("Livello", "Livello attuale nel 42cursus", parseLevel, (v) => { state.level = v; });
 const mEvents = commonMeter("Eventi", "Eventi a cui hai partecipato", parseCount, (v) => { state.events = v; });
-const mExps = commonMeter("Esperienze professionali", "Esperienze professionali validate", parseCount, (v) => { state.exps = v; });
+const mExps = commonMeter("Esperienze professionali", "Esperienze professionali validate fuori dagli stage della pagina", parseCount, (v) => { state.exps = v; });
 const typing = (m) => document.activeElement === m.input; // non riscrive il campo mentre ci scrivi
 function renderCommon() {
     const t = currentTitle();
@@ -570,15 +577,25 @@ function renderCommon() {
     }
     if (!typing(mLevel))
         mLevel.input.value = state.level == null ? "" : fmtLevel(state.level);
-    // eventi ed esperienze: si contano a mano, il piano non li cambia
-    paintCount(mEvents, state.events, t.events, "eventi");
-    paintCount(mExps, state.exps, t.exps, "esperienze");
+    // eventi: si contano a mano, il piano non li cambia
+    paintCount(mEvents, state.events, state.events, t.events, "eventi");
+    mEvents.info.title = state.intra ? "Dall'intra arrivano le iscrizioni a eventi già finiti, non le presenze: correggi se ne hai saltato qualcuno" : "";
+    // esperienze: il campo è per quelle fuori dalla pagina; gli stage fatti si aggiungono, quelli scelti alzano il piano
+    const done = doneExps(), pending = pendingExps(), have = totalExps();
+    paintCount(mExps, state.exps, have, t.exps, "esperienze", done.length, have + pending.length);
+    mExps.info.title = [
+        done.length ? "Fatti: " + done.map((pr) => pr.name).join(", ") : "",
+        pending.length ? "Nel piano: " + pending.map((pr) => pr.name).join(", ") : "",
+        "Nel campo: le esperienze validate che non sono stage della pagina",
+    ].filter(Boolean).join("\n");
 }
-function paintCount(m, have, need, unit) {
-    paintMeter(m, ratio(have, need), ratio(have, need));
-    m.info.textContent = "/" + need + " " + unit;
+// typed: il valore del campo; have: il totale; fromProjects: la parte che viene dai progetti fatti
+function paintCount(m, typed, have, need, unit, fromProjects = 0, planned = have) {
+    paintMeter(m, ratio(planned, need), ratio(have, need));
+    m.info.textContent = (fromProjects ? "+ " + fromProjects + " dagli stage " : "") + "/" + need + " " + unit
+        + (planned > have ? " → " + planned + " col piano" : "");
     if (!typing(m))
-        m.input.value = String(have);
+        m.input.value = String(typed);
 }
 /* ---------- tempo che resta: i progetti scelti non ancora fatti, uno dopo l'altro ---------- */
 function renderLeft() {
@@ -587,7 +604,7 @@ function renderLeft() {
     box.textContent = "";
     // tutto validato: blocchi dell'opzione e requisiti comuni (le Masteries non hanno requisiti)
     if (!state.masteries && optBlocks().every((id) => tally(id).valid) && state.level != null && state.level >= t.level
-        && state.events >= t.events && state.exps >= t.exps) {
+        && state.events >= t.events && totalExps() >= t.exps) {
         box.append(el("b", null, "Requisiti dell'" + t.name + " validati."), " Prima di fare domanda controlla sulla pagina RNCP dell'intra: è quella che fa fede.");
         return;
     }
@@ -1146,17 +1163,23 @@ function mergeIntra(text) {
     for (const id of Object.keys(got))
         if (!(id in prev))
             prev[id] = state.picked[id] || "";
-    state.intra = { login, date: plan.date || "", prev };
+    const prevEvents = state.intra && state.intra.login === login ? state.intra.prevEvents : state.events;
+    state.intra = { login, date: plan.date || "", prev, prevEvents };
     Object.assign(state.picked, got);
     Object.assign(state.marks, cleanMarks(plan.marks));
     if (validLevel(plan.level))
         state.level = plan.level;
+    // eventi: le iscrizioni a eventi già finiti, l'intra non dice le presenze; si correggono a mano
+    const events = typeof plan.events === "number" ? Math.min(plan.events, 99) : undefined;
+    if (validCount(events))
+        state.events = events;
     save();
     render();
     const statuses = Object.values(got);
     return "Dall'intra" + (plan.login ? " (" + plan.login + (plan.date ? ", " + plan.date : "") + ")" : "") + ": "
         + plural(statuses.filter((s) => s === "done").length, "fatto", "fatti") + ", "
-        + statuses.filter((s) => s === "doing").length + " in corso";
+        + statuses.filter((s) => s === "doing").length + " in corso"
+        + (validCount(events) ? ", " + plural(events, "evento", "eventi") + " (iscrizioni: controlla le presenze)" : "");
 }
 // file di npm run me aperto con "Carica" (plan-file.ts)
 function loadIntraFile(text) {
@@ -1169,7 +1192,7 @@ function renderSession() {
     const who = s ? s.login + (s.date ? " · " + s.date : "") : "";
     byId("auth-go").textContent = s ? "Aggiorna" : "Accedi con 42";
     byId("auth-go").title = s ? "Aggiorna i dati dall'intra" : "";
-    authMsg.textContent = authError || who || "Importa progetti, voti e livello dall'intra.";
+    authMsg.textContent = authError || who || "Importa progetti, voti, livello ed eventi dall'intra.";
     byId("auth-logout").hidden = !s;
     byId("intra-session").hidden = !s || !authBox.hidden;
     byId("intra-who").textContent = who;
@@ -1179,7 +1202,7 @@ function logout() {
     const s = state.intra;
     if (!s)
         return;
-    if (!confirm("Dimenticare i dati dell'intra di " + s.login + "?\n\nI progetti importati tornano com'erano prima dell'import; voti e livello vengono tolti. Il resto del piano non cambia."))
+    if (!confirm("Dimenticare i dati dell'intra di " + s.login + "?\n\nI progetti importati e gli eventi tornano com'erano prima dell'import; voti e livello vengono tolti. Il resto del piano non cambia."))
         return;
     for (const [id, before] of Object.entries(s.prev)) {
         if (before)
@@ -1189,6 +1212,8 @@ function logout() {
         delete state.marks[id];
     }
     state.level = null;
+    if (validCount(s.prevEvents))
+        state.events = s.prevEvents;
     state.intra = null;
     authError = "";
     save();
@@ -1207,7 +1232,7 @@ function intraToPlan(data) {
         if (got[0] === "d" && got[1] != null)
             marks[pr.id] = got[1];
     }
-    return JSON.stringify({ version: 2, source: "intra", login: data.login, date: data.date, level: data.level, picked: Object.keys(status), status, marks });
+    return JSON.stringify({ version: 2, source: "intra", login: data.login, date: data.date, level: data.level, events: data.events ?? undefined, picked: Object.keys(status), status, marks });
 }
 const authBox = byId("auth-box");
 const authMsg = byId("auth-msg");

@@ -122,7 +122,7 @@ const parseLevel = (raw: string): number | null | undefined => (raw === "" ? nul
 
 const mLevel = commonMeter("Livello", "Livello attuale nel 42cursus", parseLevel, (v) => { state.level = v; });
 const mEvents = commonMeter("Eventi", "Eventi a cui hai partecipato", parseCount, (v) => { state.events = v; });
-const mExps = commonMeter("Esperienze professionali", "Esperienze professionali validate", parseCount, (v) => { state.exps = v; });
+const mExps = commonMeter("Esperienze professionali", "Esperienze professionali validate fuori dagli stage della pagina", parseCount, (v) => { state.exps = v; });
 
 const typing = (m: CommonMeter): boolean => document.activeElement === m.input; // non riscrive il campo mentre ci scrivi
 
@@ -142,14 +142,24 @@ function renderCommon(): void {
     mLevel.info.title = planned < need ? "Col piano mancano " + fmt(Math.ceil(need - planned)) + " XP al livello " + t.level : "";
   }
   if (!typing(mLevel)) mLevel.input.value = state.level == null ? "" : fmtLevel(state.level);
-  // eventi ed esperienze: si contano a mano, il piano non li cambia
-  paintCount(mEvents, state.events, t.events, "eventi");
-  paintCount(mExps, state.exps, t.exps, "esperienze");
+  // eventi: si contano a mano, il piano non li cambia
+  paintCount(mEvents, state.events, state.events, t.events, "eventi");
+  mEvents.info.title = state.intra ? "Dall'intra arrivano le iscrizioni a eventi già finiti, non le presenze: correggi se ne hai saltato qualcuno" : "";
+  // esperienze: il campo è per quelle fuori dalla pagina; gli stage fatti si aggiungono, quelli scelti alzano il piano
+  const done = doneExps(), pending = pendingExps(), have = totalExps();
+  paintCount(mExps, state.exps, have, t.exps, "esperienze", done.length, have + pending.length);
+  mExps.info.title = [
+    done.length ? "Fatti: " + done.map((pr) => pr.name).join(", ") : "",
+    pending.length ? "Nel piano: " + pending.map((pr) => pr.name).join(", ") : "",
+    "Nel campo: le esperienze validate che non sono stage della pagina",
+  ].filter(Boolean).join("\n");
 }
-function paintCount(m: CommonMeter, have: number, need: number, unit: string): void {
-  paintMeter(m, ratio(have, need), ratio(have, need));
-  m.info.textContent = "/" + need + " " + unit;
-  if (!typing(m)) m.input.value = String(have);
+// typed: il valore del campo; have: il totale; fromProjects: la parte che viene dai progetti fatti
+function paintCount(m: CommonMeter, typed: number, have: number, need: number, unit: string, fromProjects = 0, planned = have): void {
+  paintMeter(m, ratio(planned, need), ratio(have, need));
+  m.info.textContent = (fromProjects ? "+ " + fromProjects + " dagli stage " : "") + "/" + need + " " + unit
+    + (planned > have ? " → " + planned + " col piano" : "");
+  if (!typing(m)) m.input.value = String(typed);
 }
 
 /* ---------- tempo che resta: i progetti scelti non ancora fatti, uno dopo l'altro ---------- */
@@ -159,7 +169,7 @@ function renderLeft(): void {
   box.textContent = "";
   // tutto validato: blocchi dell'opzione e requisiti comuni (le Masteries non hanno requisiti)
   if (!state.masteries && optBlocks().every((id) => tally(id).valid) && state.level != null && state.level >= t.level
-    && state.events >= t.events && state.exps >= t.exps) {
+    && state.events >= t.events && totalExps() >= t.exps) {
     box.append(el("b", null, "Requisiti dell'" + t.name + " validati."), " Prima di fare domanda controlla sulla pagina RNCP dell'intra: è quella che fa fede.");
     return;
   }

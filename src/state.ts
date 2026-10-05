@@ -4,7 +4,8 @@ type Team = "all" | "solo" | "group";
 type SortKey = "time" | "xp" | "people" | "name";
 
 // dati importati dall'intra: login, data e, per ogni progetto che l'import ha segnato, lo stato che aveva prima ("" = non scelto)
-interface IntraSession { login: string; date: string; prev: Record<string, Status | ""> }
+// prevEvents: gli eventi scritti prima dell'import, rimessi da "Esci"
+interface IntraSession { login: string; date: string; prev: Record<string, Status | "">; prevEvents?: number }
 
 interface State {
   // il piano: viene salvato

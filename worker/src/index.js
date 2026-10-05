@@ -58,6 +58,19 @@ function allowedReturn(env, ret) {
   }
 }
 
+// eventi già finiti a cui si è iscritti: l'API non dice se si era presenti, quindi è una stima per eccesso
+async function pastEvents(id, token) {
+  let n = 0;
+  for (let page = 1; page <= 10; page++) {
+    const res = await fetch(API + "/v2/users/" + id + "/events_users?per_page=100&page=" + page, { headers: { Authorization: "Bearer " + token } });
+    if (!res.ok) return null;
+    const items = await res.json();
+    n += items.filter((eu) => eu.event && new Date(eu.event.end_at) < new Date()).length;
+    if (items.length < 100) break;
+  }
+  return n;
+}
+
 const back = (ret, key, value) => Response.redirect(ret + "#" + key + "=" + value, 302);
 const text = (body, status) => new Response(body, { status, headers: { "Content-Type": "text/plain; charset=utf-8" } });
 
@@ -107,6 +120,7 @@ export default {
         login: me.login,
         date: new Date().toISOString().slice(0, 10),
         level: typeof cursus?.level === "number" ? cursus.level : null,
+        events: await pastEvents(me.id, access_token),
         p,
       };
       return back(ret, "intra", b64urlText(JSON.stringify(data)));
