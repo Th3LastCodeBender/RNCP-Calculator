@@ -5,11 +5,14 @@ const currentTitle = (): Title => TITLES[state.title];
 const optBlocks = (): BlockId[] => currentTitle().options[state.opt].blocks;
 const optName = (): string => currentTitle().options[state.opt].name;
 const otherTitle = (): Title => TITLES[state.title === 6 ? 7 : 6];
-// blocchi in cui un progetto conta nell'altro titolo (in tutte e due le sue opzioni)
-function otherBlocks(pr: Project): BlockId[] {
-  const all = Object.values(otherTitle().options).flatMap((o) => o.blocks);
+// blocchi in cui un progetto conta in un titolo (in tutte e due le sue opzioni)
+function titleBlocks(pr: Project, id: TitleId): BlockId[] {
+  const all = Object.values(TITLES[id].options).flatMap((o) => o.blocks);
   return pr.blocks.filter((b) => all.includes(b));
 }
+const otherBlocks = (pr: Project): BlockId[] => titleBlocks(pr, state.title === 6 ? 7 : 6);
+// progetti di un layer delle Masteries
+const layerProjects = (tag: Tag): Project[] => PROJECTS.filter((pr) => pr.tags.includes(tag));
 
 /* ---------- testi ---------- */
 const fmt = (n: number): string => n.toLocaleString("it-IT").replace(/\./g, " ");
@@ -152,7 +155,7 @@ const coverage = (blk: Block, n: number, xp: number): number =>
 function visible(pr: Project): boolean {
   const p = pr.people;
   if (state.only && !state.picked[pr.id]) return false;
-  if (state.both && !otherBlocks(pr).length) return false;
+  if (state.both && !state.masteries && !otherBlocks(pr).length) return false; // nelle Masteries il filtro è nascosto
   if (state.tags.size && !pr.tags.some((t) => state.tags.has(t))) return false; // basta una delle categorie accese
   if (state.team === "solo" && !(p && p[0] === 1)) return false;
   if (state.team === "group" && !(p && p[1] > 1)) return false;

@@ -37,6 +37,11 @@ const ratio = (have: number, need: number): number => Math.min(have / need, 1);
 function renderMeters(): void {
   const box = byId("meters");
   box.textContent = "";
+  box.classList.toggle("layers", state.masteries);
+  if (state.masteries) {
+    for (const tag of Object.keys(TAGS) as Tag[]) box.append(layerMeter(tag));
+    return;
+  }
   for (const id of optBlocks()) {
     const blk = BLOCKS[id], t = tally(id);
     const m = newMeter("meter", blk.name);
@@ -53,14 +58,35 @@ function renderMeters(): void {
     }
     m.box.title = "Fatti: " + plural(t.doneN, "progetto", "progetti") + (blk.minXp ? " · " + fmt(t.doneXp) + " XP" : "");
     m.box.append(nums);
-    // clic sulla barra: porta all'inizio del blocco
-    m.box.tabIndex = 0;
-    m.box.setAttribute("role", "link");
-    m.box.setAttribute("aria-label", "Vai al blocco " + blk.name);
-    m.box.addEventListener("click", () => goToBlock(id));
-    m.box.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToBlock(id); } });
+    linkToSection(m.box, id, "Vai al blocco " + blk.name);
     box.append(m.box);
   }
+}
+
+// layer delle Masteries: nessun minimo, la barra è la parte dei progetti del layer che hai scelto (piena: quelli fatti)
+function layerMeter(tag: Tag): HTMLElement {
+  const list = layerProjects(tag), chosen = list.filter((pr) => state.picked[pr.id]);
+  const made = chosen.filter((pr) => state.picked[pr.id] === "done");
+  const m = newMeter("meter", TAGS[tag]);
+  m.name.title = TAGS[tag];
+  paintMeter(m, chosen.length / list.length, made.length / list.length);
+  const nums = el("div", "meter-nums"), projects = el("span"), xp = el("span");
+  projects.append(el("b", null, String(chosen.length)), "/" + list.length, el("span", "meter-unit", " progetti"));
+  xp.append(el("b", null, fmt(sumXp(chosen))), " XP");
+  nums.append(projects, xp);
+  m.box.title = "Fatti: " + plural(made.length, "progetto", "progetti") + " · " + fmt(sumXp(made)) + " XP";
+  m.box.append(nums);
+  linkToSection(m.box, `m-${tag}`, "Vai al layer " + TAGS[tag]);
+  return m.box;
+}
+
+// clic sulla barra: porta all'inizio della sezione
+function linkToSection(box: HTMLElement, id: SectionId, label: string): void {
+  box.tabIndex = 0;
+  box.setAttribute("role", "link");
+  box.setAttribute("aria-label", label);
+  box.addEventListener("click", () => goToBlock(id));
+  box.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToBlock(id); } });
 }
 
 /* ---------- requisiti comuni: livello, eventi, esperienze ----------
@@ -131,13 +157,13 @@ function renderLeft(): void {
   const box = byId("plan-left"), t = currentTitle();
   box.title = "";
   box.textContent = "";
-  // tutto validato: blocchi dell'opzione e requisiti comuni
-  if (optBlocks().every((id) => tally(id).valid) && state.level != null && state.level >= t.level
+  // tutto validato: blocchi dell'opzione e requisiti comuni (le Masteries non hanno requisiti)
+  if (!state.masteries && optBlocks().every((id) => tally(id).valid) && state.level != null && state.level >= t.level
     && state.events >= t.events && state.exps >= t.exps) {
     box.append(el("b", null, "Requisiti dell'" + t.name + " validati."), " Prima di fare domanda controlla sulla pagina RNCP dell'intra: è quella che fa fede.");
     return;
   }
-  const left = PROJECTS.filter((pr) => isPending(pr) && pr.blocks.length); // gli stage non hanno una stima in ore
+  const left = PROJECTS.filter((pr) => isPending(pr) && !isInternship(pr)); // gli stage non hanno una stima in ore
   if (!left.length) {
     box.textContent = Object.keys(state.picked).length ? "Tutti i progetti scelti sono fatti." : "Scegli i progetti cliccando sulle card: qui vedrai quanto tempo ti resta.";
     return;
@@ -159,8 +185,8 @@ function renderLeft(): void {
 const refocus = (selector: string): void => document.querySelector<HTMLElement>(selector)?.focus();
 const blockNames = (ids: BlockId[]): string => ids.map((b) => BLOCKS[b].name).join(", ");
 
-// sezioni della pagina: i blocchi dell'opzione e gli stage
-type SectionId = BlockId | "exp";
+// sezioni della pagina: i blocchi dell'opzione e gli stage, o i layer delle Masteries
+type SectionId = BlockId | "exp" | `m-${Tag}`;
 
 function card(pr: Project, blockId: SectionId): HTMLElement {
   const status = state.picked[pr.id];
@@ -194,10 +220,18 @@ function card(pr: Project, blockId: SectionId): HTMLElement {
   c.append(top, factChips(pr));
   if (pr.tags.length) c.append(el("p", "tags-of", pr.tags.map((t) => TAGS[t]).join(" · ")));
   c.append(el("p", "desc", pr.desc));
-  const alsoHere = pr.blocks.filter((b) => b !== blockId && optBlocks().includes(b));
-  if (alsoHere.length) c.append(el("p", "also", "Conta anche in: " + blockNames(alsoHere)));
-  const alsoThere = otherBlocks(pr);
-  if (alsoThere.length) c.append(el("p", "also", "Conta anche nell'" + otherTitle().name + ": " + blockNames(alsoThere)));
+  if (state.masteries) {
+    // i layer sono già nella riga delle categorie: qui i blocchi RNCP in cui il progetto conta
+    for (const id of [6, 7] as TitleId[]) {
+      const there = titleBlocks(pr, id);
+      if (there.length) c.append(el("p", "also", "Conta nell'" + TITLES[id].name + ": " + blockNames(there)));
+    }
+  } else {
+    const alsoHere = pr.blocks.filter((b) => b !== blockId && optBlocks().includes(b));
+    if (alsoHere.length) c.append(el("p", "also", "Conta anche in: " + blockNames(alsoHere)));
+    const alsoThere = otherBlocks(pr);
+    if (alsoThere.length) c.append(el("p", "also", "Conta anche nell'" + otherTitle().name + ": " + blockNames(alsoThere)));
+  }
 
   const links = el("div", "links");
   const pdf = subjectPdf(pr);
@@ -250,6 +284,10 @@ const expandedDone = new Set<BlockId>();
 function renderBlocks(): void {
   const root = byId("blocks");
   root.textContent = "";
+  if (state.masteries) {
+    for (const tag of Object.keys(TAGS) as Tag[]) root.append(layerSection(tag));
+    return;
+  }
   for (const id of optBlocks()) {
     const blk = BLOCKS[id], t = tally(id);
     const list = sortProjects(PROJECTS.filter((pr) => pr.blocks.includes(id)));
@@ -257,15 +295,9 @@ function renderBlocks(): void {
     const hideRest = trimmable && !expandedDone.has(id);
     const shown = list.filter((pr) => visible(pr) && (!hideRest || state.picked[pr.id]));
 
-    const sec = el("details", "block");
-    sec.id = "block-" + id;
-    sec.open = !collapsed.has(id);
-    sec.addEventListener("toggle", () => { if (sec.open) collapsed.delete(id); else collapsed.add(id); });
-    const head = el("summary", "block-head");
     const title = el("h2", null, blk.name);
     if (t.covered) title.append(doneCheck(t.valid));
-    head.append(title, el("span", null, "Minimo " + blockRule(blk) + " · " + shown.length + " di " + list.length + " mostrati"));
-    sec.append(head);
+    const sec = sectionBox(id, title, "Minimo " + blockRule(blk) + " · " + shown.length + " di " + list.length + " mostrati");
 
     const hidden = list.filter((pr) => !state.picked[pr.id]).length;
     if (trimmable && hidden) {
@@ -279,32 +311,48 @@ function renderBlocks(): void {
       sec.append(note);
     }
 
-    if (shown.length) {
-      const grid = el("div", "grid");
-      for (const pr of shown) grid.append(card(pr, id));
-      sec.append(grid);
-    } else sec.append(el("p", "empty", "Nessun progetto con questi filtri."));
+    fillSection(sec, shown, id, "Nessun progetto con questi filtri.");
     root.append(sec);
   }
   root.append(internshipSection());
+}
+
+// sezione apribile, che ricorda se l'utente l'ha chiusa
+function sectionBox(id: SectionId, title: HTMLElement, info: string): HTMLDetailsElement {
+  const sec = el("details", "block");
+  sec.id = "block-" + id;
+  sec.open = !collapsed.has(id);
+  sec.addEventListener("toggle", () => { if (sec.open) collapsed.delete(id); else collapsed.add(id); });
+  const head = el("summary", "block-head");
+  head.append(title, el("span", null, info));
+  sec.append(head);
+  return sec;
+}
+function fillSection(sec: HTMLElement, shown: Project[], id: SectionId, empty: string): void {
+  if (shown.length) {
+    const grid = el("div", "grid");
+    for (const pr of shown) grid.append(card(pr, id));
+    sec.append(grid);
+  } else sec.append(el("p", "empty", empty));
+}
+
+// Masteries: un layer dell'holy graph, senza minimi; un progetto con più layer compare in ognuno
+function layerSection(tag: Tag): HTMLElement {
+  const list = sortProjects(layerProjects(tag));
+  const shown = list.filter(visible), chosen = list.filter((pr) => state.picked[pr.id]);
+  const id: SectionId = `m-${tag}`;
+  const sec = sectionBox(id, el("h2", null, TAGS[tag]),
+    plural(chosen.length, "scelto", "scelti") + ", " + fmt(sumXp(chosen)) + " XP · " + shown.length + " di " + list.length + " mostrati");
+  fillSection(sec, shown, id, "Nessun progetto con questi filtri.");
+  return sec;
 }
 
 // stage: non contano in nessun blocco, ma quelli scelti e non ancora fatti alzano il livello col piano
 function internshipSection(): HTMLElement {
   const list = sortProjects(INTERNSHIPS);
   const shown = list.filter(visible);
-  const sec = el("details", "block");
-  sec.id = "block-exp";
-  sec.open = !collapsed.has("exp");
-  sec.addEventListener("toggle", () => { if (sec.open) collapsed.delete("exp"); else collapsed.add("exp"); });
-  const head = el("summary", "block-head");
-  head.append(el("h2", null, "Esperienze professionali"), el("span", null, "XP per il livello · " + shown.length + " di " + list.length + " mostrati"));
-  sec.append(head);
-  if (shown.length) {
-    const grid = el("div", "grid");
-    for (const pr of shown) grid.append(card(pr, "exp"));
-    sec.append(grid);
-  } else sec.append(el("p", "empty", "Nessuno stage con questi filtri."));
+  const sec = sectionBox("exp", el("h2", null, "Esperienze professionali"), "XP per il livello · " + shown.length + " di " + list.length + " mostrati");
+  fillSection(sec, shown, "exp", "Nessuno stage con questi filtri.");
   return sec;
 }
 
@@ -313,6 +361,9 @@ const titleButtons = document.querySelectorAll<HTMLButtonElement>("[data-title]"
 const optButtons = document.querySelectorAll<HTMLButtonElement>("[data-opt]");
 const teamButtons = document.querySelectorAll<HTMLButtonElement>("[data-team]");
 const toTitle = (v: string | undefined): TitleId => (v === "7" ? 7 : 6);
+// il bottone è premuto: Masteries, o il titolo se le Masteries sono chiuse
+const titlePressed = (b: HTMLButtonElement): boolean =>
+  b.dataset.title === "m" ? state.masteries : !state.masteries && toTitle(b.dataset.title) === state.title;
 const toOpt = (v: string | undefined): OptionId => (v === "1" ? 1 : 2);
 const toTeam = (v: string | undefined): Team => (v === "solo" || v === "group" ? v : "all");
 const dayHoursInput = byId<HTMLInputElement>("day-hours");
@@ -323,7 +374,11 @@ const toSort = (v: string): SortKey => (v === "xp" || v === "people" || v === "n
 function render(): void {
   byId("common-rules").textContent = titleRules(currentTitle());
   renderCommon();
-  titleButtons.forEach((b) => b.setAttribute("aria-pressed", String(toTitle(b.dataset.title) === state.title)));
+  titleButtons.forEach((b) => b.setAttribute("aria-pressed", String(titlePressed(b))));
+  // le Masteries non hanno opzioni né requisiti comuni
+  byId("opts").hidden = state.masteries;
+  byId("common").hidden = state.masteries;
+  byId("both-box").hidden = state.masteries;
   // i nomi delle opzioni cambiano con il titolo
   optButtons.forEach((b) => {
     const opt = toOpt(b.dataset.opt);
@@ -348,7 +403,12 @@ function renderSort(): void {
 }
 
 /* ---------- comandi e filtri ---------- */
-titleButtons.forEach((b) => b.addEventListener("click", () => { state.title = toTitle(b.dataset.title); save(); render(); }));
+titleButtons.forEach((b) => b.addEventListener("click", () => {
+  state.masteries = b.dataset.title === "m";
+  if (!state.masteries) state.title = toTitle(b.dataset.title);
+  save();
+  render();
+}));
 optButtons.forEach((b) => b.addEventListener("click", () => { state.opt = toOpt(b.dataset.opt); save(); render(); }));
 teamButtons.forEach((b) => b.addEventListener("click", () => { state.team = toTeam(b.dataset.team); render(); }));
 byId("reset").addEventListener("click", () => { state.picked = {}; save(); render(); });
@@ -378,8 +438,9 @@ dayHoursInput.addEventListener("input", () => {
 });
 dayHoursInput.addEventListener("blur", () => { dayHoursInput.value = fmtDayHours(state.dayHours); dayHoursInput.removeAttribute("aria-invalid"); });
 
-// bottoni delle categorie: si accendono e spengono uno per uno
+// bottoni delle categorie: si accendono e spengono uno per uno; niente bottone per gli stage, che hanno già la loro sezione
 for (const t of Object.keys(TAGS) as Tag[]) {
+  if (t === "pro") continue;
   const b = el("button", null, TAGS[t]);
   b.type = "button";
   b.setAttribute("aria-pressed", "false");
@@ -433,8 +494,8 @@ function stickyBottom(): number {
     + (filters?.offsetHeight ?? 0);
 }
 
-// porta all'inizio del blocco, appena sotto le barre fisse, e lo apre se era chiuso
-function goToBlock(id: BlockId): void {
+// porta all'inizio della sezione, appena sotto le barre fisse, e la apre se era chiusa
+function goToBlock(id: SectionId): void {
   const sec = document.getElementById("block-" + id) as HTMLDetailsElement | null;
   if (!sec) return;
   sec.open = true;

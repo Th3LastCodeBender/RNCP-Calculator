@@ -1,9 +1,26 @@
 /* Esporta il piano: Markdown o PDF (stampa del browser di #report, visibile solo in stampa) */
 
-interface PlanSection { blk: Block; t: Tally; chosen: Project[] }
+// una sezione dell'export: un blocco dell'opzione (con minimo e stato) o un layer delle Masteries (t null)
+interface PlanSection { name: string; rule: string; progress: string; t: Tally | null; chosen: Project[] }
 
-const planSections = (): PlanSection[] =>
-  optBlocks().map((id) => ({ blk: BLOCKS[id], t: tally(id), chosen: sortProjects(PROJECTS.filter((pr) => pr.blocks.includes(id) && state.picked[pr.id])) }));
+function planSections(): PlanSection[] {
+  if (state.masteries)
+    return (Object.keys(TAGS) as Tag[]).map((tag) => {
+      const list = layerProjects(tag), chosen = sortProjects(list.filter((pr) => state.picked[pr.id]));
+      const made = chosen.filter((pr) => state.picked[pr.id] === "done");
+      return {
+        name: TAGS[tag], rule: plural(list.length, "progetto", "progetti") + " nel layer", t: null, chosen,
+        progress: chosen.length + "/" + list.length + " progetti · " + fmt(sumXp(chosen)) + " XP (fatti: " + made.length + ", " + fmt(sumXp(made)) + " XP)",
+      };
+    });
+  return optBlocks().map((id) => {
+    const blk = BLOCKS[id], t = tally(id);
+    return { name: blk.name, rule: blockRule(blk), progress: progress(blk, t), t, chosen: sortProjects(PROJECTS.filter((pr) => pr.blocks.includes(id) && state.picked[pr.id])) };
+  });
+}
+// "Piano RNCP 6" / "Piano Masteries" e, sotto, l'opzione
+const planTitle = (): string => "Piano " + (state.masteries ? "Masteries" : currentTitle().name);
+const planSubtitle = (): string => (state.masteries ? "Tutti i progetti dell'holy graph, per layer" : optName());
 
 // i progetti scelti nell'ordine dei filtri, ognuno una volta sola anche se conta in più blocchi
 const uniqueChosen = (secs: PlanSection[]): Project[] => sortProjects([...new Set(secs.flatMap((sec) => sec.chosen))]);
@@ -17,33 +34,36 @@ function totalLine(secs: PlanSection[], bold: (s: string) => string): string {
 }
 
 // "2/2 progetti · 13 650/10 000 XP (fatti: 1, 9450 XP)"
-const progress = ({ blk, t }: PlanSection): string =>
+const progress = (blk: Block, t: Tally): string =>
   t.n + "/" + blk.minN + " progetti" + (blk.minXp ? " · " + fmt(t.xp) + "/" + fmt(blk.minXp) + " XP" : "")
   + " (fatti: " + t.doneN + (blk.minXp ? ", " + fmt(t.doneXp) + " XP" : "") + ")";
-const blockState = (t: Tally): string => (t.valid ? "Validato" : t.covered ? "Coperto dal piano" : "Da completare");
-const blockIcon = (t: Tally): string => (t.valid ? "✅" : t.covered ? "☑️" : "⏳");
+const blockState = (t: Tally | null): string => (!t ? "" : t.valid ? "Validato" : t.covered ? "Coperto dal piano" : "Da completare");
+const blockIcon = (t: Tally | null): string => (!t ? "" : t.valid ? "✅ " : t.covered ? "☑️ " : "⏳ ");
+const isValid = (sec: PlanSection): boolean => !!sec.t?.valid;
 const statusOf = (pr: Project): string => STATUS_NAMES[state.picked[pr.id] || "todo"];
 const projectFacts = (pr: Project): string => [pr.lang, xpLabel(pr), timeLabel(pr), peopleLabel(pr)].join(" · ");
 
 /* ---------- Markdown ---------- */
 function planMarkdown(): string {
   const secs = planSections();
-  const title = currentTitle();
+  const table = state.masteries
+    ? ["| Layer | Progetti | Avanzamento |", "| --- | --- | --- |", ...secs.map((sec) => "| " + sec.name + " | " + sec.rule + " | " + sec.progress + " |")]
+    : ["| Blocco | Minimo | Avanzamento | Stato |", "| --- | --- | --- | --- |",
+      ...secs.map((sec) => "| " + sec.name + " | " + sec.rule + " | " + sec.progress + " | " + blockIcon(sec.t) + blockState(sec.t) + " |")];
   const lines: string[] = [
-    "# Piano " + title.name,
+    "# " + planTitle(),
     "",
-    "**" + optName() + "** · esportato il " + today() + " · ordine: " + sortLabel(),
+    "**" + planSubtitle() + "** · esportato il " + today() + " · ordine: " + sortLabel(),
     "",
     "## Riepilogo",
     "",
-    "| Blocco | Minimo | Avanzamento | Stato |",
-    "| --- | --- | --- | --- |",
-    ...secs.map((sec) => "| " + sec.blk.name + " | " + blockRule(sec.blk) + " | " + progress(sec) + " | " + blockIcon(sec.t) + " " + blockState(sec.t) + " |"),
+    ...table,
     "",
     totalLine(secs, (s) => "**" + s + "**"),
   ];
   for (const sec of secs) {
-    lines.push("", "## " + blockIcon(sec.t) + " " + sec.blk.name, "", "_" + progress(sec) + "_", "");
+    if (state.masteries && !sec.chosen.length) continue; // nelle Masteries solo i layer con progetti scelti
+    lines.push("", "## " + blockIcon(sec.t) + sec.name, "", "_" + sec.progress + "_", "");
     if (!sec.chosen.length) { lines.push("Nessun progetto scelto."); continue; }
     for (const pr of sec.chosen) {
       lines.push("- **" + pr.name + "** · _" + statusOf(pr) + "_ · " + projectFacts(pr) + " · [subject](" + pageUrl(pr) + ")");
@@ -111,20 +131,21 @@ function printPlan(): void {
   root.textContent = "";
 
   const head = el("header", "rep-head");
-  head.append(el("h1", null, "Piano " + currentTitle().name), el("p", null, optName() + " · esportato il " + today() + " · ordine: " + sortLabel()));
+  head.append(el("h1", null, planTitle()), el("p", null, planSubtitle() + " · esportato il " + today() + " · ordine: " + sortLabel()));
   const sum = el("div", "rep-summary");
   for (const sec of secs) {
-    const box = el("div", "rep-meter" + (sec.t.valid ? " done" : ""));
-    box.append(el("b", null, (sec.t.valid ? "✓ " : "") + sec.blk.name), el("span", null, blockState(sec.t) + " · " + progress(sec)));
+    const box = el("div", "rep-meter" + (isValid(sec) ? " done" : ""));
+    box.append(el("b", null, (isValid(sec) ? "✓ " : "") + sec.name), el("span", null, (sec.t ? blockState(sec.t) + " · " : "") + sec.progress));
     sum.append(box);
   }
   root.append(head, sum, el("p", "rep-total", totalLine(secs, (s) => s)), timelineSection(secs));
 
   for (const sec of secs) {
+    if (state.masteries && !sec.chosen.length) continue;
     const part = el("section", "rep-block");
-    const h = el("h2", null, sec.blk.name);
-    h.append(el("span", "rep-state" + (sec.t.valid ? " done" : ""), (sec.t.valid ? "✓ " : "") + blockState(sec.t)));
-    part.append(h, el("p", "rep-rule", "Minimo " + blockRule(sec.blk) + " · " + progress(sec)));
+    const h = el("h2", null, sec.name);
+    if (sec.t) h.append(el("span", "rep-state" + (isValid(sec) ? " done" : ""), (isValid(sec) ? "✓ " : "") + blockState(sec.t)));
+    part.append(h, el("p", "rep-rule", (sec.t ? "Minimo " : "") + sec.rule + " · " + sec.progress));
     if (!sec.chosen.length) part.append(el("p", "rep-empty", "Nessun progetto scelto."));
     for (const pr of sec.chosen) {
       const item = el("article", "rep-item");

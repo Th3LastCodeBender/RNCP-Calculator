@@ -494,5 +494,219 @@
   "unleashthebox": {
     "file": "unleashthebox.pdf",
     "url": "https://cdn.intra.42.fr/pdf/pdf/212058/en.subject.pdf"
+  },
+  "42_collaborative_resume": {
+    "file": "42_collaborative_resume.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/224576/en.subject.pdf"
+  },
+  "42cursus-42run": {
+    "file": "42cursus-42run.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210922/en.subject.pdf"
+  },
+  "42cursus-abstract-vm": {
+    "file": "42cursus-abstract-vm.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/202978/en.subject.pdf"
+  },
+  "42cursus-agent-smith": {
+    "file": "42cursus-agent-smith.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/224542/en.subject.pdf"
+  },
+  "42cursus-call-me-maybe": {
+    "file": "42cursus-call-me-maybe.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/222982/en.subject.pdf"
+  },
+  "42cursus-computorv1": {
+    "file": "42cursus-computorv1.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/215121/en.subject.pdf"
+  },
+  "42cursus-computorv2": {
+    "file": "42cursus-computorv2.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/214344/en.subject.pdf"
+  },
+  "42cursus-corewar": {
+    "file": "42cursus-corewar.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210342/en.subject.pdf"
+  },
+  "42cursus-death": {
+    "file": "42cursus-death.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210807/en.subject.pdf"
+  },
+  "42cursus-dr-quine": {
+    "file": "42cursus-dr-quine.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209490/en.subject.pdf"
+  },
+  "42cursus-ft_ls": {
+    "file": "42cursus-ft_ls.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221638/en.subject.pdf"
+  },
+  "42cursus-ft_ssl_des": {
+    "file": "42cursus-ft_ssl_des.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/215577/en.subject.pdf"
+  },
+  "42cursus-ft_ssl_rsa": {
+    "file": "42cursus-ft_ssl_rsa.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208589/en.subject.pdf"
+  },
+  "42cursus-ft_vox": {
+    "file": "42cursus-ft_vox.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210921/en.subject.pdf"
+  },
+  "42cursus-guimp": {
+    "file": "42cursus-guimp.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209598/en.subject.pdf"
+  },
+  "42cursus-in-the-shadows": {
+    "file": "42cursus-in-the-shadows.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208782/en.subject.pdf"
+  },
+  "42cursus-lem_in": {
+    "file": "42cursus-lem_in.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209596/en.subject.pdf"
+  },
+  "42cursus-mod1": {
+    "file": "42cursus-mod1.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209583/en.subject.pdf"
+  },
+  "42cursus-n-puzzle": {
+    "file": "42cursus-n-puzzle.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208613/en.subject.pdf"
+  },
+  "42cursus-particle-system": {
+    "file": "42cursus-particle-system.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/209511/en.subject.pdf"
+  },
+  "42cursus-rag-against-the-machine": {
+    "file": "42cursus-rag-against-the-machine.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221201/en.subject.pdf"
+  },
+  "42cursus-rubik": {
+    "file": "42cursus-rubik.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210522/en.subject.pdf"
+  },
+  "42cursus-rushes": {
+    "modules": [
+      {
+        "module": "42cursus-rushes-alcu",
+        "file": "42cursus-rushes/42cursus-rushes-alcu.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/208557/en.subject.pdf"
+      },
+      {
+        "module": "42cursus-rushes-yasl",
+        "file": "42cursus-rushes/42cursus-rushes-yasl.pdf",
+        "url": "https://cdn.intra.42.fr/pdf/pdf/208560/en.subject.pdf"
+      }
+    ]
+  },
+  "42cursus-scop": {
+    "file": "42cursus-scop.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/207998/en.subject.pdf"
+  },
+  "42cursus-shaderpixel": {
+    "file": "42cursus-shaderpixel.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212766/en.subject.pdf"
+  },
+  "42cursus-war": {
+    "file": "42cursus-war.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208605/en.subject.pdf"
+  },
+  "42cursus-xv": {
+    "file": "42cursus-xv.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208604/en.subject.pdf"
+  },
+  "ai-experimentation-rushes": {
+    "file": "ai-experimentation-rushes.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225721/en.subject.pdf"
+  },
+  "b": {
+    "file": "b.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225599/en.subject.pdf"
+  },
+  "cc1": {
+    "file": "cc1.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/216231/en.subject.pdf"
+  },
+  "datomic": {
+    "file": "datomic.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/229430/en.subject.pdf"
+  },
+  "ecomesh": {
+    "file": "ecomesh.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225716/en.subject.pdf"
+  },
+  "freddie-mercury": {
+    "file": "freddie-mercury.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210534/en.subject.pdf"
+  },
+  "ft_kleene": {
+    "file": "ft_kleene.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/229250/en.subject.pdf"
+  },
+  "ft_lex": {
+    "file": "ft_lex.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225594/en.subject.pdf"
+  },
+  "ft_minecraft": {
+    "file": "ft_minecraft.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/210607/en.subject.pdf"
+  },
+  "ft_newton": {
+    "file": "ft_newton.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/208929/en.subject.pdf"
+  },
+  "ft_yacc": {
+    "file": "ft_yacc.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/225601/en.subject.pdf"
+  },
+  "ftl_quantum": {
+    "file": "ftl_quantum.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/211194/en.subject.pdf"
+  },
+  "open-project": {
+    "file": "open-project.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/128727/en.subject.pdf"
+  },
+  "part_time-i": {
+    "file": "part_time-i.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/206033/en.subject.pdf"
+  },
+  "part_time-ii": {
+    "file": "part_time-ii.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/220342/en.subject.pdf"
+  },
+  "peace_break": {
+    "file": "peace_break.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/217800/en.subject.pdf"
+  },
+  "piscine-deep-learning": {
+    "file": "piscine-deep-learning.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/229391/en.subject.pdf"
+  },
+  "startup-experience": {
+    "file": "startup-experience.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/217666/en.subject.pdf"
+  },
+  "supercharge": {
+    "file": "supercharge.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/228208/en.subject.pdf"
+  },
+  "tokenzwap": {
+    "file": "tokenzwap.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/224502/en.subject.pdf"
+  },
+  "unity": {
+    "file": "unity.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/212063/en.subject.pdf"
+  },
+  "very_real_engine": {
+    "file": "very_real_engine.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/221911/en.subject.pdf"
+  },
+  "work-experience-i": {
+    "file": "work-experience-i.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/174994/en.subject.pdf"
+  },
+  "work-experience-ii": {
+    "file": "work-experience-ii.pdf",
+    "url": "https://cdn.intra.42.fr/pdf/pdf/188518/en.subject.pdf"
   }
 }

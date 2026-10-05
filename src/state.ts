@@ -9,6 +9,7 @@ interface IntraSession { login: string; date: string; prev: Record<string, Statu
 interface State {
   // il piano: viene salvato
   title: TitleId;
+  masteries: boolean; // al posto del titolo, la pagina Masteries: tutti i progetti divisi per layer
   opt: OptionId;
   picked: Record<string, Status>; // progetti scelti, con il loro stato
   marks: Record<string, number>; // voto finale dei progetti fatti, dall'intra
@@ -28,7 +29,7 @@ interface State {
 }
 
 const state: State = {
-  title: 6, opt: 2, picked: {}, marks: {}, level: null, events: 0, exps: 0, intra: null, dayHours: 8,
+  title: 6, masteries: false, opt: 2, picked: {}, marks: {}, level: null, events: 0, exps: 0, intra: null, dayHours: 8,
   team: "all", sort: "time", desc: true, only: false, both: false, tags: new Set(), q: "",
 };
 
@@ -53,9 +54,10 @@ function cleanMarks(raw: unknown): Record<string, number> {
 }
 
 // campi comuni al piano salvato nel browser e al file JSON; i valori non validi tornano al default
-interface SavedPlan { title?: unknown; opt?: unknown; marks?: unknown; level?: unknown; events?: unknown; exps?: unknown; dayHours?: unknown }
+interface SavedPlan { title?: unknown; masteries?: unknown; opt?: unknown; marks?: unknown; level?: unknown; events?: unknown; exps?: unknown; dayHours?: unknown }
 function applySaved(saved: SavedPlan, picked: Record<string, unknown>): void {
   state.title = saved.title === 7 ? 7 : 6;
+  state.masteries = saved.masteries === true;
   state.opt = saved.opt === 1 ? 1 : 2;
   state.picked = cleanPicked(picked);
   state.marks = cleanMarks(saved.marks);
@@ -78,7 +80,7 @@ try {
 } catch { /* storage non disponibile: la pagina funziona lo stesso */ }
 
 function save(): void {
-  const { title, opt, picked, marks, level, events, exps, intra, dayHours } = state;
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ title, opt, picked, marks, level, events, exps, intra, dayHours })); } catch {}
+  const { title, masteries, opt, picked, marks, level, events, exps, intra, dayHours } = state;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ title, masteries, opt, picked, marks, level, events, exps, intra, dayHours })); } catch {}
   writeLinked(); // e nel file collegato, se c'è (plan-file.ts)
 }

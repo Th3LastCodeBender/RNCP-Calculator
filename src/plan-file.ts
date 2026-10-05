@@ -6,6 +6,7 @@
 interface PlanFile {
   version: 1 | 2;
   title?: TitleId; // assente nei piani salvati prima dell'RNCP 7: vale 6
+  masteries?: boolean; // pagina Masteries aperta (il titolo resta quello di prima)
   opt: OptionId;
   picked: string[]; // tutti i progetti scelti (nei piani versione 1 l'unico campo: valgono "da fare")
   status?: Record<string, Status>; // dalla versione 2: lo stato di ogni progetto scelto
@@ -21,7 +22,7 @@ interface PlanFile {
 
 const planJson = (): string =>
   JSON.stringify({
-    version: 2, title: state.title, opt: state.opt, picked: Object.keys(state.picked), status: state.picked,
+    version: 2, title: state.title, masteries: state.masteries, opt: state.opt, picked: Object.keys(state.picked), status: state.picked,
     marks: state.marks, level: state.level, events: state.events, exps: state.exps, dayHours: state.dayHours,
   } satisfies PlanFile, null, 2);
 

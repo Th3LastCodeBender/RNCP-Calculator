@@ -297,6 +297,11 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 14px 28px;
 }
+/* Masteries: nove layer, colonne più strette */
+.meters.layers {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px 20px;
+}
 
 /* ogni misuratore: nome, barra e numeri; diventa verde quando il requisito è validato */
 .meter {

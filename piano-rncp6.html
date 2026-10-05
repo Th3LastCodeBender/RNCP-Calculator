@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RNCP Calculator</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="style.css?v=73453da6">
+<link rel="stylesheet" href="style.css?v=e2dbbf93">
 </head>
 <body>
 <div class="wrap">
@@ -33,8 +33,9 @@
       <div class="seg" role="group" aria-label="Titolo RNCP">
         <button type="button" id="title-6" data-title="6">RNCP 6</button>
         <button type="button" id="title-7" data-title="7">RNCP 7</button>
+        <button type="button" id="title-m" data-title="m" title="Tutti i progetti dell'holy graph fuori dal common core, divisi per layer">Masteries</button>
       </div>
-      <div class="seg" role="group" aria-label="Opzione del titolo">
+      <div class="seg" id="opts" role="group" aria-label="Opzione del titolo">
         <button type="button" id="opt-1" data-opt="1">Opzione 1 · Web e mobile</button>
         <button type="button" id="opt-2" data-opt="2">Opzione 2 · Software applicativo</button>
       </div>
@@ -87,7 +88,7 @@
       </div>
     </div>
     <label class="check" for="only"><input type="checkbox" id="only"> Scelti</label>
-    <label class="check" for="both" title="Solo i progetti che contano sia nell'RNCP 6 sia nell'RNCP 7"><input type="checkbox" id="both"> In comune RNCP 6 e 7</label>
+    <label class="check" id="both-box" for="both" title="Solo i progetti che contano sia nell'RNCP 6 sia nell'RNCP 7"><input type="checkbox" id="both"> In comune RNCP 6 e 7</label>
   </div>
 
   <main id="blocks"></main>
@@ -105,7 +106,7 @@
 <!-- riepilogo del piano, riempito da "Esporta PDF" e visibile solo in stampa -->
 <div class="report" id="report"></div>
 
-<script src="hours.js?v=3f962136"></script>
-<script src="script.js?v=a08731c8"></script>
+<script src="hours.js?v=d3c43f3c"></script>
+<script src="script.js?v=8f47bf4a"></script>
 </body>
 </html>

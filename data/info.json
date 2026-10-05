@@ -2002,7 +2002,7 @@
     "children": [],
     "subject": null,
     "session": 7004,
-    "updated": "2026-10-02"
+    "updated": "2026-10-05"
   },
   "unleashthebox": {
     "name": "UnleashTheBox",
@@ -2022,5 +2022,1122 @@
     "subject": "https://cdn.intra.42.fr/pdf/pdf/212058/en.subject.pdf",
     "session": 10209,
     "updated": "2026-10-02"
+  },
+  "42_collaborative_resume": {
+    "name": "ft_resume",
+    "xp": 2100,
+    "xpFromModules": false,
+    "hours": 15,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "communication",
+      "teamwork"
+    ],
+    "description": "Build your communication and self-reflection skills by working closely with a peer. Through mutual interviews, you’ll learn to recognize and express both your strengths and theirs—helping you craft genuine, effective resumes.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/224576/en.subject.pdf",
+    "session": 13952,
+    "updated": "2026-10-05"
+  },
+  "42cursus-42run": {
+    "name": "42run",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Gaming",
+      "OpenGL"
+    ],
+    "description": "Do you know the mobile game Temple Run? Time to settle and create it on your own! This OpenGL project aims to create a graphic game using the power of GPUs, manipulating 3D meshes, and implementing classical gameplay features.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210922/en.subject.pdf",
+    "session": 3429,
+    "updated": "2026-10-05"
+  },
+  "42cursus-abstract-vm": {
+    "name": "abstract-vm",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 504,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "C++",
+      "Virtual machine",
+      "Manipulation of abstract data"
+    ],
+    "description": "This project gets you back into the flow after the C++ piscine and involves creating a virtual machine capable of executing code in basic pseudo-ASM. You will use a stack for basic arithmetic operations, similar to the dc command.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/202978/en.subject.pdf",
+    "session": 3503,
+    "updated": "2026-10-05"
+  },
+  "42cursus-agent-smith": {
+    "name": "Agent smith",
+    "xp": 10042,
+    "xpFromModules": false,
+    "hours": 100,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "AI",
+      "Agentic"
+    ],
+    "description": "This is a project where you build an autonomous AI agent capable of reasoning, generating, executing, and iterating on code to solve programming challenges in a secure, sandboxed environment.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/224542/en.subject.pdf",
+    "session": 16280,
+    "updated": "2026-10-05"
+  },
+  "42cursus-call-me-maybe": {
+    "name": "Call Me Maybe",
+    "xp": 1764,
+    "xpFromModules": false,
+    "hours": 80,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "AI",
+      "Parsing",
+      "LLM"
+    ],
+    "description": "This project introduces function calling in Large Language Models by building a system that translates natural language prompts into structured function calls with typed arguments. You'll implement constrained decoding to guarantee valid JSON output, achieving near-perfect reliability with a small 0.5B parameter model, bridging the gap between human language and computer-executable operations.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/222982/en.subject.pdf",
+    "session": 16282,
+    "updated": "2026-10-05"
+  },
+  "42cursus-computorv1": {
+    "name": "computorv1",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Math",
+      "Polynomial"
+    ],
+    "description": "The goal of this project is to get acquainted with handling elementary math tools that may be helpful for other 42 projects. You will not “do math for doing math”, but to develop a progressive and relaxed approach to projects where these tools are needed. You can choose the language of your choice for this subject.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/215121/en.subject.pdf",
+    "session": 3424,
+    "updated": "2026-10-05"
+  },
+  "42cursus-computorv2": {
+    "name": "computorv2",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Math",
+      "Imaginary number"
+    ],
+    "description": "Now that you have programmed your equation solver, it’s time to go further. Computor V2 lets you create your own calculator from the command line, which will integrate your Computor V1 as well as functions for matrix calculus, function solving, calculations with complex numbers, and more.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/214344/en.subject.pdf",
+    "session": 3475,
+    "updated": "2026-10-05"
+  },
+  "42cursus-corewar": {
+    "name": "corewar",
+    "xp": 17500,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "General",
+      "Emulation",
+      "Optimisation"
+    ],
+    "description": "This project involves creating a virtual arena, and having simplistic-language programs fight each other. You will thus get acquainted with VM conception (with instructions it recognizes, registers, etc) and compilation problems of an assembly language in bytecode. In bonus, the pleasure to have your champions fight in the arena.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210342/en.subject.pdf",
+    "session": 3517,
+    "updated": "2026-10-05"
+  },
+  "42cursus-death": {
+    "name": "death",
+    "xp": 35700,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Low-level",
+      "Malware"
+    ],
+    "description": "Last virus project. Create with your Famine, Pestilence and War a real metamorphic code.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210807/en.subject.pdf",
+    "session": 3487,
+    "updated": "2026-10-05"
+  },
+  "42cursus-dr-quine": {
+    "name": "dr-quine",
+    "xp": 2520,
+    "xpFromModules": false,
+    "hours": 14,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "Optimisation"
+    ],
+    "description": "This small algo project will get you acquainted with auto-replication problems and confront the Kleene recursion theorem.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209490/en.subject.pdf",
+    "session": 3460,
+    "updated": "2026-10-05"
+  },
+  "42cursus-ft_ls": {
+    "name": "ft_ls",
+    "xp": 4200,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Unix",
+      "System"
+    ],
+    "description": "For knowing the filesystem inside out, and how files and directories are sorted, you will code by yourself one of the most used command: ls.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221638/en.subject.pdf",
+    "session": 3521,
+    "updated": "2026-10-05"
+  },
+  "42cursus-ft_ssl_des": {
+    "name": "ft_ssl_des",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Math"
+    ],
+    "description": "You will reimplement part of the OpenSSL program, specifically BASE64, DES-ECB, and DES-CBC.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/215577/en.subject.pdf",
+    "session": 3494,
+    "updated": "2026-10-05"
+  },
+  "42cursus-ft_ssl_rsa": {
+    "name": "ft_ssl_rsa",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Math"
+    ],
+    "description": "You will code your own random prime number generator and use it to make private RSA keys.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208589/en.subject.pdf",
+    "session": 3492,
+    "updated": "2026-10-05"
+  },
+  "42cursus-ft_vox": {
+    "name": "ft_vox",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Gaming",
+      "Optimisation",
+      "GPU"
+    ],
+    "description": "ft_vox is a project that introduces voxel engines, inspired by Minecraft, where you must create a randomly generated world.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210921/en.subject.pdf",
+    "session": 3491,
+    "updated": "2026-10-05"
+  },
+  "42cursus-guimp": {
+    "name": "guimp",
+    "xp": 12600,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": false,
+    "team": [
+      3,
+      3
+    ],
+    "objectives": [
+      "General",
+      "SDL2",
+      "GUI"
+    ],
+    "description": "The goal of this project is to create a graphic interface library. You will have to prove it works correctly with a small 2D image software. This library must as complete and modular as possible, the goal being to re-use it in future projects, whether for projects in the graphic branch or other projects of you training.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209598/en.subject.pdf",
+    "session": 3497,
+    "updated": "2026-10-05"
+  },
+  "42cursus-in-the-shadows": {
+    "name": "in-the-shadows",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Gaming",
+      "Shadowmatic"
+    ],
+    "description": "This project wants you to develop a complete game using a bit of algo and a lot of creativity.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208782/en.subject.pdf",
+    "session": 3451,
+    "updated": "2026-10-05"
+  },
+  "42cursus-lem_in": {
+    "name": "lem_in",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Optimisation",
+      "Algorithm"
+    ],
+    "description": "Your ant colony must move from on point to another. How do you do it in the shortest time possible? This project will get you acquainted with graph traversal algorithms: your program will have to intelligently select paths and precise movements used by the ants",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209596/en.subject.pdf",
+    "session": 3512,
+    "updated": "2026-10-05"
+  },
+  "42cursus-mod1": {
+    "name": "mod1",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Math",
+      "Simulation"
+    ],
+    "description": "This simulation graphic project will have you represent a surface in 3D, on which water will flow. Empirical or scientific (with many equations), recreate a wave, a tsunami or maybe just rain on your surface.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209583/en.subject.pdf",
+    "session": 3504,
+    "updated": "2026-10-05"
+  },
+  "42cursus-n-puzzle": {
+    "name": "n-puzzle",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Optimisation",
+      "Algorithm"
+    ],
+    "description": "We are going to create, in any language, a programme capable of solving N-puzzles of various sizes, as efficiently as possible.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208613/en.subject.pdf",
+    "session": 3427,
+    "updated": "2026-10-05"
+  },
+  "42cursus-particle-system": {
+    "name": "particle-system",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Optimisation",
+      "GPU"
+    ],
+    "description": "This infographics project is an introduction to the fascinating world of GPU programming. You will design a particle system while meeting performance constraints, using GPU libraries such as OpenGL, OpenCL, Metal, CUDA, Vulkan, WebGPU (...) to parallelize computations.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/209511/en.subject.pdf",
+    "session": 3452,
+    "updated": "2026-10-05"
+  },
+  "42cursus-rag-against-the-machine": {
+    "name": "RAG against the machine ",
+    "xp": 7717,
+    "xpFromModules": false,
+    "hours": 150,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "AI",
+      "Parsing",
+      "LLM"
+    ],
+    "description": "Build a Retrieval-Augmented Generation system that answers questions about codebases by retrieving relevant information and generating evidence-based responses, implementing intelligent chunking, efficient retrieval (TF-IDF/BM25)",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221201/en.subject.pdf",
+    "session": 16281,
+    "updated": "2026-10-05"
+  },
+  "42cursus-rubik": {
+    "name": "rubik",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Optimisation",
+      "Algorithm"
+    ],
+    "description": "Non-trivial algorithm project: Create a Rubik’s cube solver. You can choose the language you want for this project.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210522/en.subject.pdf",
+    "session": 3435,
+    "updated": "2026-10-05"
+  },
+  "42cursus-rushes": {
+    "name": "Rushes",
+    "xp": 10000,
+    "xpFromModules": false,
+    "hours": 125,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [],
+    "description": "Rushes are offered from time to time to discover unusual topics and face a 48h speed coding session.",
+    "children": [
+      "rushes-libunit",
+      "rushes-hotrace",
+      "42cursus-rushes-alcu",
+      "rushes-wong-kar-wai",
+      "42cursus-rushes-yasl",
+      "42cursus-rushes-wordle",
+      "rushes-connect4",
+      "rushes-retro-mfa",
+      "rushes-ft_shmup"
+    ],
+    "subject": null,
+    "session": 6550,
+    "updated": "2026-10-05"
+  },
+  "42cursus-scop": {
+    "name": "scop",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "GPU",
+      "Rendering"
+    ],
+    "description": "Your introduction to 3D rendering on the GPU using OpenGL, Vulkan, or Metal. Through this small graphical project, you'll explore the core concepts of modern 3D graphics.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/207998/en.subject.pdf",
+    "session": 3432,
+    "updated": "2026-10-05"
+  },
+  "42cursus-shaderpixel": {
+    "name": "shaderpixel",
+    "xp": 15750,
+    "xpFromModules": false,
+    "hours": 147,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "General",
+      "Shader"
+    ],
+    "description": "Now that you are familiar with 3D objects and basic rendering techniques, we can get serious now and really work in the space of the graphic card. It’s up to you to design and create the weirdest objects thanks to shaders programming.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212766/en.subject.pdf",
+    "session": 3496,
+    "updated": "2026-10-05"
+  },
+  "42cursus-war": {
+    "name": "war",
+    "xp": 35700,
+    "xpFromModules": false,
+    "hours": 196,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Cybersecurity",
+      "Low-level",
+      "Malware"
+    ],
+    "description": "Third virus project. Reuse Pestilence, and manage to have your binary modify its signature on runtime.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208605/en.subject.pdf",
+    "session": 3486,
+    "updated": "2026-10-05"
+  },
+  "42cursus-xv": {
+    "name": "xv",
+    "xp": 22000,
+    "xpFromModules": false,
+    "hours": 392,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Gaming",
+      "Game engine"
+    ],
+    "description": "This project was designed by the Daher company and has you develop a graphic interface under Unity for optimizing industrial processes.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208604/en.subject.pdf",
+    "session": 3450,
+    "updated": "2026-10-05"
+  },
+  "ai-experimentation-rushes": {
+    "name": "AI Experimentation Rushes",
+    "xp": 0,
+    "xpFromModules": false,
+    "hours": 480,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [],
+    "description": "",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225721/en.subject.pdf",
+    "session": 16640,
+    "updated": "2026-10-05"
+  },
+  "b": {
+    "name": "B",
+    "xp": 9450,
+    "xpFromModules": false,
+    "hours": 50,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Low-level",
+      "Compilation",
+      "B"
+    ],
+    "description": "The letter before C",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225599/en.subject.pdf",
+    "session": 12888,
+    "updated": "2026-10-05"
+  },
+  "cc1": {
+    "name": "cc1",
+    "xp": 50000,
+    "xpFromModules": false,
+    "hours": 300,
+    "solo": false,
+    "team": [
+      1,
+      2
+    ],
+    "objectives": [
+      "Computer science",
+      "Compilers",
+      "llvm"
+    ],
+    "description": "This project is about creating a C compiler",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/216231/en.subject.pdf",
+    "session": 13962,
+    "updated": "2026-10-05"
+  },
+  "datomic": {
+    "name": "Datomic",
+    "xp": 0,
+    "xpFromModules": false,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Databases",
+      "Data modelling"
+    ],
+    "description": "Datomic is a databases project. On a single self-contained VM you climb twenty levels across six engines (SQLite, PostgreSQL, Redis, ClickHouse, Neo4j and DuckDB), building up SQL and then moving on to columnar, key-value and graph stores. The point is not the syntax of six databases but knowing which tool fits which problem, and federating them instead of duplicating data. Every level draws from a bank of validated variants and your data is renamed for your login, so nobody hands you a solved copy. You discover the SQL yourself in a browser playground and prove it in a live review exam, with nothing to hand in.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/229430/en.subject.pdf",
+    "session": 16408,
+    "updated": "2026-10-05"
+  },
+  "ecomesh": {
+    "name": "Ecomesh",
+    "xp": 0,
+    "xpFromModules": false,
+    "hours": 200,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "Green IT",
+      "Artificial intelligence",
+      "Network & system administration"
+    ],
+    "description": "One deployment, one year, zero reset. A mesh of battery-powered sensors is dropped in a nature reserve with no way back in: no recharge, no replacement, no repair. Your job is not to build the network, it is to keep it alive and honest.\n You build, in code, a real carbon cost model of the system using the Software Carbon Intensity standard, accounting for both the energy the nodes spend and the carbon embodied in the hardware itself, including what is stranded for good when a node runs out of battery or wears out early. Then you design an adaptive policy that spreads component wear and places computation, so no single node burns out and drags a whole branch of the mesh down with it.\n Everything runs on real Contiki-NG firmware inside a headless Cooja / MSPSim emulation, on a procedurally generated scenario you have never seen and cannot memorize. By the end, you can explain every decision in terms of the Green Software Engineering principles it serves.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225716/en.subject.pdf",
+    "session": 16608,
+    "updated": "2026-10-05"
+  },
+  "freddie-mercury": {
+    "name": "freddie-mercury",
+    "xp": 12600,
+    "xpFromModules": false,
+    "hours": 336,
+    "solo": false,
+    "team": [
+      1,
+      2
+    ],
+    "objectives": [
+      "Game Developer"
+    ],
+    "description": "VR escape game",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210534/en.subject.pdf",
+    "session": 5244,
+    "updated": "2026-10-05"
+  },
+  "ft_kalman": {
+    "name": "ft_kalman",
+    "xp": 16800,
+    "xpFromModules": false,
+    "hours": 210,
+    "solo": false,
+    "team": null,
+    "objectives": [
+      "General",
+      "Math"
+    ],
+    "description": "Aboard a generic vehicle with flawed sensors, you will need to create a kalman filter in order to track his position coordinates. This project is a good introduction to signal filtering, matrix operations, gaussian noise and correlation.",
+    "children": [],
+    "subject": null,
+    "session": 7029,
+    "updated": "2026-10-05"
+  },
+  "ft_kleene": {
+    "name": "ft_kleene",
+    "xp": 0,
+    "xpFromModules": false,
+    "hours": 140,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Language theory",
+      "Automata theory",
+      "Chomsky hierarchy"
+    ],
+    "description": "Delve deep into the mathematics of computer science by learning how programming languages and compilers are built: through language theory and automata theory !",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/229250/en.subject.pdf",
+    "session": 11059,
+    "updated": "2026-10-05"
+  },
+  "ft_lex": {
+    "name": "ft_lex",
+    "xp": 15000,
+    "xpFromModules": false,
+    "hours": 250,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Computer science",
+      "lexical analysis",
+      "finite automata"
+    ],
+    "description": "A project about lexical analysis and finite automata. In this project you will implement a powerful regex engine",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225594/en.subject.pdf",
+    "session": 10187,
+    "updated": "2026-10-05"
+  },
+  "ft_minecraft": {
+    "name": "ft_minecraft",
+    "xp": 20750,
+    "xpFromModules": false,
+    "hours": 560,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Gaming",
+      "Game Engine",
+      "Procedural Generation"
+    ],
+    "description": "ft_minecraft is the continuation of ft_vox, with a more advanced approach to procedural generation, rendering techniques and networking.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/210607/en.subject.pdf",
+    "session": 7616,
+    "updated": "2026-10-05"
+  },
+  "ft_newton": {
+    "name": "ft_newton",
+    "xp": 24360,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": false,
+    "team": [
+      2,
+      2
+    ],
+    "objectives": [
+      "Gaming",
+      "Physic Engine"
+    ],
+    "description": "Basic physics engine - motion - gravity - collisions.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/208929/en.subject.pdf",
+    "session": 5678,
+    "updated": "2026-10-05"
+  },
+  "ft_yacc": {
+    "name": "ft_yacc",
+    "xp": 20000,
+    "xpFromModules": false,
+    "hours": 300,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Computer science",
+      "lexical analysis",
+      "finite automata"
+    ],
+    "description": "A project about syntactic analysis and stack automata",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/225601/en.subject.pdf",
+    "session": 10188,
+    "updated": "2026-10-05"
+  },
+  "ftl_quantum": {
+    "name": "Ftl_quantum",
+    "xp": 6500,
+    "xpFromModules": false,
+    "hours": 98,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Quantum programming"
+    ],
+    "description": "This project is an introduction to quantum programming. It will challenge you to create different quantum programs, and run them on a real quantum computer.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/211194/en.subject.pdf",
+    "session": 8351,
+    "updated": "2026-10-05"
+  },
+  "open-project": {
+    "name": "Open Project",
+    "xp": 31500,
+    "xpFromModules": false,
+    "hours": 4320,
+    "solo": false,
+    "team": [
+      4,
+      5
+    ],
+    "objectives": [
+      "Project management",
+      "Creation of specifications",
+      "Planning"
+    ],
+    "description": "This project offers the opportunity for long-term project management on a topic of your choice, including some computer science related elements. Collaborate with other 42 students and complete within 6 months.",
+    "children": [
+      "open-project-open-project-define-your-subject",
+      "open-project-open-project-complete-the-project"
+    ],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/128727/en.subject.pdf",
+    "session": 3946,
+    "updated": "2026-10-05"
+  },
+  "part_time-i": {
+    "name": "Part_Time I",
+    "xp": 42000,
+    "xpFromModules": false,
+    "hours": 2880,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Company Integration",
+      "Adaptation",
+      "Relationnal",
+      "Production constraints",
+      "Company Experience"
+    ],
+    "description": " Your first step in a company is an important milestone of your 42 training. This internship entails discovering the professional world and putting your work and adaptation skills at the service of the market. This is a first element for your resume and the opportunity to see emerge your future domain of interest. ",
+    "children": [
+      "part_time-i-part_time-i-contract-upload",
+      "part_time-i-part_time-i-duration",
+      "part_time-i-part_time-i-company-mid-evaluation",
+      "part_time-i-part_time-i-company-final-evaluation",
+      "part_time-i-part_time-i-peer-video"
+    ],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/206033/en.subject.pdf",
+    "session": 3961,
+    "updated": "2026-10-05"
+  },
+  "part_time-ii": {
+    "name": "Part_Time II",
+    "xp": 63000,
+    "xpFromModules": false,
+    "hours": 2880,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Company Integration",
+      "Adaptation",
+      "Relationnal",
+      "Production constraints",
+      "Company Experience"
+    ],
+    "description": " Your first step in a company is an important milestone of your 42 training. This internship entails discovering the professional world and putting your work and adaptation skills at the service of the market. This is a first element for your resume and the opportunity to see emerge your future domain of interest. ",
+    "children": [
+      "part_time-ii-part_time-ii-contract-upload",
+      "part_time-ii-part_time-ii-duration",
+      "part_time-ii-part_time-ii-company-mid-evaluation",
+      "part_time-ii-part_time-ii-company-final-evaluation",
+      "part_time-ii-part_time-ii-peer-video"
+    ],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/220342/en.subject.pdf",
+    "session": 3967,
+    "updated": "2026-10-05"
+  },
+  "peace_break": {
+    "name": "Peace_Break",
+    "xp": 9000,
+    "xpFromModules": false,
+    "hours": 150,
+    "solo": false,
+    "team": [
+      2,
+      3
+    ],
+    "objectives": [
+      "Mobile",
+      "Gaming"
+    ],
+    "description": "Inspired by the classic game 'Brick Breaker', this project is a great introduction to mobile development. You'll design a user-friendly interface, manage user data, implement core gameplay features, and gain key skills in mobile app creation.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/217800/en.subject.pdf",
+    "session": 11351,
+    "updated": "2026-10-05"
+  },
+  "piscine-deep-learning": {
+    "name": "Piscine Deep Learning",
+    "xp": 0,
+    "xpFromModules": false,
+    "hours": 35,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "DataScience",
+      "Data & AI",
+      "Neural Network"
+    ],
+    "description": "Presentation of the Deep Learning piscine and the modules to validate.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/229391/en.subject.pdf",
+    "session": 16718,
+    "updated": "2026-10-05"
+  },
+  "startup-experience": {
+    "name": "Startup Experience",
+    "xp": 63000,
+    "xpFromModules": false,
+    "hours": 900,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Company Integration",
+      "Adaptation",
+      "Relational",
+      "Production constraints",
+      "Company Experience"
+    ],
+    "description": "Successful professional integration remains one of the school’s fundamental objectives. This project offers you the opportunity to found a startup and work on it full-time for at least the next six months.",
+    "children": [
+      "startup-experience-startup-experience-contract-upload",
+      "startup-experience-startup-experience-duration",
+      "startup-experience-startup-experience-tutor-mid-evaluation",
+      "startup-experience-startup-experience-tutor-final-evaluation",
+      "startup-experience-startup-experience-peer-video"
+    ],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/217666/en.subject.pdf",
+    "session": 3973,
+    "updated": "2026-10-05"
+  },
+  "supercharge": {
+    "name": "Supercharge",
+    "xp": 12600,
+    "xpFromModules": false,
+    "hours": 140,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Web",
+      "Optimisation",
+      "Quantum programming"
+    ],
+    "description": "Go from a quantum algorithm to a real optimization problem. Build a web app that places electric vehicle charging stations on a real map, and compares a classical brute-force solver against a quantum QAOA solver to show why quantum matters at scale.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/228208/en.subject.pdf",
+    "session": 16289,
+    "updated": "2026-10-05"
+  },
+  "tokenzwap": {
+    "name": "TokenZwap",
+    "xp": 9000,
+    "xpFromModules": false,
+    "hours": 150,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "General",
+      "Web3"
+    ],
+    "description": "This project introduces you to the fundamentals of decentralized finance (DeFi). You will build an Automated Market Maker (AMM) where users can swap tokens and buy/sell NFTs!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/224502/en.subject.pdf",
+    "session": 15278,
+    "updated": "2026-10-05"
+  },
+  "unity": {
+    "name": "Unity",
+    "xp": 9450,
+    "xpFromModules": true,
+    "hours": 49,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Graphics",
+      "Adaptation and creativity",
+      "Object-oriented programming"
+    ],
+    "description": "Piscines are an important part of your curriculum, giving you the opportunity to learn a new language — or even explore a completely new paradigm!",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/212063/en.subject.pdf",
+    "session": 9207,
+    "updated": "2026-10-05"
+  },
+  "very_real_engine": {
+    "name": "Very_Real_Engine",
+    "xp": 30000,
+    "xpFromModules": false,
+    "hours": 600,
+    "solo": false,
+    "team": [
+      2,
+      4
+    ],
+    "objectives": [
+      "Gaming",
+      "Game Engine"
+    ],
+    "description": "Create and implement a library containing all necessary tools, notably a graphics engine and a physics engine.",
+    "children": [],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/221911/en.subject.pdf",
+    "session": 11352,
+    "updated": "2026-10-05"
+  },
+  "work-experience-i": {
+    "name": "Work Experience I",
+    "xp": 42000,
+    "xpFromModules": false,
+    "hours": 2880,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Company Integration",
+      "Adaptation",
+      "Relationnal",
+      "Production constraints",
+      "Company Experience"
+    ],
+    "description": "Your first step in a company is an important milestone in your 42 training. This employment project is designed to help you discover the professional world and apply your work ethic and adaptability in a real-world context. It represents a first asset for your resume and offers an opportunity to identify your future field of interest.",
+    "children": [
+      "work-experience-i-work-experience-i-contract-upload",
+      "work-experience-i-work-experience-i-duration",
+      "work-experience-i-work-experience-i-company-mid-evaluation",
+      "work-experience-i-work-experience-i-company-final-evaluation",
+      "work-experience-i-work-experience-i-peer-video"
+    ],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/174994/en.subject.pdf",
+    "session": 3949,
+    "updated": "2026-10-05"
+  },
+  "work-experience-ii": {
+    "name": "Work Experience II",
+    "xp": 63000,
+    "xpFromModules": false,
+    "hours": 2880,
+    "solo": true,
+    "team": [
+      1,
+      1
+    ],
+    "objectives": [
+      "Company Integration",
+      "Adaptation",
+      "Relationnal",
+      "Production constraints",
+      "Company Experience"
+    ],
+    "description": "  Your course 42 can be continued with a second period of professional integration: the second internship. This internship is the accomplishment of your journey, and will have you demonstrate your expertise professionally in a company. This will be the springboard for your career.",
+    "children": [
+      "work-experience-ii-work-experience-ii-contract-upload",
+      "work-experience-ii-work-experience-ii-duration",
+      "work-experience-ii-work-experience-ii-company-mid-evaluation",
+      "work-experience-ii-work-experience-ii-company-final-evaluation",
+      "work-experience-ii-work-experience-ii-peer-video"
+    ],
+    "subject": "https://cdn.intra.42.fr/pdf/pdf/188518/en.subject.pdf",
+    "session": 3955,
+    "updated": "2026-10-05"
   }
 }

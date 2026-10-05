@@ -6,10 +6,10 @@ Pagina per studenti di 42 (42cursus): scegli i progetti che hai fatto o vuoi far
 
 Scarica il repository (`git clone` oppure *Code → Download ZIP*) e apri **`piano-rncp6.html`** nel browser. Non serve installare niente.
 
-- In cima scegli il titolo (RNCP 6 o RNCP 7) e l'opzione: i riquadri mostrano progetti e XP per ogni blocco. La barra piena sono i progetti fatti, quella chiara il resto del piano. Un blocco coperto dal piano ha il bordo verde e la ✓ vuota; quando è validato con i progetti fatti diventa tutto verde.
+- In cima scegli il titolo (RNCP 6 o RNCP 7) e l'opzione, oppure **Masteries**: tutti i progetti dell'holy graph fuori dal common core, divisi per i layer dell'intra (un progetto con più layer compare in ognuno), con quanti ne hai scelti e gli XP per layer. Nelle card delle Masteries c'è in quali blocchi RNCP conta il progetto. Nei titoli RNCP: i riquadri mostrano progetti e XP per ogni blocco. La barra piena sono i progetti fatti, quella chiara il resto del piano. Un blocco coperto dal piano ha il bordo verde e la ✓ vuota; quando è validato con i progetti fatti diventa tutto verde.
 - Clicca una card per scegliere il progetto, poi segna lo stato: **Da fare** (blu), **In corso** (ambra) o **Fatto** (verde). Un altro clic sulla card lo toglie dal piano. Ogni card dice in quali altri blocchi conta, anche nell'altro titolo.
 - **Requisiti comuni**: sotto i blocchi scrivi livello attuale, eventi ed esperienze professionali. Il livello col piano somma gli XP dei progetti scelti non ancora fatti; in alto a destra c'è l'ETA, la data di fine stimata (i dettagli passando sopra).
-- Filtri: ricerca, da solo o in gruppo, solo i progetti scelti, categorie (Web, Kernel, IA/Data…). Le scelte valgono per entrambi i titoli: un progetto del 6 già scelto conta anche nei blocchi del 7. Nell'RNCP 7 un blocco già completo mostra solo i progetti scelti; "Mostra tutti" fa vedere anche gli altri.
+- Filtri: ricerca, da solo o in gruppo, solo i progetti scelti, categorie (i layer dell'holy graph: Algo & AI & Data, Security, Devops & Network, Web & Mobile, System & Kernel, Graphics & Gaming, Cryptography & Maths, Development, Professional Experience). Le scelte valgono per entrambi i titoli: un progetto del 6 già scelto conta anche nei blocchi del 7. Nell'RNCP 7 un blocco già completo mostra solo i progetti scelti; "Mostra tutti" fa vedere anche gli altri.
 - **Ore al giorno**: quante ore lavori in una giornata. I giorni stimati sono le ore indicate dall'intra divise per questo numero, con sabato e domenica liberi.
 - Il piano resta salvato nel browser. Con **Salva** e **Carica**, in alto a destra, lo salvi in un file JSON e lo ricarichi; **Esporta** lo esporta in Markdown o PDF (il PDF ha anche una linea del tempo dei progetti non ancora fatti).
 - **Accedi con 42**: sul sito pubblicato, il pulsante sopra i requisiti comuni porta al login dell'intra e torna con i tuoi progetti fatti e in corso, i voti e il livello. Ognuno vede solo i propri dati. Funziona tramite un Cloudflare Worker: come metterlo online è spiegato in [`worker/README.md`](worker/README.md).
@@ -21,11 +21,12 @@ Ogni card ha il link al **subject** ufficiale (PDF pubblico sul CDN di 42) e all
 
 Aggiornati a ottobre 2026:
 
+- **Masteries e layer**: holy graph e menu dei layer dell'intra (`project_data.json` e pagina del graph).
 - **Blocchi e minimi**: liste ufficiali RNCP della pagina dell'intra, copiate in [`lists/official/`](lists/official/).
 - **XP, ore stimate, dimensione dei team, link ai subject**: API di 42 e pagine dei progetti sull'intra.
 - **Descrizioni e linguaggi**: scritti a mano leggendo i subject.
 
-Alcuni progetti delle liste RNCP 7 hanno la pagina dell'intra riservata (risponde 403) e non sono nella pagina: Active Discovery, Automatic Directory, Administrative Directory, Accessible Directory, Active Connect, MicroForensX, ActiveTechTales, tinky-winkey e la Piscine Machine Learning (deprecata).
+Alcuni progetti delle liste RNCP 7 hanno la pagina dell'intra riservata (risponde 403) e non sono nella pagina: Active Discovery, Automatic Directory, Administrative Directory, Accessible Directory, Active Connect, MicroForensX, ActiveTechTales, tinky-winkey e la Piscine Machine Learning (deprecata). Per lo stesso motivo nelle Masteries manca ft_kalman. Gli stage hanno gli slug attuali dell'intra (Work Experience I e II, Startup Experience, Part Time I e II): i vecchi `internship-i`, `internship-ii` e `42cursus-startup-internship` danno 404.
 
 Gli XP sono quelli a voto 100, tranne per i progetti fatti importati dall'intra, che scalano col voto (125 = +25%). Requisiti comuni: livello 17 per l'RNCP 6 e 21 per l'RNCP 7 (tabella XP dei livelli dall'API di 42, tramite il dataset di 42calculator), eventi ed esperienze professionali. In caso di dubbio fa fede la pagina RNCP dell'intra.
 
