@@ -306,6 +306,15 @@ body {
   min-width: 0;
 }
 
+/* le barre dei blocchi portano al blocco */
+.meter[role="link"] {
+  cursor: pointer;
+}
+
+.meter[role="link"]:hover .meter-name {
+  text-decoration: underline;
+}
+
 .meter-top {
   display: flex;
   align-items: center;

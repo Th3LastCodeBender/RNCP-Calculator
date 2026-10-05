@@ -426,6 +426,15 @@ function renderMeters() {
         }
         m.box.title = "Fatti: " + plural(t.doneN, "progetto", "progetti") + (blk.minXp ? " · " + fmt(t.doneXp) + " XP" : "");
         m.box.append(nums);
+        // clic sulla barra: porta all'inizio del blocco
+        m.box.tabIndex = 0;
+        m.box.setAttribute("role", "link");
+        m.box.setAttribute("aria-label", "Vai al blocco " + blk.name);
+        m.box.addEventListener("click", () => goToBlock(id));
+        m.box.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            goToBlock(id);
+        } });
         box.append(m.box);
     }
 }
@@ -618,6 +627,7 @@ function renderBlocks() {
         const hideRest = trimmable && !expandedDone.has(id);
         const shown = list.filter((pr) => visible(pr) && (!hideRest || state.picked[pr.id]));
         const sec = el("details", "block");
+        sec.id = "block-" + id;
         sec.open = !collapsed.has(id);
         sec.addEventListener("toggle", () => { if (sec.open)
             collapsed.delete(id);
@@ -771,6 +781,25 @@ function queueCompact() {
         return;
     compactQueued = true;
     requestAnimationFrame(compactReqs);
+}
+// altezza delle barre fisse quando sono compatte, cioè dopo che lo scroll è arrivato a destinazione:
+// l'altezza attuale meno quanto devono ancora perdere ((1 - p) di selettori + 24 px)
+function stickyBottom() {
+    if (!wide.matches || !reqsBar || !reqsHead)
+        return 0;
+    const p = parseFloat(reqsBar.style.getPropertyValue("--p")) || 0;
+    const filters = document.querySelector(".filters");
+    return (parseFloat(getComputedStyle(reqsBar).top) || 0) + reqsBar.offsetHeight - (reqsHead.scrollHeight + 24) * (1 - p)
+        + (filters?.offsetHeight ?? 0);
+}
+// porta all'inizio del blocco, appena sotto le barre fisse, e lo apre se era chiuso
+function goToBlock(id) {
+    const sec = document.getElementById("block-" + id);
+    if (!sec)
+        return;
+    sec.open = true;
+    const top = sec.getBoundingClientRect().top + scrollY - stickyBottom() - 8;
+    scrollTo({ top, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 }
 addEventListener("scroll", queueCompact, { passive: true });
 addEventListener("resize", queueCompact);
