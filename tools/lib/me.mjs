@@ -1,7 +1,6 @@
 /*
  * I progetti di uno studente dall'API di 42, nel formato che la pagina importa
- * (Esporta > Importa dall'intra, o il campo "Login intra" con npm run serve).
- * Lo usano tools/fetch-me.mjs e tools/serve.mjs.
+ * (piano-intra.json, da aprire con "Carica"). Lo usa tools/fetch-me.mjs.
  */
 import { readFile } from "node:fs/promises";
 import { CURSUS_42 } from "./api42.mjs";

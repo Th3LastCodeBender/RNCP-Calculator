@@ -100,12 +100,14 @@ function renderCommon(): void {
   const need = levelToXp(t.level);
   if (state.level == null) {
     paintMeter(mLevel, 0, 0);
-    mLevel.info.textContent = "livello attuale · minimo " + t.level;
+    mLevel.info.textContent = "/" + t.level;
+    mLevel.info.title = "";
   } else {
     const have = levelToXp(state.level), pending = pendingXp(), planned = have + pending;
     paintMeter(mLevel, ratio(planned, need), ratio(have, need));
-    mLevel.info.textContent = (pending ? "→ " + fmtLevel(xpToLevel(planned)) + " col piano" : "nessun progetto da fare") + " · minimo " + t.level
-      + (planned < need ? " · mancano " + fmt(Math.ceil(need - planned)) + " XP" : "");
+    // "/17 → 15,32 col piano", come "/10 eventi"; gli XP che mancano passando sopra
+    mLevel.info.textContent = "/" + t.level + (pending ? " → " + fmtLevel(xpToLevel(planned)) + " col piano" : "");
+    mLevel.info.title = planned < need ? "Col piano mancano " + fmt(Math.ceil(need - planned)) + " XP al livello " + t.level : "";
   }
   if (!typing(mLevel)) mLevel.input.value = state.level == null ? "" : fmtLevel(state.level);
   // eventi ed esperienze: si contano a mano, il piano non li cambia
@@ -138,12 +140,12 @@ function renderLeft(): void {
   const missing = left.filter((pr) => hours(pr) == null);
   const h = sumHours(left);
   const days = calendarDays(workDays(h));
-  box.append("Restano ", el("b", null, plural(left.length, "progetto", "progetti")), (doing ? " (" + doing + " in corso)" : "") + ": ",
-    el("b", null, "~" + plural(days, "giorno", "giorni")),
-    (days < 7 ? "" : ", circa " + plural(Math.round(days / 7), "settimana", "settimane")) + ". Se inizi oggi finisci verso il ",
-    el("b", null, dateIn(days)), ".");
-  box.title = fmt(h) + " h stimate dall'intra a " + fmtDayHours(state.dayHours) + " h al giorno, weekend liberi; i progetti in corso contano per intero";
-  if (missing.length) box.append(" Senza stima: " + missing.map((pr) => pr.name).join(", ") + ".");
+  // solo la data; i dettagli passando sopra
+  box.append(el("b", "eta", "ETA: " + dateIn(days)));
+  box.title = plural(left.length, "progetto", "progetti") + " da fare" + (doing ? " (" + doing + " in corso)" : "")
+    + ": ~" + plural(days, "giorno", "giorni") + ", " + fmt(h) + " h stimate dall'intra a " + fmtDayHours(state.dayHours)
+    + " h al giorno, weekend liberi; i progetti in corso contano per intero"
+    + (missing.length ? ". Senza stima: " + missing.map((pr) => pr.name).join(", ") : "") + ".";
 }
 
 /* ---------- card dei progetti ---------- */

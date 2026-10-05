@@ -394,18 +394,12 @@ body {
   color: var(--ok);
 }
 
-/* "Login intra [jdoe] [Importa dall'intra]", solo con npm run serve */
-/* una riga: "Accedi con 42" a sinistra, "Login intra" (solo server locale) a destra */
+/* una riga: "Accedi con 42" a sinistra, tempo che resta a destra */
 .intra-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: 8px 16px;
-}
-
-.intra-bar:not(:has(> :not([hidden]))) {
-  display: none;
 }
 
 .intra {
@@ -414,21 +408,6 @@ body {
   align-items: center;
   gap: 8px 10px;
   font-size: 14px;
-}
-
-.intra label {
-  font-weight: 600;
-}
-
-.intra input {
-  width: 12em;
-  max-width: 100%;
-  padding: 6px 10px;
-  font: inherit;
-  color: var(--ink);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 7px;
 }
 
 .intra button {
@@ -462,9 +441,24 @@ body {
 
 /* "Restano 5 progetti: ~84 giorni…" */
 .plan-left {
-  margin: 0;
+  margin: 0 0 0 auto;
+  text-align: right;
   font-size: 14px;
   color: var(--muted);
+}
+
+/* "ETA: 28 apr 2027" */
+.plan-left .eta {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* su schermi stretti va sotto il login, allineata a sinistra */
+@media (max-width: 859px) {
+  .plan-left {
+    margin-left: 0;
+    text-align: left;
+  }
 }
 
 .plan-left b {

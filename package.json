@@ -12,7 +12,7 @@
     "subjects:summary": "node tools/subjects-summary.mjs",
     "rncp": "node tools/rncp-lists.mjs",
     "me": "node --env-file-if-exists=.env tools/fetch-me.mjs",
-    "serve": "node --env-file-if-exists=.env tools/serve.mjs"
+    "serve": "node tools/serve.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.0"

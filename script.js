@@ -465,13 +465,15 @@ function renderCommon() {
     const need = levelToXp(t.level);
     if (state.level == null) {
         paintMeter(mLevel, 0, 0);
-        mLevel.info.textContent = "livello attuale · minimo " + t.level;
+        mLevel.info.textContent = "/" + t.level;
+        mLevel.info.title = "";
     }
     else {
         const have = levelToXp(state.level), pending = pendingXp(), planned = have + pending;
         paintMeter(mLevel, ratio(planned, need), ratio(have, need));
-        mLevel.info.textContent = (pending ? "→ " + fmtLevel(xpToLevel(planned)) + " col piano" : "nessun progetto da fare") + " · minimo " + t.level
-            + (planned < need ? " · mancano " + fmt(Math.ceil(need - planned)) + " XP" : "");
+        // "/17 → 15,32 col piano", come "/10 eventi"; gli XP che mancano passando sopra
+        mLevel.info.textContent = "/" + t.level + (pending ? " → " + fmtLevel(xpToLevel(planned)) + " col piano" : "");
+        mLevel.info.title = planned < need ? "Col piano mancano " + fmt(Math.ceil(need - planned)) + " XP al livello " + t.level : "";
     }
     if (!typing(mLevel))
         mLevel.input.value = state.level == null ? "" : fmtLevel(state.level);
@@ -505,10 +507,12 @@ function renderLeft() {
     const missing = left.filter((pr) => hours(pr) == null);
     const h = sumHours(left);
     const days = calendarDays(workDays(h));
-    box.append("Restano ", el("b", null, plural(left.length, "progetto", "progetti")), (doing ? " (" + doing + " in corso)" : "") + ": ", el("b", null, "~" + plural(days, "giorno", "giorni")), (days < 7 ? "" : ", circa " + plural(Math.round(days / 7), "settimana", "settimane")) + ". Se inizi oggi finisci verso il ", el("b", null, dateIn(days)), ".");
-    box.title = fmt(h) + " h stimate dall'intra a " + fmtDayHours(state.dayHours) + " h al giorno, weekend liberi; i progetti in corso contano per intero";
-    if (missing.length)
-        box.append(" Senza stima: " + missing.map((pr) => pr.name).join(", ") + ".");
+    // solo la data; i dettagli passando sopra
+    box.append(el("b", "eta", "ETA: " + dateIn(days)));
+    box.title = plural(left.length, "progetto", "progetti") + " da fare" + (doing ? " (" + doing + " in corso)" : "")
+        + ": ~" + plural(days, "giorno", "giorni") + ", " + fmt(h) + " h stimate dall'intra a " + fmtDayHours(state.dayHours)
+        + " h al giorno, weekend liberi; i progetti in corso contano per intero"
+        + (missing.length ? ". Senza stima: " + missing.map((pr) => pr.name).join(", ") : "") + ".";
 }
 /* ---------- card dei progetti ---------- */
 // dopo un render la card è nuova: rimette il focus dove l'utente l'aveva
@@ -956,9 +960,8 @@ importFile.addEventListener("change", async () => {
         fail(err);
     }
 });
-/* Import dall'intra: progetti fatti e in corso, voti e livello. Tre strade, tutte nel formato di npm run me:
+/* Import dall'intra: progetti fatti e in corso, voti e livello. Due strade, tutte nel formato di npm run me:
  * - il file piano-intra.json scritto da npm run me, aperto con "Carica"
- * - il server locale di npm run serve, che legge l'API di 42 dal login scritto nella pagina
  * - "Accedi con 42" sul sito pubblico: il Cloudflare Worker fa il login OAuth e torna con #intra=<base64url(json)>
  */
 // aggiorna stati, voti e livello e lascia com'è il resto del piano (i "da fare", il titolo, l'opzione);
@@ -987,7 +990,6 @@ function mergeIntra(text) {
         + plural(statuses.filter((s) => s === "done").length, "fatto", "fatti") + ", "
         + statuses.filter((s) => s === "doing").length + " in corso";
 }
-const levelNote = () => (state.level != null ? ", livello " + fmtLevel(state.level) : "");
 // file di npm run me aperto con "Carica" (plan-file.ts)
 function loadIntraFile(text) {
     setStatus(mergeIntra(text));
@@ -1020,70 +1022,12 @@ function logout() {
     }
     state.level = null;
     state.intra = null;
-    try {
-        localStorage.removeItem(LOGIN_KEY);
-    }
-    catch { }
-    intraLogin.value = "";
     authError = "";
-    intraMsg.textContent = "";
     save();
     render();
 }
 byId("intra-logout").addEventListener("click", logout);
 byId("auth-logout").addEventListener("click", logout);
-/* ---------- server locale (npm run serve): la pagina chiede il login, il server legge l'API di 42 ---------- */
-const intraForm = byId("intra-form");
-const intraLogin = byId("intra-login");
-const intraGo = byId("intra-go");
-const intraMsg = byId("intra-msg");
-const LOGIN_KEY = "rncp-intra-login";
-try {
-    intraLogin.value = localStorage.getItem(LOGIN_KEY) || "";
-}
-catch { }
-// il modulo compare solo se risponde il server locale
-async function checkServer() {
-    if (!location.protocol.startsWith("http"))
-        return; // aperta come file: niente server
-    try {
-        const res = await fetch("api/ping", { cache: "no-store" });
-        if (!res.ok)
-            return; // GitHub Pages o un altro server statico
-        const info = (await res.json());
-        intraForm.hidden = false;
-        if (!info.intra) {
-            intraLogin.disabled = intraGo.disabled = true;
-            intraMsg.textContent = "Mancano FT_UID e FT_SECRET in .env: vedi tools/README.md.";
-        }
-    }
-    catch { /* nessun server locale */ }
-}
-intraForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!intraLogin.checkValidity())
-        return;
-    const login = intraLogin.value.trim().toLowerCase();
-    try {
-        localStorage.setItem(LOGIN_KEY, login);
-    }
-    catch { }
-    intraGo.disabled = true;
-    intraMsg.textContent = "Lettura dall'intra…";
-    try {
-        const res = await fetch("api/me?login=" + encodeURIComponent(login), { cache: "no-store" });
-        const text = await res.text();
-        if (!res.ok)
-            throw new Error(JSON.parse(text).error || "HTTP " + res.status);
-        intraMsg.textContent = mergeIntra(text) + levelNote() + ".";
-    }
-    catch (err) {
-        intraMsg.textContent = "Import non riuscito: " + (err instanceof Error ? err.message : String(err));
-    }
-    finally {
-        intraGo.disabled = false;
-    }
-});
 // dagli slug dell'intra al formato di npm run me (id della pagina), così passa da mergeIntra
 function intraToPlan(data) {
     const status = {}, marks = {};
@@ -1283,4 +1227,3 @@ byId("export-pdf").addEventListener("click", printPlan);
 /* Avvio: tutti gli altri file hanno già collegato i pulsanti */
 render();
 void restoreLink().then(readAuthReturn); // dopo l'eventuale file collegato, che altrimenti sovrascriverebbe l'import
-void checkServer();

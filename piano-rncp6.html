@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RNCP Calculator</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="style.css?v=c61f5333">
+<link rel="stylesheet" href="style.css?v=7a4098c6">
 </head>
 <body>
 <div class="wrap">
@@ -44,7 +44,7 @@
 
   <!-- requisiti comuni e tempo che resta: fuori dalla barra fissa, scorrono con la pagina -->
   <section class="reqs reqs-common" aria-label="Requisiti comuni">
-    <!-- accesso all'intra a sinistra, import dal server locale a destra -->
+    <!-- accesso all'intra a sinistra, tempo che resta a destra -->
     <div class="intra-bar">
       <!-- "Accedi con 42": data-auth è l'indirizzo del Cloudflare Worker (worker/README.md); vuoto = pulsante nascosto -->
       <div class="intra" id="auth-box" data-auth="https://rncp-calculator.rncp-calculator-worker.workers.dev" hidden>
@@ -57,16 +57,9 @@
         <span class="intra-msg" id="intra-who"></span>
         <button type="button" class="link" id="intra-logout">Esci</button>
       </div>
-      <!-- visibile solo con npm run serve: il server locale legge i progetti dall'API di 42 -->
-      <form class="intra" id="intra-form" hidden>
-        <label for="intra-login">Login intra</label>
-        <input type="text" id="intra-login" autocomplete="username" spellcheck="false" placeholder="es. jdoe" required pattern="[A-Za-z0-9\-]{2,32}">
-        <button type="submit" id="intra-go">Importa dall'intra</button>
-        <span class="intra-msg" id="intra-msg" role="status"></span>
-      </form>
+      <p class="plan-left" id="plan-left" role="status"></p>
     </div>
     <div class="meters" id="common"></div>
-    <p class="plan-left" id="plan-left" role="status"></p>
   </section>
 
   <div class="filters">
@@ -113,6 +106,6 @@
 <div class="report" id="report"></div>
 
 <script src="hours.js?v=3f962136"></script>
-<script src="script.js?v=b97a42e2"></script>
+<script src="script.js?v=552c7f5c"></script>
 </body>
 </html>

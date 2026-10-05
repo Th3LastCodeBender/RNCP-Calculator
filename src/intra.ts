@@ -1,6 +1,5 @@
-/* Import dall'intra: progetti fatti e in corso, voti e livello. Tre strade, tutte nel formato di npm run me:
+/* Import dall'intra: progetti fatti e in corso, voti e livello. Due strade, tutte nel formato di npm run me:
  * - il file piano-intra.json scritto da npm run me, aperto con "Carica"
- * - il server locale di npm run serve, che legge l'API di 42 dal login scritto nella pagina
  * - "Accedi con 42" sul sito pubblico: il Cloudflare Worker fa il login OAuth e torna con #intra=<base64url(json)>
  */
 
@@ -26,7 +25,6 @@ function mergeIntra(text: string): string {
     + plural(statuses.filter((s) => s === "done").length, "fatto", "fatti") + ", "
     + statuses.filter((s) => s === "doing").length + " in corso";
 }
-const levelNote = (): string => (state.level != null ? ", livello " + fmtLevel(state.level) : "");
 
 // file di npm run me aperto con "Carica" (plan-file.ts)
 function loadIntraFile(text: string): void {
@@ -57,57 +55,12 @@ function logout(): void {
   }
   state.level = null;
   state.intra = null;
-  try { localStorage.removeItem(LOGIN_KEY); } catch {}
-  intraLogin.value = "";
   authError = "";
-  intraMsg.textContent = "";
   save();
   render();
 }
 byId("intra-logout").addEventListener("click", logout);
 byId("auth-logout").addEventListener("click", logout);
-
-/* ---------- server locale (npm run serve): la pagina chiede il login, il server legge l'API di 42 ---------- */
-const intraForm = byId<HTMLFormElement>("intra-form");
-const intraLogin = byId<HTMLInputElement>("intra-login");
-const intraGo = byId<HTMLButtonElement>("intra-go");
-const intraMsg = byId("intra-msg");
-const LOGIN_KEY = "rncp-intra-login";
-try { intraLogin.value = localStorage.getItem(LOGIN_KEY) || ""; } catch {}
-
-// il modulo compare solo se risponde il server locale
-async function checkServer(): Promise<void> {
-  if (!location.protocol.startsWith("http")) return; // aperta come file: niente server
-  try {
-    const res = await fetch("api/ping", { cache: "no-store" });
-    if (!res.ok) return; // GitHub Pages o un altro server statico
-    const info = (await res.json()) as { intra?: boolean };
-    intraForm.hidden = false;
-    if (!info.intra) {
-      intraLogin.disabled = intraGo.disabled = true;
-      intraMsg.textContent = "Mancano FT_UID e FT_SECRET in .env: vedi tools/README.md.";
-    }
-  } catch { /* nessun server locale */ }
-}
-
-intraForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  if (!intraLogin.checkValidity()) return;
-  const login = intraLogin.value.trim().toLowerCase();
-  try { localStorage.setItem(LOGIN_KEY, login); } catch {}
-  intraGo.disabled = true;
-  intraMsg.textContent = "Lettura dall'intra…";
-  try {
-    const res = await fetch("api/me?login=" + encodeURIComponent(login), { cache: "no-store" });
-    const text = await res.text();
-    if (!res.ok) throw new Error((JSON.parse(text) as { error?: string }).error || "HTTP " + res.status);
-    intraMsg.textContent = mergeIntra(text) + levelNote() + ".";
-  } catch (err) {
-    intraMsg.textContent = "Import non riuscito: " + (err instanceof Error ? err.message : String(err));
-  } finally {
-    intraGo.disabled = false;
-  }
-});
 
 /* ---------- "Accedi con 42" (sito pubblico, tramite il Cloudflare Worker) ---------- */
 // p: per slug dell'intra, ["d" fatto | "o" in corso, voto]

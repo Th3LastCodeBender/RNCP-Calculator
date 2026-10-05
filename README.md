@@ -8,12 +8,12 @@ Scarica il repository (`git clone` oppure *Code → Download ZIP*) e apri **`pia
 
 - In cima scegli il titolo (RNCP 6 o RNCP 7) e l'opzione: i riquadri mostrano progetti e XP per ogni blocco. La barra piena sono i progetti fatti, quella chiara il resto del piano. Un blocco coperto dal piano ha il bordo verde e la ✓ vuota; quando è validato con i progetti fatti diventa tutto verde.
 - Clicca una card per scegliere il progetto, poi segna lo stato: **Da fare** (blu), **In corso** (ambra) o **Fatto** (verde). Un altro clic sulla card lo toglie dal piano. Ogni card dice in quali altri blocchi conta, anche nell'altro titolo.
-- **Requisiti comuni**: sotto i blocchi scrivi livello attuale, eventi ed esperienze professionali. Il livello col piano somma gli XP dei progetti scelti non ancora fatti; sotto c'è il tempo che resta e una data di fine indicativa.
+- **Requisiti comuni**: sotto i blocchi scrivi livello attuale, eventi ed esperienze professionali. Il livello col piano somma gli XP dei progetti scelti non ancora fatti; in alto a destra c'è l'ETA, la data di fine stimata (i dettagli passando sopra).
 - Filtri: ricerca, da solo o in gruppo, solo i progetti scelti, categorie (Web, Kernel, IA/Data…). Le scelte valgono per entrambi i titoli: un progetto del 6 già scelto conta anche nei blocchi del 7. Nell'RNCP 7 un blocco già completo mostra solo i progetti scelti; "Mostra tutti" fa vedere anche gli altri.
 - **Ore al giorno**: quante ore lavori in una giornata. I giorni stimati sono le ore indicate dall'intra divise per questo numero, con sabato e domenica liberi.
 - Il piano resta salvato nel browser. Con **Salva** e **Carica**, in alto a destra, lo salvi in un file JSON e lo ricarichi; **Esporta** lo esporta in Markdown o PDF (il PDF ha anche una linea del tempo dei progetti non ancora fatti).
 - **Accedi con 42**: sul sito pubblicato, il pulsante sopra i requisiti comuni porta al login dell'intra e torna con i tuoi progetti fatti e in corso, i voti e il livello. Ognuno vede solo i propri dati. Funziona tramite un Cloudflare Worker: come metterlo online è spiegato in [`worker/README.md`](worker/README.md).
-- **Importa dall'intra in locale**: lancia `npm run serve` (serve il `.env`, vedi sotto) e apri http://localhost:4242. Sopra i requisiti comuni compare **Login intra**: scrivi il tuo login e la pagina importa i progetti validati e in corso, i voti e il livello. Quei progetti diventano "fatto" o "in corso" e i loro XP seguono il voto; i progetti "da fare" del piano restano. Le credenziali restano nel server locale, la pagina non le vede. Senza server: `npm run me -- <login>` scrive `piano-intra.json`, da caricare con **Carica**: la pagina lo riconosce e lo unisce al piano invece di sostituirlo (il file contiene dati tuoi ed è escluso dal repository).
+- **Provare in locale**: `npm run serve` apre la pagina su http://localhost:4242, dove funziona anche **Accedi con 42**. Senza login: `npm run me -- <login>` scrive `piano-intra.json`, da caricare con **Carica**: la pagina lo riconosce e lo unisce al piano invece di sostituirlo (il file contiene dati tuoi ed è escluso dal repository).
 
 Ogni card ha il link al **subject** ufficiale (PDF pubblico sul CDN di 42) e alla pagina del progetto sull'intra.
 
@@ -64,7 +64,7 @@ Gli script in [`tools/`](tools/) leggono XP, ore, team e subject dall'intra. Han
 
 | Comando | Cosa fa |
 | --- | --- |
-| `npm run serve` | apre la pagina su http://localhost:4242 con l'import dall'intra dal campo **Login intra** |
+| `npm run serve` | apre la pagina su http://localhost:4242, con **Accedi con 42** funzionante |
 | `npm run me -- <login>` | scrive `piano-intra.json` con i tuoi progetti fatti e in corso, i voti e il livello, da importare nella pagina |
 | `npm run info` | scarica XP, ore, team e link ai subject e segnala le differenze con `src/data.ts` |
 | `npm run hours` | rigenera `hours.js` |
