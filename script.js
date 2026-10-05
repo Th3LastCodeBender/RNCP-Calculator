@@ -992,15 +992,20 @@ const levelNote = () => (state.level != null ? ", livello " + fmtLevel(state.lev
 function loadIntraFile(text) {
     setStatus(mergeIntra(text));
 }
-// riga "Dati dell'intra di jdoe (2026-10-03) · Esci", visibile dopo un import
+// una riga sola: "[Aggiorna] jdoe · 2026-10-03 · Esci"; senza il pulsante dell'intra resta solo "jdoe · … · Esci"
+let authError = ""; // l'ultimo accesso non riuscito, al posto del login finché non si riprova
 function renderSession() {
-    byId("intra-session").hidden = !state.intra;
-    byId("auth-go").textContent = state.intra ? "Aggiorna dall'intra" : "Accedi con 42";
-    if (state.intra)
-        byId("intra-who").textContent = "Dati dell'intra di " + state.intra.login + (state.intra.date ? " (" + state.intra.date + ")" : "");
+    const s = state.intra;
+    const who = s ? s.login + (s.date ? " · " + s.date : "") : "";
+    byId("auth-go").textContent = s ? "Aggiorna" : "Accedi con 42";
+    byId("auth-go").title = s ? "Aggiorna i dati dall'intra" : "";
+    authMsg.textContent = authError || who || "Importa progetti, voti e livello dall'intra.";
+    byId("auth-logout").hidden = !s;
+    byId("intra-session").hidden = !s || !authBox.hidden;
+    byId("intra-who").textContent = who;
 }
 // "Esci": riporta i progetti importati com'erano prima dell'import, e toglie voti, livello e login
-byId("intra-logout").addEventListener("click", () => {
+function logout() {
     const s = state.intra;
     if (!s)
         return;
@@ -1020,11 +1025,13 @@ byId("intra-logout").addEventListener("click", () => {
     }
     catch { }
     intraLogin.value = "";
-    authMsg.textContent = "Dati dell'intra dimenticati.";
+    authError = "";
     intraMsg.textContent = "";
     save();
     render();
-});
+}
+byId("intra-logout").addEventListener("click", logout);
+byId("auth-logout").addEventListener("click", logout);
 /* ---------- server locale (npm run serve): la pagina chiede il login, il server legge l'API di 42 ---------- */
 const intraForm = byId("intra-form");
 const intraLogin = byId("intra-login");
@@ -1106,17 +1113,20 @@ function readAuthReturn() {
     history.replaceState(null, "", location.pathname + location.search);
     authBox.hidden = !authUrl;
     if (hash.startsWith("intra-error=")) {
-        authMsg.textContent = "Accesso non riuscito: " + decodeURIComponent(hash.slice("intra-error=".length));
+        authError = "Accesso non riuscito: " + decodeURIComponent(hash.slice("intra-error=".length));
+        renderSession();
         return;
     }
     try {
         const b64 = hash.slice("intra=".length).replace(/-/g, "+").replace(/_/g, "/");
         const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
         const data = JSON.parse(new TextDecoder().decode(bytes));
-        authMsg.textContent = mergeIntra(intraToPlan(data)) + levelNote() + ".";
+        authError = "";
+        mergeIntra(intraToPlan(data)); // la riga mostra login e data
     }
     catch (err) {
-        authMsg.textContent = "Dati dell'intra non leggibili: " + (err instanceof Error ? err.message : String(err));
+        authError = "Dati dell'intra non leggibili: " + (err instanceof Error ? err.message : String(err));
+        renderSession();
     }
 }
 /* Esporta il piano: Markdown o PDF (stampa del browser di #report, visibile solo in stampa) */

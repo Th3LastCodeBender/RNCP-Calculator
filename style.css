@@ -395,6 +395,19 @@ body {
 }
 
 /* "Login intra [jdoe] [Importa dall'intra]", solo con npm run serve */
+/* una riga: "Accedi con 42" a sinistra, "Login intra" (solo server locale) a destra */
+.intra-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.intra-bar:not(:has(> :not([hidden]))) {
+  display: none;
+}
+
 .intra {
   display: flex;
   flex-wrap: wrap;
@@ -568,13 +581,22 @@ body {
   color: var(--muted);
 }
 
-/* categorie: riga a sé, ogni bottone si accende e spegne da solo */
-.tags {
+/* riga a sé: categorie a sinistra, "Azzera le scelte" in fondo a destra */
+.filters-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  align-items: center;
+  gap: 8px 16px;
   order: 10;
   flex-basis: 100%;
+}
+
+/* categorie: ogni bottone si accende e spegne da solo */
+.tags {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .tags button {
